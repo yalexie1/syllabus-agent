@@ -1,13 +1,8 @@
-# Catalyst Agent Workshop
+# Syllabus Agent
 
-Two small agents you can read and run, written in plain Python with Streamlit and the OpenAI Responses API. There's no agent framework.
+Upload course syllabi (PDFs). It finds every deadline, exam and graded item, proves each one against the PDF text, works out dates like "Week 7 Thursday" or "two days after Lecture 8", shows which weeks are crunch weeks, and exports an `.ics` file.
 
-| | Project | What it shows |
-| --- | --- | --- |
-| Workshop 1 | **Movie Night Planner** | One model, two tools, one agent loop |
-| Workshop 2 | **Repo Investigator** | Several agents working together on a real GitHub repo |
-
-Both run from one app. Pick a project in the sidebar.
+Plain Python and Streamlit, with model calls through the OpenAI SDK's Responses API. There's no agent framework.
 
 ## Run it
 
@@ -22,13 +17,7 @@ pip install -r requirements.txt
 cp .env.example .env
 ```
 
-**2. Add your keys to `.env`.** Never commit this file.
-
-| Key | Needed for | Where to get it |
-| --- | --- | --- |
-| `OPENAI_API_KEY` | Both | Your OpenAI account. Calls are billed there. |
-| `TMDB_READ_TOKEN` | Movie Night Planner | [TMDB API settings](https://www.themoviedb.org/settings/api). Use the long **API Read Access Token**, not the short API key. |
-| `GITHUB_TOKEN` | Optional | Only raises GitHub's rate limit. Public repos work without it. |
+**2. Add `GROQ_API_KEY` to `.env`.** Get one at [console.groq.com](https://console.groq.com/keys); it starts with `gsk_`. Groq (with a q) is not xAI's Grok. Never commit `.env`.
 
 **3. Start the app**
 
@@ -38,70 +27,54 @@ streamlit run app.py
 
 Open the URL Streamlit prints. Next time, run only `source .venv/bin/activate` and step 3.
 
-## Project layout
+The model is `openai/gpt-oss-120b` on Groq. To switch providers, change `BASE_URL`, `MODEL` and `API_KEY_ENV` in `syllabus_agent/config.py`; for xAI Grok that's `https://api.x.ai/v1` and `XAI_API_KEY`. Check the connection with `python -m syllabus_agent.smoke`.
 
-```text
-app.py                  one app, two pages
-movie_agent/            Workshop 1
-  agent.py              instructions and the agent loop
-  tools.py              search_movies, get_movie_details
-  page.py               chat and tool-call trace
-repo_investigator/      Workshop 2
-  agents.py             router, coordinator, workers, writer
-  repo.py               loads a GitHub repo, read-only tools, citation check
-  page.py               live run, replay, comparison
-  architecture.png      the diagram below
-  runs/                 saved real runs you can replay
-tests/                  one test file per project
-```
-
-## Workshop 1: Movie Night Planner
-
-**V0** sends one model request with no tools, so its picks aren't checked against anything. **V1** gives the same model two tools and a loop:
-
-```text
-You → model → tool call → Python runs it → result → model → answer
-                ↑                                    |
-                └────────── another call ────────────┘
-```
-
-The model decides whether to call a tool and with what arguments. Python runs the tool and sends the result back. A turn stops after eight model requests.
-
-**Try:**
-- "We want something funny or mysterious, under two hours, with no horror."
-- "Actually, we already watched Game Night. Something under 105 minutes?"
-- "Find a comedy under 20 minutes."
-
-Run the same prompt in V0 and compare.
-
-**Exercise:** add a watched-movie argument to `search_movies` in `movie_agent/tools.py`, then ask the agent to skip a title.
-
-## Workshop 2: Repo Investigator
-
-Give it a public GitHub repo and a question, such as "How do I add a feature?" or "Does this meet these requirements?". It answers with links to the exact lines of code. It only reads: it can't edit files, run code or open pull requests.
-
-![Repo Investigator architecture](repo_investigator/architecture.png)
+## How it works
 
 | Step | Pattern | What happens |
 | --- | --- | --- |
-| 1 · Input | | The repo is downloaded into memory. Nothing is written to disk. |
-| 2 · Router | Routing | A model labels the request investigate, review or out of scope. Out of scope stops here. |
-| 3 · Coordinator | Orchestrator–workers | A model reads the file list and writes 2–4 separate assignments. |
-| 4 · Workers | Parallelization | Each worker is its own agent loop with its own context. Code limits which files it can read and how many tool calls it gets. |
-| 5 · Citation check | Evaluator | Plain Python checks that each cited file and line exists and contains the quote. A failed citation gets one retry, then it's dropped. |
-| 6 · Writer | Synthesis | A model writes the answer using only verified findings. |
+| 1 · Extract | Orchestrator–workers, parallel | One worker per syllabus, each with its own context. It returns items with the date exactly as written, a verbatim quote and a page number. At most 3 model calls per worker, except that on Groq's free tier a long syllabus is read in batches of pages so each call has room to answer. |
+| 2 · Citation check | Evaluator | Plain Python normalizes the PDF text and the quote (hyphenated line breaks, ligatures, smart quotes) and checks that the quote is on the cited page and contains the date. A failure goes back to the worker once, with the reason. Then it's dropped. |
+| 3 · Dates | Model parses, code computes | The model only labels each date: absolute, week + weekday, nth class meeting, a range, or unresolvable. `term.py` does the arithmetic from the term calendar: weeks start at the term start, class meetings skip breaks, and dates without a year get the right one across New Year. Anything it can't pin down goes to **Needs review** instead of the calendar. |
+| 4 · Load | | Weights come from the syllabus or are inferred from the grading breakdown ("30%, 6 sets, lowest dropped" → 6% each). Weekly totals feed the heatmap. The 3 heaviest weeks, and any week with 2+ exams, are crunch weeks. |
 
-**Try:**
-1. Run the default question on this repo.
-2. Switch to **Single agent (baseline)** in the sidebar and run the same question. A comparison table appears.
-3. Paste in your own public repo.
+**Term calendar:** `syllabus_agent/term.yaml` holds placeholder dates. Fill it in from your school's official calendar, or edit it in the sidebar. **Load demo term** loads the fictional term that matches the demo syllabi.
 
-Click **Show agent diagram** to see the picture above while it runs. Every live run is saved to `repo_investigator/runs/`, and **Replay recording** plays a saved run back without a network connection.
+**Groq free tier:** it allows 8,000 tokens per minute. A live run on all five demo syllabi takes about 2 minutes, mostly waiting, and the trace shows each wait. The baseline only fits at low reasoning effort, and the page says so. After upgrading to a paid tier, set `TOKENS_PER_MINUTE = None` in `config.py`.
 
-**Read the results carefully:**
-- The citation check proves a quote really is on the cited line. It doesn't prove the worker's claim about that line is correct.
-- Workers can miss files. Leaving something out isn't the same as citing something wrong.
-- One run of each mode is an anecdote. Compare several questions before deciding one architecture is better.
+## 90-second demo script
+
+Before going on stage: open the app, click **Load demo term**, and check that **Replay recording** works offline.
+
+1. **Upload syllabi (10 s).** Drag the five PDFs from `tests/fixtures/syllabi/` into the sidebar (or toggle *Use the 5 demo syllabi*) and click **Run**. If the network is slow, use **Replay recording** instead. It's a real run, played back.
+2. **Workers and a rejected citation (25 s).** Five workers run side by side. Point at a red ❌: the model glued a table header onto a row and "quoted" text that isn't in the PDF. The check shows the closest real text, the worker gets one retry, and it comes back ✅. Nothing reaches the calendar without a quote that's really on its page.
+3. **Crunch weeks (15 s).** Scroll to the heatmap. Week 7 lights up: three midterms, a paper and two problem sets in one week, 96% of a course grade. The cards underneath list what's due.
+4. **Source quote (10 s).** Click a calendar row, e.g. CPSC 223 Problem Set 2. The card shows the quote, the page, "two days after Lecture 8" → *meeting 8 +2 days* → **Sat Oct 10**, and how its weight was inferred.
+5. **Import the .ics (15 s).** Click **Download .ics**, then in Google Calendar go to Settings → Import & export → Import. Each event's description carries its quote and page. Needs-review items (TBA, "announced in class") stay off the calendar.
+6. **Baseline (15 s).** Switch the mode to **Single-prompt baseline** and run (or replay its recording). One prompt, no checks: in the recorded run it got 11 dates wrong (every one a "Week N" or "Lecture N" date, e.g. a midterm placed during fall break) and missed 4 items, and 4 of its "sources" aren't in the PDFs. The comparison table puts the two side by side, scored against a hand-checked answer key.
+
+**Read the results carefully:** the check proves a quote is on the page, not that the model labeled it correctly. The answer key exists only for the demo syllabi. For your own PDFs, the baseline is scored against the verified pipeline, which shows disagreement, not ground truth.
+
+## Project layout
+
+```text
+app.py                  starts the app
+syllabus_agent/
+  config.py             provider, model, key name, token limits, default weights
+  pdfs.py               text per page; scanned PDFs are skipped
+  agents.py             extractor workers, repair, date parsing, baseline
+  citations.py          the citation check (plain Python)
+  term.py               term calendar and all date arithmetic
+  load.py               resolve, dedupe, infer weights, crunch weeks
+  charts.py, export.py  heatmap and .ics
+  compare.py            scores a run against the answer key
+  page.py               live trace, results, replay, comparison
+  term.yaml             placeholder term: fill in from your school's calendar
+  runs/                 saved real runs you can replay
+tests/
+  test_syllabus_agent.py
+  fixtures/             synthetic syllabi, demo term and answer key (make_syllabi.py)
+```
 
 ## Tests
 
@@ -109,10 +82,8 @@ Click **Show agent diagram** to see the picture above while it runs. Every live 
 python -m unittest discover -s tests -v
 ```
 
-The tests use a fake model, a fake TMDB and a fake GitHub, so they cost nothing.
+The tests run the real fixture PDFs through a scripted fake model, so they cost nothing and need no API key. Rebuild the fixtures with `python tests/fixtures/make_syllabi.py`.
 
 ## Links
 
-[OpenAI function calling](https://developers.openai.com/api/docs/guides/function-calling) · [Building effective agents](https://www.anthropic.com/engineering/building-effective-agents) · [Multi-agent research system](https://www.anthropic.com/engineering/multi-agent-research-system) · [TMDB API](https://developer.themoviedb.org/reference/discover-movie)
-
-This product uses the TMDB API but is not endorsed or certified by TMDB.
+[Building effective agents](https://www.anthropic.com/engineering/building-effective-agents) · [Groq Responses API](https://console.groq.com/docs/responses-api) · [iCalendar (RFC 5545)](https://datatracker.ietf.org/doc/html/rfc5545)

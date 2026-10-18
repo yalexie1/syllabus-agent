@@ -1,0 +1,9 @@
+# Fictional demo term for the synthetic syllabi in this folder. Not a real university calendar.
+name: Example University · Fall 2026 (fictional demo term)
+start: 2026-09-14
+end: 2027-01-08
+breaks:
+  - {name: Fall break, start: 2026-10-19, end: 2026-10-23}
+  - {name: Thanksgiving recess, start: 2026-11-25, end: 2026-11-27}
+  - {name: Winter recess, start: 2026-12-19, end: 2027-01-03}
+courses: {}

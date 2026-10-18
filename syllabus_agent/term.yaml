@@ -1,0 +1,11 @@
+# PLACEHOLDER: fill this in from your school's official academic calendar.
+# These dates are made up so nobody mistakes them for a real calendar.
+# Edit here or in the app sidebar. Dates are YYYY-MM-DD; breaks have no classes.
+name: PLACEHOLDER term (edit me)
+start: 2099-01-05
+end: 2099-05-01
+breaks:
+  - {name: PLACEHOLDER break, start: 2099-03-09, end: 2099-03-13}
+# Meeting days per course, e.g. "CHEM 210": [Mon, Wed, Fri].
+# Leave a course out and the app uses the meeting days found in its syllabus.
+courses: {}

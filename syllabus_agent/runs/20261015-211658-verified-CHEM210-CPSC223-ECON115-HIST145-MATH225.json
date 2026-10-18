@@ -1,0 +1,2015 @@
+{
+ "mode": "verified",
+ "model": "openai/gpt-oss-120b",
+ "created": "2026-10-15T21:16:58",
+ "term": "name: Example University \u00b7 Fall 2026 (fictional demo term)\nstart: '2026-09-14'\nend: '2027-01-08'\nbreaks:\n- name: Fall break\n  start: '2026-10-19'\n  end: '2026-10-23'\n- name: Thanksgiving recess\n  start: '2026-11-25'\n  end: '2026-11-27'\n- name: Winter recess\n  start: '2026-12-19'\n  end: '2027-01-03'\ncourses: {}\n",
+ "files": [
+  {
+   "name": "chem210_organic_chemistry.pdf",
+   "sha256": "a49095ba24806856a7059a83c41df7bfe1e520c5115a4997c11ec64a4cd69b62",
+   "pages": 2
+  },
+  {
+   "name": "cpsc223_data_structures.pdf",
+   "sha256": "1f221f2740cf4cbc68e3d42f6b3b8225c1d8269bd03b894c7fac5984e432ded6",
+   "pages": 2
+  },
+  {
+   "name": "econ115_microeconomics.pdf",
+   "sha256": "8537ec3e02665b9c7afe1648833a6ef33c46aed92f8ffff2aab724484078f17e",
+   "pages": 1
+  },
+  {
+   "name": "hist145_modern_europe.pdf",
+   "sha256": "851d3b1759ebbe990d51d4172296b70be37d483ac68e18bb6ca87a76cc549e27",
+   "pages": 2
+  },
+  {
+   "name": "math225_linear_algebra.pdf",
+   "sha256": "076828e8aeccda3fa7935b6c47c31255af6504b119dc8b08f30f4b09ae5774f5",
+   "pages": 1
+  }
+ ],
+ "events": [
+  {
+   "type": "start",
+   "mode": "verified",
+   "model": "openai/gpt-oss-120b",
+   "files": [
+    {
+     "name": "chem210_organic_chemistry.pdf",
+     "sha256": "a49095ba24806856a7059a83c41df7bfe1e520c5115a4997c11ec64a4cd69b62",
+     "pages": 2
+    },
+    {
+     "name": "cpsc223_data_structures.pdf",
+     "sha256": "1f221f2740cf4cbc68e3d42f6b3b8225c1d8269bd03b894c7fac5984e432ded6",
+     "pages": 2
+    },
+    {
+     "name": "econ115_microeconomics.pdf",
+     "sha256": "8537ec3e02665b9c7afe1648833a6ef33c46aed92f8ffff2aab724484078f17e",
+     "pages": 1
+    },
+    {
+     "name": "hist145_modern_europe.pdf",
+     "sha256": "851d3b1759ebbe990d51d4172296b70be37d483ac68e18bb6ca87a76cc549e27",
+     "pages": 2
+    },
+    {
+     "name": "math225_linear_algebra.pdf",
+     "sha256": "076828e8aeccda3fa7935b6c47c31255af6504b119dc8b08f30f4b09ae5774f5",
+     "pages": 1
+    }
+   ]
+  },
+  {
+   "type": "worker",
+   "worker": "S1",
+   "file": "chem210_organic_chemistry.pdf",
+   "pages": 2
+  },
+  {
+   "type": "worker",
+   "worker": "S2",
+   "file": "cpsc223_data_structures.pdf",
+   "pages": 2
+  },
+  {
+   "type": "worker",
+   "worker": "S3",
+   "file": "econ115_microeconomics.pdf",
+   "pages": 1
+  },
+  {
+   "type": "worker",
+   "worker": "S4",
+   "file": "hist145_modern_europe.pdf",
+   "pages": 2
+  },
+  {
+   "type": "worker",
+   "worker": "S5",
+   "file": "math225_linear_algebra.pdf",
+   "pages": 1
+  },
+  {
+   "type": "extracted",
+   "worker": "S5",
+   "course": "MATH 225",
+   "meeting_days": [
+    "Tue",
+    "Thu"
+   ],
+   "grading": [
+    {
+     "type": "problem_set",
+     "label": "Homework",
+     "weight_pct": 10,
+     "count": null,
+     "dropped": 0
+    },
+    {
+     "type": "quiz",
+     "label": "Quizzes",
+     "weight_pct": 10,
+     "count": null,
+     "dropped": 0
+    },
+    {
+     "type": "exam",
+     "label": "Midterm exams",
+     "weight_pct": 40,
+     "count": 2,
+     "dropped": 0
+    },
+    {
+     "type": "exam",
+     "label": "Final exam",
+     "weight_pct": 40,
+     "count": 1,
+     "dropped": 0
+    }
+   ],
+   "items": [
+    {
+     "type": "problem_set",
+     "title": "Homework",
+     "date_expr": "every Friday",
+     "weight_pct": 10,
+     "weight_expr": "10%",
+     "quote": "Homework 10% due every Friday",
+     "page": 1,
+     "id": "S5-1"
+    },
+    {
+     "type": "exam",
+     "title": "Midterm 1",
+     "date_expr": "Week 7 Tuesday",
+     "weight_pct": 20,
+     "weight_expr": "20%",
+     "quote": "Midterm 1 20% Week 7 Tuesday",
+     "page": 1,
+     "id": "S5-2"
+    },
+    {
+     "type": "exam",
+     "title": "Midterm 2",
+     "date_expr": "Week 12 Tuesday",
+     "weight_pct": 20,
+     "weight_expr": "20%",
+     "quote": "Midterm 2 20% Week 12 Tuesday (subject to change)",
+     "page": 1,
+     "id": "S5-3"
+    },
+    {
+     "type": "exam",
+     "title": "Final exam",
+     "date_expr": "Jan 5",
+     "weight_pct": 40,
+     "weight_expr": "40%",
+     "quote": "Final exam 40% Jan 5, 9 am-noon",
+     "page": 1,
+     "id": "S5-4"
+    }
+   ]
+  },
+  {
+   "type": "check",
+   "worker": "S5",
+   "retry": false,
+   "results": [
+    {
+     "type": "problem_set",
+     "title": "Homework",
+     "date_expr": "every Friday",
+     "weight_pct": 10,
+     "weight_expr": "10%",
+     "quote": "Homework 10% due every Friday",
+     "page": 1,
+     "id": "S5-1",
+     "ok": true,
+     "reason": "quote found on the cited page"
+    },
+    {
+     "type": "exam",
+     "title": "Midterm 1",
+     "date_expr": "Week 7 Tuesday",
+     "weight_pct": 20,
+     "weight_expr": "20%",
+     "quote": "Midterm 1 20% Week 7 Tuesday",
+     "page": 1,
+     "id": "S5-2",
+     "ok": true,
+     "reason": "quote found on the cited page"
+    },
+    {
+     "type": "exam",
+     "title": "Midterm 2",
+     "date_expr": "Week 12 Tuesday",
+     "weight_pct": 20,
+     "weight_expr": "20%",
+     "quote": "Midterm 2 20% Week 12 Tuesday (subject to change)",
+     "page": 1,
+     "id": "S5-3",
+     "ok": true,
+     "reason": "quote found on the cited page"
+    },
+    {
+     "type": "exam",
+     "title": "Final exam",
+     "date_expr": "Jan 5",
+     "weight_pct": 40,
+     "weight_expr": "40%",
+     "quote": "Final exam 40% Jan 5, 9 am-noon",
+     "page": 1,
+     "id": "S5-4",
+     "ok": true,
+     "reason": "quote found on the cited page"
+    }
+   ]
+  },
+  {
+   "type": "extracted",
+   "worker": "S1",
+   "course": "CHEM 210",
+   "meeting_days": [
+    "Mon",
+    "Wed",
+    "Fri"
+   ],
+   "grading": [
+    {
+     "type": "problem_set",
+     "label": "Problem sets",
+     "weight_pct": 30,
+     "count": 6,
+     "dropped": 1
+    },
+    {
+     "type": "exam",
+     "label": "Midterm 1",
+     "weight_pct": 20,
+     "count": 1,
+     "dropped": 0
+    },
+    {
+     "type": "exam",
+     "label": "Midterm 2",
+     "weight_pct": 20,
+     "count": 1,
+     "dropped": 0
+    },
+    {
+     "type": "exam",
+     "label": "Final exam",
+     "weight_pct": 30,
+     "count": 1,
+     "dropped": 0
+    }
+   ],
+   "items": [
+    {
+     "title": "Problem Set 1",
+     "type": "problem_set",
+     "date_expr": "Week 2 Fri",
+     "weight_pct": null,
+     "weight_expr": "",
+     "quote": "Week 2 Fri Problem Set 1 due",
+     "page": 2,
+     "id": "S1-1"
+    },
+    {
+     "title": "Problem Set 2",
+     "type": "problem_set",
+     "date_expr": "Week 4 Fri",
+     "weight_pct": null,
+     "weight_expr": "",
+     "quote": "Week 4 Fri Problem Set 2 due",
+     "page": 2,
+     "id": "S1-2"
+    },
+    {
+     "title": "Problem Set 3",
+     "type": "problem_set",
+     "date_expr": "Week 5 Fri",
+     "weight_pct": null,
+     "weight_expr": "",
+     "quote": "Week 5 Fri Problem Set 3 due",
+     "page": 2,
+     "id": "S1-3"
+    },
+    {
+     "title": "Problem Set 4",
+     "type": "problem_set",
+     "date_expr": "Week 8 Fri",
+     "weight_pct": null,
+     "weight_expr": "",
+     "quote": "Week 8 Fri Problem Set 4 due",
+     "page": 2,
+     "id": "S1-4"
+    },
+    {
+     "title": "Problem Set 5",
+     "type": "problem_set",
+     "date_expr": "Week 10 Fri",
+     "weight_pct": null,
+     "weight_expr": "",
+     "quote": "Week 10 Fri Problem Set 5 due",
+     "page": 2,
+     "id": "S1-5"
+    },
+    {
+     "title": "Problem Set 6",
+     "type": "problem_set",
+     "date_expr": "Week 13 Fri",
+     "weight_pct": null,
+     "weight_expr": "",
+     "quote": "Week 13 Fri Problem Set 6 due",
+     "page": 2,
+     "id": "S1-6"
+    },
+    {
+     "title": "Midterm 1",
+     "type": "exam",
+     "date_expr": "Week 7 Thursday",
+     "weight_pct": 20,
+     "weight_expr": "20%",
+     "quote": "examination on Week 7 Thursday at 7 pm in Sterling Hall 110",
+     "page": 1,
+     "id": "S1-7"
+    },
+    {
+     "title": "Midterm 2",
+     "type": "exam",
+     "date_expr": "Week 12 Wednesday",
+     "weight_pct": 20,
+     "weight_expr": "20%",
+     "quote": "Midterm 2 is held in class on Week 12 Wednesday and covers chapters 9-14",
+     "page": 1,
+     "id": "S1-8"
+    },
+    {
+     "title": "Final exam",
+     "type": "exam",
+     "date_expr": "Jan 6",
+     "weight_pct": 30,
+     "weight_expr": "30%",
+     "quote": "final exam is on Jan 6 at 9:00 am",
+     "page": 1,
+     "id": "S1-9"
+    }
+   ]
+  },
+  {
+   "type": "check",
+   "worker": "S1",
+   "retry": false,
+   "results": [
+    {
+     "title": "Problem Set 1",
+     "type": "problem_set",
+     "date_expr": "Week 2 Fri",
+     "weight_pct": null,
+     "weight_expr": "",
+     "quote": "Week 2 Fri Problem Set 1 due",
+     "page": 2,
+     "id": "S1-1",
+     "ok": true,
+     "reason": "quote found on the cited page"
+    },
+    {
+     "title": "Problem Set 2",
+     "type": "problem_set",
+     "date_expr": "Week 4 Fri",
+     "weight_pct": null,
+     "weight_expr": "",
+     "quote": "Week 4 Fri Problem Set 2 due",
+     "page": 2,
+     "id": "S1-2",
+     "ok": true,
+     "reason": "quote found on the cited page"
+    },
+    {
+     "title": "Problem Set 3",
+     "type": "problem_set",
+     "date_expr": "Week 5 Fri",
+     "weight_pct": null,
+     "weight_expr": "",
+     "quote": "Week 5 Fri Problem Set 3 due",
+     "page": 2,
+     "id": "S1-3",
+     "ok": true,
+     "reason": "quote found on the cited page"
+    },
+    {
+     "title": "Problem Set 4",
+     "type": "problem_set",
+     "date_expr": "Week 8 Fri",
+     "weight_pct": null,
+     "weight_expr": "",
+     "quote": "Week 8 Fri Problem Set 4 due",
+     "page": 2,
+     "id": "S1-4",
+     "ok": true,
+     "reason": "quote found on the cited page"
+    },
+    {
+     "title": "Problem Set 5",
+     "type": "problem_set",
+     "date_expr": "Week 10 Fri",
+     "weight_pct": null,
+     "weight_expr": "",
+     "quote": "Week 10 Fri Problem Set 5 due",
+     "page": 2,
+     "id": "S1-5",
+     "ok": true,
+     "reason": "quote found on the cited page"
+    },
+    {
+     "title": "Problem Set 6",
+     "type": "problem_set",
+     "date_expr": "Week 13 Fri",
+     "weight_pct": null,
+     "weight_expr": "",
+     "quote": "Week 13 Fri Problem Set 6 due",
+     "page": 2,
+     "id": "S1-6",
+     "ok": true,
+     "reason": "quote found on the cited page"
+    },
+    {
+     "title": "Midterm 1",
+     "type": "exam",
+     "date_expr": "Week 7 Thursday",
+     "weight_pct": 20,
+     "weight_expr": "20%",
+     "quote": "examination on Week 7 Thursday at 7 pm in Sterling Hall 110",
+     "page": 1,
+     "id": "S1-7",
+     "ok": true,
+     "reason": "quote found on the cited page"
+    },
+    {
+     "title": "Midterm 2",
+     "type": "exam",
+     "date_expr": "Week 12 Wednesday",
+     "weight_pct": 20,
+     "weight_expr": "20%",
+     "quote": "Midterm 2 is held in class on Week 12 Wednesday and covers chapters 9-14",
+     "page": 1,
+     "id": "S1-8",
+     "ok": true,
+     "reason": "quote found on the cited page"
+    },
+    {
+     "title": "Final exam",
+     "type": "exam",
+     "date_expr": "Jan 6",
+     "weight_pct": 30,
+     "weight_expr": "30%",
+     "quote": "final exam is on Jan 6 at 9:00 am",
+     "page": 1,
+     "id": "S1-9",
+     "ok": true,
+     "reason": "quote found on the cited page"
+    }
+   ]
+  },
+  {
+   "type": "waiting",
+   "worker": "S1",
+   "seconds": 12.3
+  },
+  {
+   "type": "parsed",
+   "worker": "S5",
+   "dates": [
+    {
+     "id": "S5-1",
+     "kind": "unresolvable",
+     "month": null,
+     "day": null,
+     "week": null,
+     "weekday": null,
+     "n": null,
+     "offset_days": null,
+     "start": null,
+     "end": null,
+     "reason": "repeating pattern"
+    },
+    {
+     "id": "S5-2",
+     "kind": "week_weekday",
+     "month": null,
+     "day": null,
+     "week": 7,
+     "weekday": "Tue",
+     "n": null,
+     "offset_days": null,
+     "start": null,
+     "end": null,
+     "reason": null
+    },
+    {
+     "id": "S5-3",
+     "kind": "week_weekday",
+     "month": null,
+     "day": null,
+     "week": 12,
+     "weekday": "Tue",
+     "n": null,
+     "offset_days": null,
+     "start": null,
+     "end": null,
+     "reason": null
+    },
+    {
+     "id": "S5-4",
+     "kind": "absolute",
+     "month": 1,
+     "day": 5,
+     "week": null,
+     "weekday": null,
+     "n": null,
+     "offset_days": null,
+     "start": null,
+     "end": null,
+     "reason": null
+    }
+   ]
+  },
+  {
+   "type": "done",
+   "worker": "S5"
+  },
+  {
+   "type": "extracted",
+   "worker": "S4",
+   "course": "HIST 145",
+   "meeting_days": [
+    "Mon",
+    "Wed"
+   ],
+   "grading": [
+    {
+     "type": "other",
+     "label": "Participation",
+     "weight_pct": 20,
+     "count": null,
+     "dropped": 0
+    },
+    {
+     "type": "paper",
+     "label": "Response papers",
+     "weight_pct": 20,
+     "count": 4,
+     "dropped": 0
+    },
+    {
+     "type": "paper",
+     "label": "Paper 1",
+     "weight_pct": 20,
+     "count": 1,
+     "dropped": 0
+    },
+    {
+     "type": "paper",
+     "label": "Final paper",
+     "weight_pct": 30,
+     "count": 1,
+     "dropped": 0
+    },
+    {
+     "type": "presentation",
+     "label": "Presentation",
+     "weight_pct": 10,
+     "count": 1,
+     "dropped": 0
+    }
+   ],
+   "items": [
+    {
+     "type": "paper",
+     "title": "Response paper 1",
+     "date_expr": "Sept 30",
+     "weight_pct": 5,
+     "weight_expr": "5%",
+     "quote": "Sept 30 Response paper 1",
+     "page": 2,
+     "id": "S4-1"
+    },
+    {
+     "type": "paper",
+     "title": "Response paper 2",
+     "date_expr": "Oct 14",
+     "weight_pct": 5,
+     "weight_expr": "5%",
+     "quote": "Oct 14 Response paper 2",
+     "page": 2,
+     "id": "S4-2"
+    },
+    {
+     "type": "paper",
+     "title": "Paper 1",
+     "date_expr": "Oct 30",
+     "weight_pct": 20,
+     "weight_expr": "20%",
+     "quote": "Oct 30 Paper 1 (2,000 words)",
+     "page": 2,
+     "id": "S4-3"
+    },
+    {
+     "type": "paper",
+     "title": "Response paper 3",
+     "date_expr": "Nov 11",
+     "weight_pct": 5,
+     "weight_expr": "5%",
+     "quote": "Nov 11 Response paper 3",
+     "page": 2,
+     "id": "S4-4"
+    },
+    {
+     "type": "paper",
+     "title": "Response paper 4",
+     "date_expr": "Dec 9",
+     "weight_pct": 5,
+     "weight_expr": "5%",
+     "quote": "Response paper 4 is due on Wendesday, Dec 9, before seminar.",
+     "page": 2,
+     "id": "S4-5"
+    },
+    {
+     "type": "paper",
+     "title": "Final paper",
+     "date_expr": "Dec 16",
+     "weight_pct": 30,
+     "weight_expr": "30%",
+     "quote": "Dec 16 Final paper due by noon",
+     "page": 1,
+     "id": "S4-6"
+    },
+    {
+     "type": "presentation",
+     "title": "Presentation",
+     "date_expr": "TBA",
+     "weight_pct": 10,
+     "weight_expr": "10%",
+     "quote": "Presentations are scheduled TBA; we\u2019ll sign up in the third week of class.",
+     "page": 1,
+     "id": "S4-7"
+    }
+   ]
+  },
+  {
+   "type": "check",
+   "worker": "S4",
+   "retry": false,
+   "results": [
+    {
+     "type": "paper",
+     "title": "Response paper 1",
+     "date_expr": "Sept 30",
+     "weight_pct": 5,
+     "weight_expr": "5%",
+     "quote": "Sept 30 Response paper 1",
+     "page": 2,
+     "id": "S4-1",
+     "ok": true,
+     "reason": "quote found on the cited page"
+    },
+    {
+     "type": "paper",
+     "title": "Response paper 2",
+     "date_expr": "Oct 14",
+     "weight_pct": 5,
+     "weight_expr": "5%",
+     "quote": "Oct 14 Response paper 2",
+     "page": 2,
+     "id": "S4-2",
+     "ok": true,
+     "reason": "quote found on the cited page"
+    },
+    {
+     "type": "paper",
+     "title": "Paper 1",
+     "date_expr": "Oct 30",
+     "weight_pct": 20,
+     "weight_expr": "20%",
+     "quote": "Oct 30 Paper 1 (2,000 words)",
+     "page": 2,
+     "id": "S4-3",
+     "ok": true,
+     "reason": "quote found on the cited page"
+    },
+    {
+     "type": "paper",
+     "title": "Response paper 3",
+     "date_expr": "Nov 11",
+     "weight_pct": 5,
+     "weight_expr": "5%",
+     "quote": "Nov 11 Response paper 3",
+     "page": 2,
+     "id": "S4-4",
+     "ok": true,
+     "reason": "quote found on the cited page"
+    },
+    {
+     "type": "paper",
+     "title": "Response paper 4",
+     "date_expr": "Dec 9",
+     "weight_pct": 5,
+     "weight_expr": "5%",
+     "quote": "Response paper 4 is due on Wendesday, Dec 9, before seminar.",
+     "page": 2,
+     "id": "S4-5",
+     "ok": true,
+     "reason": "quote found on the cited page"
+    },
+    {
+     "type": "paper",
+     "title": "Final paper",
+     "date_expr": "Dec 16",
+     "weight_pct": 30,
+     "weight_expr": "30%",
+     "quote": "Dec 16 Final paper due by noon",
+     "page": 1,
+     "id": "S4-6",
+     "ok": false,
+     "reason": "quote is on page 2, not page 1"
+    },
+    {
+     "type": "presentation",
+     "title": "Presentation",
+     "date_expr": "TBA",
+     "weight_pct": 10,
+     "weight_expr": "10%",
+     "quote": "Presentations are scheduled TBA; we\u2019ll sign up in the third week of class.",
+     "page": 1,
+     "id": "S4-7",
+     "ok": true,
+     "reason": "quote found on the cited page"
+    }
+   ]
+  },
+  {
+   "type": "extracted",
+   "worker": "S2",
+   "course": "CPSC 223",
+   "meeting_days": [
+    "Tue",
+    "Thu"
+   ],
+   "grading": [
+    {
+     "type": "problem_set",
+     "label": "Problem sets",
+     "weight_pct": 40,
+     "count": 5,
+     "dropped": 0
+    },
+    {
+     "type": "exam",
+     "label": "Take-home midterm",
+     "weight_pct": 25,
+     "count": 1,
+     "dropped": 0
+    },
+    {
+     "type": "exam",
+     "label": "Final exam",
+     "weight_pct": 35,
+     "count": 1,
+     "dropped": 0
+    }
+   ],
+   "items": [
+    {
+     "title": "Take-home Midterm",
+     "type": "exam",
+     "date_expr": "Nov 3-5",
+     "weight_pct": 25,
+     "weight_expr": "25%",
+     "quote": "The take-home midterm is released and due within the window Nov 3-5; you may use your notes but not other people.",
+     "page": 1,
+     "id": "S2-1"
+    },
+    {
+     "title": "Final Exam",
+     "type": "exam",
+     "date_expr": "Thursday, January 7",
+     "weight_pct": 35,
+     "weight_expr": "35%",
+     "quote": "The final exam is on Thursday, January 7, 2-5 pm.",
+     "page": 1,
+     "id": "S2-2"
+    },
+    {
+     "title": "Problem Set 1",
+     "type": "problem_set",
+     "date_expr": "start of Lecture 4",
+     "weight_pct": null,
+     "weight_expr": "",
+     "quote": "Problem Set 1 is due at the start of Lecture 4.",
+     "page": 1,
+     "id": "S2-3"
+    },
+    {
+     "title": "Problem Set 2",
+     "type": "problem_set",
+     "date_expr": "two days after Lecture 8",
+     "weight_pct": null,
+     "weight_expr": "",
+     "quote": "Problem Set 2 is due two days after Lecture 8, at 11:59 pm.",
+     "page": 1,
+     "id": "S2-4"
+    },
+    {
+     "title": "Problem Set 3",
+     "type": "problem_set",
+     "date_expr": "the day after Lecture 12",
+     "weight_pct": null,
+     "weight_expr": "",
+     "quote": "Problem Set 3 is due the day after Lecture 12.",
+     "page": 1,
+     "id": "S2-5"
+    },
+    {
+     "title": "Problem Set 4",
+     "type": "problem_set",
+     "date_expr": "Lecture 21",
+     "weight_pct": null,
+     "weight_expr": "",
+     "quote": "Problem Set 4 is due at Lecture 21.",
+     "page": 1,
+     "id": "S2-6"
+    },
+    {
+     "title": "Problem Set 5",
+     "type": "problem_set",
+     "date_expr": "two days after Lecture 23",
+     "weight_pct": null,
+     "weight_expr": "",
+     "quote": "Problem Set 5 is due two days after Lecture 23, at 11:59 pm.",
+     "page": 1,
+     "id": "S2-7"
+    }
+   ]
+  },
+  {
+   "type": "check",
+   "worker": "S2",
+   "retry": false,
+   "results": [
+    {
+     "title": "Take-home Midterm",
+     "type": "exam",
+     "date_expr": "Nov 3-5",
+     "weight_pct": 25,
+     "weight_expr": "25%",
+     "quote": "The take-home midterm is released and due within the window Nov 3-5; you may use your notes but not other people.",
+     "page": 1,
+     "id": "S2-1",
+     "ok": true,
+     "reason": "quote found on the cited page"
+    },
+    {
+     "title": "Final Exam",
+     "type": "exam",
+     "date_expr": "Thursday, January 7",
+     "weight_pct": 35,
+     "weight_expr": "35%",
+     "quote": "The final exam is on Thursday, January 7, 2-5 pm.",
+     "page": 1,
+     "id": "S2-2",
+     "ok": true,
+     "reason": "quote found on the cited page"
+    },
+    {
+     "title": "Problem Set 1",
+     "type": "problem_set",
+     "date_expr": "start of Lecture 4",
+     "weight_pct": null,
+     "weight_expr": "",
+     "quote": "Problem Set 1 is due at the start of Lecture 4.",
+     "page": 1,
+     "id": "S2-3",
+     "ok": true,
+     "reason": "quote found on the cited page"
+    },
+    {
+     "title": "Problem Set 2",
+     "type": "problem_set",
+     "date_expr": "two days after Lecture 8",
+     "weight_pct": null,
+     "weight_expr": "",
+     "quote": "Problem Set 2 is due two days after Lecture 8, at 11:59 pm.",
+     "page": 1,
+     "id": "S2-4",
+     "ok": true,
+     "reason": "quote found on the cited page"
+    },
+    {
+     "title": "Problem Set 3",
+     "type": "problem_set",
+     "date_expr": "the day after Lecture 12",
+     "weight_pct": null,
+     "weight_expr": "",
+     "quote": "Problem Set 3 is due the day after Lecture 12.",
+     "page": 1,
+     "id": "S2-5",
+     "ok": true,
+     "reason": "quote found on the cited page"
+    },
+    {
+     "title": "Problem Set 4",
+     "type": "problem_set",
+     "date_expr": "Lecture 21",
+     "weight_pct": null,
+     "weight_expr": "",
+     "quote": "Problem Set 4 is due at Lecture 21.",
+     "page": 1,
+     "id": "S2-6",
+     "ok": true,
+     "reason": "quote found on the cited page"
+    },
+    {
+     "title": "Problem Set 5",
+     "type": "problem_set",
+     "date_expr": "two days after Lecture 23",
+     "weight_pct": null,
+     "weight_expr": "",
+     "quote": "Problem Set 5 is due two days after Lecture 23, at 11:59 pm.",
+     "page": 1,
+     "id": "S2-7",
+     "ok": true,
+     "reason": "quote found on the cited page"
+    }
+   ]
+  },
+  {
+   "type": "waiting",
+   "worker": "S2",
+   "seconds": 12.5
+  },
+  {
+   "type": "waiting",
+   "worker": "S4",
+   "seconds": 13.3
+  },
+  {
+   "type": "extracted",
+   "worker": "S3",
+   "course": "ECON 115",
+   "meeting_days": [
+    "Mon",
+    "Wed"
+   ],
+   "grading": [
+    {
+     "type": "exam",
+     "label": "Exams",
+     "weight_pct": 60,
+     "count": 2,
+     "dropped": 0
+    },
+    {
+     "type": "quiz",
+     "label": "Quizzes",
+     "weight_pct": 20,
+     "count": 4,
+     "dropped": 0
+    },
+    {
+     "type": "problem_set",
+     "label": "Problem Sets",
+     "weight_pct": 20,
+     "count": 8,
+     "dropped": 1
+    }
+   ],
+   "items": [
+    {
+     "type": "quiz",
+     "title": "Quiz 1",
+     "date_expr": "Lecture 5",
+     "weight_pct": null,
+     "weight_expr": "",
+     "quote": "In-class quizzes are given at the start of Lecture 5, Lecture 10, Lecture 15 and Lecture 20.",
+     "page": 1,
+     "id": "S3-1"
+    },
+    {
+     "type": "quiz",
+     "title": "Quiz 2",
+     "date_expr": "Lecture 10",
+     "weight_pct": null,
+     "weight_expr": "",
+     "quote": "In-class quizzes are given at the start of Lecture 5, Lecture 10, Lecture 15 and Lecture 20.",
+     "page": 1,
+     "id": "S3-2"
+    },
+    {
+     "type": "quiz",
+     "title": "Quiz 3",
+     "date_expr": "Lecture 15",
+     "weight_pct": null,
+     "weight_expr": "",
+     "quote": "In-class quizzes are given at the start of Lecture 5, Lecture 10, Lecture 15 and Lecture 20.",
+     "page": 1,
+     "id": "S3-3"
+    },
+    {
+     "type": "quiz",
+     "title": "Quiz 4",
+     "date_expr": "Lecture 20",
+     "weight_pct": null,
+     "weight_expr": "",
+     "quote": "In-class quizzes are given at the start of Lecture 5, Lecture 10, Lecture 15 and Lecture 20.",
+     "page": 1,
+     "id": "S3-4"
+    },
+    {
+     "type": "problem_set",
+     "title": "Problem Set 1",
+     "date_expr": "Sep 25",
+     "weight_pct": null,
+     "weight_expr": "",
+     "quote": "Problem set due dates (Fridays, 5 pm) PS1 Sep 25",
+     "page": 1,
+     "id": "S3-5"
+    },
+    {
+     "type": "problem_set",
+     "title": "Problem Set 2",
+     "date_expr": "Oct 9",
+     "weight_pct": null,
+     "weight_expr": "",
+     "quote": "Problem set due dates (Fridays, 5 pm) PS2 Oct 9",
+     "page": 1,
+     "id": "S3-6"
+    },
+    {
+     "type": "problem_set",
+     "title": "Problem Set 3",
+     "date_expr": "Oct 16",
+     "weight_pct": null,
+     "weight_expr": "",
+     "quote": "Problem set due dates (Fridays, 5 pm) PS3 Oct 16",
+     "page": 1,
+     "id": "S3-7"
+    },
+    {
+     "type": "problem_set",
+     "title": "Problem Set 4",
+     "date_expr": "Oct 30",
+     "weight_pct": null,
+     "weight_expr": "",
+     "quote": "Problem set due dates (Fridays, 5 pm) PS4 Oct 30",
+     "page": 1,
+     "id": "S3-8"
+    },
+    {
+     "type": "problem_set",
+     "title": "Problem Set 5",
+     "date_expr": "Nov 13",
+     "weight_pct": null,
+     "weight_expr": "",
+     "quote": "Problem set due dates (Fridays, 5 pm) PS5 Nov 13",
+     "page": 1,
+     "id": "S3-9"
+    },
+    {
+     "type": "problem_set",
+     "title": "Problem Set 6",
+     "date_expr": "Nov 20",
+     "weight_pct": null,
+     "weight_expr": "",
+     "quote": "Problem set due dates (Fridays, 5 pm) PS6 Nov 20",
+     "page": 1,
+     "id": "S3-10"
+    },
+    {
+     "type": "problem_set",
+     "title": "Problem Set 7",
+     "date_expr": "Dec 4",
+     "weight_pct": null,
+     "weight_expr": "",
+     "quote": "Problem set due dates (Fridays, 5 pm) PS7 Dec 4",
+     "page": 1,
+     "id": "S3-11"
+    },
+    {
+     "type": "problem_set",
+     "title": "Problem Set 8",
+     "date_expr": "Dec 11",
+     "weight_pct": null,
+     "weight_expr": "",
+     "quote": "Problem set due dates (Fridays, 5 pm) PS8 Dec 11",
+     "page": 1,
+     "id": "S3-12"
+    },
+    {
+     "type": "exam",
+     "title": "Midterm",
+     "date_expr": "Wednesday, October 28",
+     "weight_pct": 25,
+     "weight_expr": "25%",
+     "quote": "Midterm 25% Wednesday, October 28",
+     "page": 1,
+     "id": "S3-13"
+    },
+    {
+     "type": "exam",
+     "title": "Final Exam",
+     "date_expr": "Monday, January 4",
+     "weight_pct": 35,
+     "weight_expr": "35%",
+     "quote": "Final exam 35% Monday, January 4",
+     "page": 1,
+     "id": "S3-14"
+    }
+   ]
+  },
+  {
+   "type": "check",
+   "worker": "S3",
+   "retry": false,
+   "results": [
+    {
+     "type": "quiz",
+     "title": "Quiz 1",
+     "date_expr": "Lecture 5",
+     "weight_pct": null,
+     "weight_expr": "",
+     "quote": "In-class quizzes are given at the start of Lecture 5, Lecture 10, Lecture 15 and Lecture 20.",
+     "page": 1,
+     "id": "S3-1",
+     "ok": true,
+     "reason": "quote found on the cited page"
+    },
+    {
+     "type": "quiz",
+     "title": "Quiz 2",
+     "date_expr": "Lecture 10",
+     "weight_pct": null,
+     "weight_expr": "",
+     "quote": "In-class quizzes are given at the start of Lecture 5, Lecture 10, Lecture 15 and Lecture 20.",
+     "page": 1,
+     "id": "S3-2",
+     "ok": true,
+     "reason": "quote found on the cited page"
+    },
+    {
+     "type": "quiz",
+     "title": "Quiz 3",
+     "date_expr": "Lecture 15",
+     "weight_pct": null,
+     "weight_expr": "",
+     "quote": "In-class quizzes are given at the start of Lecture 5, Lecture 10, Lecture 15 and Lecture 20.",
+     "page": 1,
+     "id": "S3-3",
+     "ok": true,
+     "reason": "quote found on the cited page"
+    },
+    {
+     "type": "quiz",
+     "title": "Quiz 4",
+     "date_expr": "Lecture 20",
+     "weight_pct": null,
+     "weight_expr": "",
+     "quote": "In-class quizzes are given at the start of Lecture 5, Lecture 10, Lecture 15 and Lecture 20.",
+     "page": 1,
+     "id": "S3-4",
+     "ok": true,
+     "reason": "quote found on the cited page"
+    },
+    {
+     "type": "problem_set",
+     "title": "Problem Set 1",
+     "date_expr": "Sep 25",
+     "weight_pct": null,
+     "weight_expr": "",
+     "quote": "Problem set due dates (Fridays, 5 pm) PS1 Sep 25",
+     "page": 1,
+     "id": "S3-5",
+     "ok": true,
+     "reason": "quote found on the cited page"
+    },
+    {
+     "type": "problem_set",
+     "title": "Problem Set 2",
+     "date_expr": "Oct 9",
+     "weight_pct": null,
+     "weight_expr": "",
+     "quote": "Problem set due dates (Fridays, 5 pm) PS2 Oct 9",
+     "page": 1,
+     "id": "S3-6",
+     "ok": false,
+     "reason": "not on page 1. Closest text: \"problem set due dates (fridays, 5 pm) ps1 sep 25\""
+    },
+    {
+     "type": "problem_set",
+     "title": "Problem Set 3",
+     "date_expr": "Oct 16",
+     "weight_pct": null,
+     "weight_expr": "",
+     "quote": "Problem set due dates (Fridays, 5 pm) PS3 Oct 16",
+     "page": 1,
+     "id": "S3-7",
+     "ok": false,
+     "reason": "not on page 1. Closest text: \"problem set due dates (fridays, 5 pm) ps1 sep 25\""
+    },
+    {
+     "type": "problem_set",
+     "title": "Problem Set 4",
+     "date_expr": "Oct 30",
+     "weight_pct": null,
+     "weight_expr": "",
+     "quote": "Problem set due dates (Fridays, 5 pm) PS4 Oct 30",
+     "page": 1,
+     "id": "S3-8",
+     "ok": false,
+     "reason": "not on page 1. Closest text: \"problem set due dates (fridays, 5 pm) ps1 sep 25\""
+    },
+    {
+     "type": "problem_set",
+     "title": "Problem Set 5",
+     "date_expr": "Nov 13",
+     "weight_pct": null,
+     "weight_expr": "",
+     "quote": "Problem set due dates (Fridays, 5 pm) PS5 Nov 13",
+     "page": 1,
+     "id": "S3-9",
+     "ok": false,
+     "reason": "not on page 1. Closest text: \"problem set due dates (fridays, 5 pm) ps1 sep 25\""
+    },
+    {
+     "type": "problem_set",
+     "title": "Problem Set 6",
+     "date_expr": "Nov 20",
+     "weight_pct": null,
+     "weight_expr": "",
+     "quote": "Problem set due dates (Fridays, 5 pm) PS6 Nov 20",
+     "page": 1,
+     "id": "S3-10",
+     "ok": false,
+     "reason": "not on page 1. Closest text: \"problem set due dates (fridays, 5 pm) ps1 sep 25\""
+    },
+    {
+     "type": "problem_set",
+     "title": "Problem Set 7",
+     "date_expr": "Dec 4",
+     "weight_pct": null,
+     "weight_expr": "",
+     "quote": "Problem set due dates (Fridays, 5 pm) PS7 Dec 4",
+     "page": 1,
+     "id": "S3-11",
+     "ok": false,
+     "reason": "not on page 1. Closest text: \"problem set due dates (fridays, 5 pm) ps1 sep 25\""
+    },
+    {
+     "type": "problem_set",
+     "title": "Problem Set 8",
+     "date_expr": "Dec 11",
+     "weight_pct": null,
+     "weight_expr": "",
+     "quote": "Problem set due dates (Fridays, 5 pm) PS8 Dec 11",
+     "page": 1,
+     "id": "S3-12",
+     "ok": false,
+     "reason": "not on page 1. Closest text: \"problem set due dates (fridays, 5 pm) ps1 sep 25\""
+    },
+    {
+     "type": "exam",
+     "title": "Midterm",
+     "date_expr": "Wednesday, October 28",
+     "weight_pct": 25,
+     "weight_expr": "25%",
+     "quote": "Midterm 25% Wednesday, October 28",
+     "page": 1,
+     "id": "S3-13",
+     "ok": true,
+     "reason": "quote found on the cited page"
+    },
+    {
+     "type": "exam",
+     "title": "Final Exam",
+     "date_expr": "Monday, January 4",
+     "weight_pct": 35,
+     "weight_expr": "35%",
+     "quote": "Final exam 35% Monday, January 4",
+     "page": 1,
+     "id": "S3-14",
+     "ok": true,
+     "reason": "quote found on the cited page"
+    }
+   ]
+  },
+  {
+   "type": "waiting",
+   "worker": "S3",
+   "seconds": 20.9
+  },
+  {
+   "type": "waiting",
+   "worker": "S1",
+   "seconds": 14.1
+  },
+  {
+   "type": "waiting",
+   "worker": "S4",
+   "seconds": 11.4
+  },
+  {
+   "type": "parsed",
+   "worker": "S2",
+   "dates": [
+    {
+     "id": "S2-1",
+     "kind": "range",
+     "month": null,
+     "day": null,
+     "week": null,
+     "weekday": null,
+     "n": null,
+     "offset_days": null,
+     "start": {
+      "kind": "absolute",
+      "month": 11,
+      "day": 3,
+      "week": null,
+      "weekday": null,
+      "n": null,
+      "offset_days": null
+     },
+     "end": {
+      "kind": "absolute",
+      "month": 11,
+      "day": 5,
+      "week": null,
+      "weekday": null,
+      "n": null,
+      "offset_days": null
+     },
+     "reason": null
+    },
+    {
+     "id": "S2-2",
+     "kind": "absolute",
+     "month": 1,
+     "day": 7,
+     "week": null,
+     "weekday": "Thu",
+     "n": null,
+     "offset_days": null,
+     "start": null,
+     "end": null,
+     "reason": null
+    },
+    {
+     "id": "S2-3",
+     "kind": "nth_meeting",
+     "month": null,
+     "day": null,
+     "week": null,
+     "weekday": null,
+     "n": 4,
+     "offset_days": 0,
+     "start": null,
+     "end": null,
+     "reason": null
+    },
+    {
+     "id": "S2-4",
+     "kind": "nth_meeting",
+     "month": null,
+     "day": null,
+     "week": null,
+     "weekday": null,
+     "n": 8,
+     "offset_days": 2,
+     "start": null,
+     "end": null,
+     "reason": null
+    },
+    {
+     "id": "S2-5",
+     "kind": "nth_meeting",
+     "month": null,
+     "day": null,
+     "week": null,
+     "weekday": null,
+     "n": 12,
+     "offset_days": 1,
+     "start": null,
+     "end": null,
+     "reason": null
+    },
+    {
+     "id": "S2-6",
+     "kind": "nth_meeting",
+     "month": null,
+     "day": null,
+     "week": null,
+     "weekday": null,
+     "n": 21,
+     "offset_days": 0,
+     "start": null,
+     "end": null,
+     "reason": null
+    },
+    {
+     "id": "S2-7",
+     "kind": "nth_meeting",
+     "month": null,
+     "day": null,
+     "week": null,
+     "weekday": null,
+     "n": 23,
+     "offset_days": 2,
+     "start": null,
+     "end": null,
+     "reason": null
+    }
+   ]
+  },
+  {
+   "type": "done",
+   "worker": "S2"
+  },
+  {
+   "type": "waiting",
+   "worker": "S3",
+   "seconds": 14.6
+  },
+  {
+   "type": "waiting",
+   "worker": "S4",
+   "seconds": 11.9
+  },
+  {
+   "type": "waiting",
+   "worker": "S1",
+   "seconds": 2.3
+  },
+  {
+   "type": "parsed",
+   "worker": "S1",
+   "dates": [
+    {
+     "id": "S1-1",
+     "kind": "week_weekday",
+     "month": null,
+     "day": null,
+     "week": 2,
+     "weekday": "Fri",
+     "n": null,
+     "offset_days": null,
+     "start": null,
+     "end": null,
+     "reason": null
+    },
+    {
+     "id": "S1-2",
+     "kind": "week_weekday",
+     "month": null,
+     "day": null,
+     "week": 4,
+     "weekday": "Fri",
+     "n": null,
+     "offset_days": null,
+     "start": null,
+     "end": null,
+     "reason": null
+    },
+    {
+     "id": "S1-3",
+     "kind": "week_weekday",
+     "month": null,
+     "day": null,
+     "week": 5,
+     "weekday": "Fri",
+     "n": null,
+     "offset_days": null,
+     "start": null,
+     "end": null,
+     "reason": null
+    },
+    {
+     "id": "S1-4",
+     "kind": "week_weekday",
+     "month": null,
+     "day": null,
+     "week": 8,
+     "weekday": "Fri",
+     "n": null,
+     "offset_days": null,
+     "start": null,
+     "end": null,
+     "reason": null
+    },
+    {
+     "id": "S1-5",
+     "kind": "week_weekday",
+     "month": null,
+     "day": null,
+     "week": 10,
+     "weekday": "Fri",
+     "n": null,
+     "offset_days": null,
+     "start": null,
+     "end": null,
+     "reason": null
+    },
+    {
+     "id": "S1-6",
+     "kind": "week_weekday",
+     "month": null,
+     "day": null,
+     "week": 13,
+     "weekday": "Fri",
+     "n": null,
+     "offset_days": null,
+     "start": null,
+     "end": null,
+     "reason": null
+    },
+    {
+     "id": "S1-7",
+     "kind": "week_weekday",
+     "month": null,
+     "day": null,
+     "week": 7,
+     "weekday": "Thu",
+     "n": null,
+     "offset_days": null,
+     "start": null,
+     "end": null,
+     "reason": null
+    },
+    {
+     "id": "S1-8",
+     "kind": "week_weekday",
+     "month": null,
+     "day": null,
+     "week": 12,
+     "weekday": "Wed",
+     "n": null,
+     "offset_days": null,
+     "start": null,
+     "end": null,
+     "reason": null
+    },
+    {
+     "id": "S1-9",
+     "kind": "absolute",
+     "month": 1,
+     "day": 6,
+     "week": null,
+     "weekday": null,
+     "n": null,
+     "offset_days": null,
+     "start": null,
+     "end": null,
+     "reason": null
+    }
+   ]
+  },
+  {
+   "type": "done",
+   "worker": "S1"
+  },
+  {
+   "type": "waiting",
+   "worker": "S3",
+   "seconds": 27.8
+  },
+  {
+   "type": "waiting",
+   "worker": "S4",
+   "seconds": 26.1
+  },
+  {
+   "type": "waiting",
+   "worker": "S3",
+   "seconds": 17.0
+  },
+  {
+   "type": "check",
+   "worker": "S4",
+   "retry": true,
+   "results": [
+    {
+     "id": "S4-6",
+     "type": "paper",
+     "title": "Final paper",
+     "date_expr": "Dec 16",
+     "weight_pct": 30,
+     "weight_expr": "30%",
+     "quote": "Dec 16 Final paper due by noon",
+     "page": 2,
+     "ok": true,
+     "reason": "quote found on the cited page"
+    }
+   ]
+  },
+  {
+   "type": "parsed",
+   "worker": "S4",
+   "dates": [
+    {
+     "id": "S4-1",
+     "kind": "absolute",
+     "month": 9,
+     "day": 30,
+     "week": null,
+     "weekday": null,
+     "n": null,
+     "offset_days": null,
+     "start": null,
+     "end": null,
+     "reason": null
+    },
+    {
+     "id": "S4-2",
+     "kind": "absolute",
+     "month": 10,
+     "day": 14,
+     "week": null,
+     "weekday": null,
+     "n": null,
+     "offset_days": null,
+     "start": null,
+     "end": null,
+     "reason": null
+    },
+    {
+     "id": "S4-3",
+     "kind": "absolute",
+     "month": 10,
+     "day": 30,
+     "week": null,
+     "weekday": null,
+     "n": null,
+     "offset_days": null,
+     "start": null,
+     "end": null,
+     "reason": null
+    },
+    {
+     "id": "S4-4",
+     "kind": "absolute",
+     "month": 11,
+     "day": 11,
+     "week": null,
+     "weekday": null,
+     "n": null,
+     "offset_days": null,
+     "start": null,
+     "end": null,
+     "reason": null
+    },
+    {
+     "id": "S4-5",
+     "kind": "absolute",
+     "month": 12,
+     "day": 9,
+     "week": null,
+     "weekday": null,
+     "n": null,
+     "offset_days": null,
+     "start": null,
+     "end": null,
+     "reason": null
+    },
+    {
+     "id": "S4-7",
+     "kind": "unresolvable",
+     "month": null,
+     "day": null,
+     "week": null,
+     "weekday": null,
+     "n": null,
+     "offset_days": null,
+     "start": null,
+     "end": null,
+     "reason": "TBA"
+    },
+    {
+     "id": "S4-6",
+     "kind": "absolute",
+     "month": 12,
+     "day": 16,
+     "week": null,
+     "weekday": null,
+     "n": null,
+     "offset_days": null,
+     "start": null,
+     "end": null,
+     "reason": null
+    }
+   ]
+  },
+  {
+   "type": "done",
+   "worker": "S4"
+  },
+  {
+   "type": "check",
+   "worker": "S3",
+   "retry": true,
+   "results": [
+    {
+     "id": "S3-6",
+     "type": "problem_set",
+     "title": "Problem Set 2",
+     "date_expr": "Oct 9",
+     "weight_pct": null,
+     "weight_expr": "",
+     "quote": "PS2 Oct 9",
+     "page": 1,
+     "ok": true,
+     "reason": "quote found on the cited page"
+    },
+    {
+     "id": "S3-7",
+     "type": "problem_set",
+     "title": "Problem Set 3",
+     "date_expr": "Oct 16",
+     "weight_pct": null,
+     "weight_expr": "",
+     "quote": "PS3 Oct 16",
+     "page": 1,
+     "ok": true,
+     "reason": "quote found on the cited page"
+    },
+    {
+     "id": "S3-8",
+     "type": "problem_set",
+     "title": "Problem Set 4",
+     "date_expr": "Oct 30",
+     "weight_pct": null,
+     "weight_expr": "",
+     "quote": "PS4 Oct 30",
+     "page": 1,
+     "ok": true,
+     "reason": "quote found on the cited page"
+    },
+    {
+     "id": "S3-9",
+     "type": "problem_set",
+     "title": "Problem Set 5",
+     "date_expr": "Nov 13",
+     "weight_pct": null,
+     "weight_expr": "",
+     "quote": "PS5 Nov 13",
+     "page": 1,
+     "ok": true,
+     "reason": "quote found on the cited page"
+    },
+    {
+     "id": "S3-10",
+     "type": "problem_set",
+     "title": "Problem Set 6",
+     "date_expr": "Nov 20",
+     "weight_pct": null,
+     "weight_expr": "",
+     "quote": "PS6 Nov 20",
+     "page": 1,
+     "ok": true,
+     "reason": "quote found on the cited page"
+    },
+    {
+     "id": "S3-11",
+     "type": "problem_set",
+     "title": "Problem Set 7",
+     "date_expr": "Dec 4",
+     "weight_pct": null,
+     "weight_expr": "",
+     "quote": "PS7 Dec 4",
+     "page": 1,
+     "ok": true,
+     "reason": "quote found on the cited page"
+    },
+    {
+     "id": "S3-12",
+     "type": "problem_set",
+     "title": "Problem Set 8",
+     "date_expr": "Dec 11",
+     "weight_pct": null,
+     "weight_expr": "",
+     "quote": "PS8 Dec 11",
+     "page": 1,
+     "ok": true,
+     "reason": "quote found on the cited page"
+    }
+   ]
+  },
+  {
+   "type": "waiting",
+   "worker": "S3",
+   "seconds": 19.4
+  },
+  {
+   "type": "parsed",
+   "worker": "S3",
+   "dates": [
+    {
+     "id": "S3-1",
+     "kind": "nth_meeting",
+     "month": null,
+     "day": null,
+     "week": null,
+     "weekday": null,
+     "n": 5,
+     "offset_days": 0,
+     "start": null,
+     "end": null,
+     "reason": null
+    },
+    {
+     "id": "S3-2",
+     "kind": "nth_meeting",
+     "month": null,
+     "day": null,
+     "week": null,
+     "weekday": null,
+     "n": 10,
+     "offset_days": 0,
+     "start": null,
+     "end": null,
+     "reason": null
+    },
+    {
+     "id": "S3-3",
+     "kind": "nth_meeting",
+     "month": null,
+     "day": null,
+     "week": null,
+     "weekday": null,
+     "n": 15,
+     "offset_days": 0,
+     "start": null,
+     "end": null,
+     "reason": null
+    },
+    {
+     "id": "S3-4",
+     "kind": "nth_meeting",
+     "month": null,
+     "day": null,
+     "week": null,
+     "weekday": null,
+     "n": 20,
+     "offset_days": 0,
+     "start": null,
+     "end": null,
+     "reason": null
+    },
+    {
+     "id": "S3-5",
+     "kind": "absolute",
+     "month": 9,
+     "day": 25,
+     "week": null,
+     "weekday": null,
+     "n": null,
+     "offset_days": null,
+     "start": null,
+     "end": null,
+     "reason": null
+    },
+    {
+     "id": "S3-13",
+     "kind": "absolute",
+     "month": 10,
+     "day": 28,
+     "week": null,
+     "weekday": "Wed",
+     "n": null,
+     "offset_days": null,
+     "start": null,
+     "end": null,
+     "reason": null
+    },
+    {
+     "id": "S3-14",
+     "kind": "absolute",
+     "month": 1,
+     "day": 4,
+     "week": null,
+     "weekday": "Mon",
+     "n": null,
+     "offset_days": null,
+     "start": null,
+     "end": null,
+     "reason": null
+    },
+    {
+     "id": "S3-6",
+     "kind": "absolute",
+     "month": 10,
+     "day": 9,
+     "week": null,
+     "weekday": null,
+     "n": null,
+     "offset_days": null,
+     "start": null,
+     "end": null,
+     "reason": null
+    },
+    {
+     "id": "S3-7",
+     "kind": "absolute",
+     "month": 10,
+     "day": 16,
+     "week": null,
+     "weekday": null,
+     "n": null,
+     "offset_days": null,
+     "start": null,
+     "end": null,
+     "reason": null
+    },
+    {
+     "id": "S3-8",
+     "kind": "absolute",
+     "month": 10,
+     "day": 30,
+     "week": null,
+     "weekday": null,
+     "n": null,
+     "offset_days": null,
+     "start": null,
+     "end": null,
+     "reason": null
+    },
+    {
+     "id": "S3-9",
+     "kind": "absolute",
+     "month": 11,
+     "day": 13,
+     "week": null,
+     "weekday": null,
+     "n": null,
+     "offset_days": null,
+     "start": null,
+     "end": null,
+     "reason": null
+    },
+    {
+     "id": "S3-10",
+     "kind": "absolute",
+     "month": 11,
+     "day": 20,
+     "week": null,
+     "weekday": null,
+     "n": null,
+     "offset_days": null,
+     "start": null,
+     "end": null,
+     "reason": null
+    },
+    {
+     "id": "S3-11",
+     "kind": "absolute",
+     "month": 12,
+     "day": 4,
+     "week": null,
+     "weekday": null,
+     "n": null,
+     "offset_days": null,
+     "start": null,
+     "end": null,
+     "reason": null
+    },
+    {
+     "id": "S3-12",
+     "kind": "absolute",
+     "month": 12,
+     "day": 11,
+     "week": null,
+     "weekday": null,
+     "n": null,
+     "offset_days": null,
+     "start": null,
+     "end": null,
+     "reason": null
+    }
+   ]
+  },
+  {
+   "type": "done",
+   "worker": "S3"
+  },
+  {
+   "type": "stats",
+   "mode": "verified",
+   "seconds": 115.5,
+   "model_calls": 12,
+   "input_tokens": 13911,
+   "output_tokens": 17930
+  }
+ ]
+}

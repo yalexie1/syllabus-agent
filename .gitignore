@@ -2,3 +2,6 @@
 .venv/
 __pycache__/
 .DS_Store
+
+# Real syllabi used for local testing (contain instructor info); fixtures live in tests/fixtures
+/*.pdf
