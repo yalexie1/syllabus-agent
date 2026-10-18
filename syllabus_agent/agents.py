@@ -19,7 +19,7 @@ from .citations import check_item, found_anywhere
 from .pdfs import marked
 
 SCHEMA_RETRIES = 1
-MAX_RATE_LIMIT_WAIT = 180
+MAX_RATE_LIMIT_WAIT = 600  # seconds per call; five workers share the free-tier cap
 TRUNCATED = "max completion tokens reached"  # Groq's 400 when the answer didn't fit max_output_tokens
 TIGHT_BUDGET = 3000  # output tokens; below this, medium reasoning often runs out before the answer
 # Output tokens an extraction keeps for its answer. Under the free-tier cap a long syllabus leaves
@@ -62,7 +62,8 @@ Leave out any item you cannot support with an exact quote."""
 
 RESOLVER = """Convert each date expression from a syllabus into a structured form. Do NOT compute
 calendar dates and never guess a year. Kinds:
-- absolute: month and day ("Oct 14", "Friday, October 30", "Jan 6").
+- absolute: month and day ("Oct 14", "Friday, October 30", "Jan 6"). Set weekday only if one is
+  written ("Friday, October 30" → Fri); Python checks it against the calendar.
 - week_weekday: a week number and weekday ("Week 7 Thursday", "Week 12 Wed").
 - nth_meeting: the n-th class meeting or lecture, plus offset_days ("Lecture 4" → n 4, offset 0;
   "two days after Lecture 8" → n 8, offset 2; "the day before Lecture 5" → offset -1).

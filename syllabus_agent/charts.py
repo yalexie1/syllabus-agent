@@ -10,9 +10,9 @@ RAMPS = {
     "light": ["#fde6d8", "#f9b993", "#f28a54", "#e0622c", "#b9461a", "#8a3110"],
     "dark": ["#4a2614", "#7a3a17", "#b4521f", "#e8702f", "#ff9a5c", "#ffc49b"],
 }
-EMPTY = {"light": "#efeeeb", "dark": "#2a2a28"}
-INK = {"light": "#0b0b0b", "dark": "#f0efec"}
-MUTED = "#8a8984"
+EMPTY = {"light": "#e9e1d1", "dark": "#26201a"}  # the theme's secondary background
+INK = {"light": "#1d1915", "dark": "#eee6d7"}
+MUTED = "#8a7f70"
 
 
 def week_label(w):
@@ -92,7 +92,7 @@ def heatmap(result, term, mode="light"):
     ).properties(height=34 * max(len({g["course"] for g in grid}), 1))
 
     return (alt.vconcat(top, cells, spacing=10).resolve_scale(color="independent")
-            .configure(background="transparent", font="Source Sans Pro, sans-serif")
+            .configure(background="transparent", font="Figtree, sans-serif")
             .configure_view(stroke=None)
             .configure_axis(labelColor=ink, titleColor=ink)
             .configure_title(color=ink)

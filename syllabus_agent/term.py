@@ -113,6 +113,9 @@ def point(spec, term, days):
             raise Unresolved(f"{month}/{day} occurs twice in this term")
         if not inside:
             raise Unresolved(f"{candidates[0]:%b} {day} is outside the term ({fmt(term['start'])} to {fmt(term['end'])})")
+        # "Thurs. Dec. 15" when Dec 15 is a Tuesday: the syllabus contradicts itself, so a person decides.
+        if spec.get("weekday") in WEEKDAYS and WEEKDAYS[inside[0].weekday()] != spec["weekday"]:
+            raise Unresolved(f"the syllabus says {spec['weekday']}, but {fmt(inside[0])} is a {inside[0]:%A}")
         return inside[0]
     if kind == "week_weekday":
         week, weekday = spec.get("week"), spec.get("weekday")

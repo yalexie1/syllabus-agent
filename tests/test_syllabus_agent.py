@@ -119,6 +119,11 @@ class ResolverTests(unittest.TestCase):
         with self.assertRaisesRegex(Unresolved, "not a real date"):
             at(kind="absolute", month=2, day=30)
 
+    def test_absolute_date_with_the_wrong_weekday_needs_review(self):
+        self.assertEqual(at(kind="absolute", month=10, day=14, weekday="Wed"), date(2026, 10, 14))
+        with self.assertRaisesRegex(Unresolved, "says Thu, but Tue Dec 15, 2026 is a Tuesday"):
+            at(kind="absolute", month=12, day=15, weekday="Thu")
+
     def test_week_weekday_counts_calendar_weeks_including_breaks(self):
         self.assertEqual(at(kind="week_weekday", week=1, weekday="Mon"), date(2026, 9, 14))
         self.assertEqual(at(kind="week_weekday", week=7, weekday="Thu"), date(2026, 10, 29))
@@ -506,7 +511,8 @@ class ChartTests(unittest.TestCase):
             self.assertNotIn('"scale": null', json.dumps(spec))  # Vega-Lite fails to render a null scale
 
 
-RECORDING = sorted((ROOT / "syllabus_agent" / "runs").glob("*-verified-CHEM210-*.json"))[-1]  # the demo run
+FIXTURE_RUN = ROOT / "tests" / "fixtures" / "demo_run.json"  # a verified run over the five fixture PDFs
+DEMO = sorted((ROOT / "syllabus_agent" / "runs").glob("*.json"))[-1]  # the recording the app offers
 
 
 class PageTests(unittest.TestCase):
@@ -525,15 +531,17 @@ class PageTests(unittest.TestCase):
     def test_replay_runs_offline_and_restores_the_recorded_term(self):
         with patch.dict(os.environ, {"SYLLABUS_REPLAY_SPEED": "0"}):
             app = self.app().run()
-            app.selectbox[0].select(RECORDING).run()
+            app.selectbox[0].select(DEMO).run()
             next(b for b in app.button if b.label == "Replay recording").click().run()
         self.assertFalse(app.exception)
-        self.assertIn("demo term", app.session_state.term["name"])
+        recorded = json.loads(DEMO.read_text())
+        self.assertEqual(app.session_state.term["name"], load_term(recorded["term"])["name"])
         metrics = {m.label: m.value for m in app.metric}
-        self.assertGreater(int(metrics["On calendar"]), 30)
+        expected = build(recorded["events"], load_term(recorded["term"]))
+        self.assertEqual(int(metrics["On calendar"]), len(expected["calendar"]))
 
     def test_comparison_table_after_both_modes(self):
-        verified = json.loads(RECORDING.read_text())
+        verified = json.loads(FIXTURE_RUN.read_text())
         events = []
         Run([syllabus(f["name"]) for f in verified["files"]], TERM, emit=events.append,
             client=FakeModel()).baseline()

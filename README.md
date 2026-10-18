@@ -44,14 +44,15 @@ The model is `openai/gpt-oss-120b` on Groq. To switch providers, change `BASE_UR
 
 ## 90-second demo script
 
-Before going on stage: open the app, click **Load demo term**, and check that **Replay recording** works offline.
+The app ships with one recording: a real verified run over five real Fall 2026 syllabi (CPSC 2010, MATH 1200, MATH 2250, MATH 2410, TDPS 0001). Replaying it needs no API key or network. Before going on stage, open the app and check that **Replay the demo** plays.
 
-1. **Upload syllabi (10 s).** Drag the five PDFs from `tests/fixtures/syllabi/` into the sidebar (or toggle *Use the 5 demo syllabi*) and click **Run**. If the network is slow, use **Replay recording** instead. It's a real run, played back.
-2. **Workers and a rejected citation (25 s).** Five workers run side by side. Point at a red ❌: the model glued a table header onto a row and "quoted" text that isn't in the PDF. The check shows the closest real text, the worker gets one retry, and it comes back ✅. Nothing reaches the calendar without a quote that's really on its page.
-3. **Crunch weeks (15 s).** Scroll to the heatmap. Week 7 lights up: three midterms, a paper and two problem sets in one week, 96% of a course grade. The cards underneath list what's due.
-4. **Source quote (10 s).** Click a calendar row, e.g. CPSC 223 Problem Set 2. The card shows the quote, the page, "two days after Lecture 8" → *meeting 8 +2 days* → **Sat Oct 10**, and how its weight was inferred.
-5. **Import the .ics (15 s).** Click **Download .ics**, then in Google Calendar go to Settings → Import & export → Import. Each event's description carries its quote and page. Needs-review items (TBA, "announced in class") stay off the calendar.
-6. **Baseline (15 s).** Switch the mode to **Single-prompt baseline** and run (or replay its recording). One prompt, no checks: in the recorded run it got 11 dates wrong (every one a "Week N" or "Lecture N" date, e.g. a midterm placed during fall break) and missed 4 items, and 4 of its "sources" aren't in the PDFs. The comparison table puts the two side by side, scored against a hand-checked answer key.
+1. **Replay (10 s).** Click **Replay the demo** on the landing page. The term calendar the run used loads with it.
+2. **Workers and a rejected citation (25 s).** Five workers run side by side, one per syllabus. Point at MATH 2410's red ❌: the model wrote "weeks of Oct. 12", but the syllabus says "the weeks of Sept. 28, Oct. 12, and Nov. 30". That date isn't in the text, so the check rejects it, the worker gets one retry, and the item is dropped. Nothing reaches the calendar without a quote that's really on its page.
+3. **Needs review (10 s).** Open the *Needs review* tab. TDPS 0001 says "Thurs. Dec. 15", but Dec 15, 2026 is a Tuesday: the syllabus contradicts itself, so a person decides. TBD finals and "every Wednesday" homework land here too, not on the calendar.
+4. **Crunch weeks (15 s).** Scroll to the heatmap. Week 11 (Nov 9–15) lights up: two midterms in different math courses plus a response paper, 44% of a course grade. The cards underneath list what's due.
+5. **Source quote (10 s).** Click the MATH 1200 *Midterm Exam 1* row. That PDF's text lost its spaces ("MidtermExam1isscheduledforThursday, October1"), and the quote still checks out on page 4; the date is computed by code as **Thu Oct 1**.
+6. **Import the .ics (15 s).** Click **Download .ics**, then in Google Calendar go to Settings → Import & export → Import. Each event's description carries its quote and page.
+7. **Baseline (optional, live, about 4 minutes).** Toggle *Use the 5 demo syllabi*, click **Load demo term**, and run both modes. The single prompt has no checks; on these synthetic syllabi it typically misplaces "Week N" and "Lecture N" dates (a midterm during fall break) and cites text that isn't in the PDFs. The comparison table scores both against a hand-checked answer key. The baseline can't run on the five real syllabi on Groq's free tier: one prompt with all of them is over the per-minute token limit.
 
 **Read the results carefully:** the check proves a quote is on the page, not that the model labeled it correctly. The answer key exists only for the demo syllabi. For your own PDFs, the baseline is scored against the verified pipeline, which shows disagreement, not ground truth.
 
@@ -70,10 +71,10 @@ syllabus_agent/
   compare.py            scores a run against the answer key
   page.py               live trace, results, replay, comparison
   term.yaml             placeholder term: fill in from your school's calendar
-  runs/                 saved real runs you can replay
+  runs/                 the recorded demo run (every completed live run is saved here)
 tests/
   test_syllabus_agent.py
-  fixtures/             synthetic syllabi, demo term and answer key (make_syllabi.py)
+  fixtures/             synthetic syllabi, demo term, answer key (make_syllabi.py), a recorded run for tests
 ```
 
 ## Tests

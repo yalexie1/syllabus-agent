@@ -1,0 +1,59 @@
+# Editorial almanac: warm paper and ink, one vermilion accent that matches the heatmap's ramp.
+# Light and dark are both defined, so the theme follows the viewer's system setting.
+
+[server]
+address = "localhost"  # don't expose the API key's spending to the local network
+
+[browser]
+gatherUsageStats = false
+
+[theme]
+font = "Figtree:https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap"
+headingFont = "'Instrument Serif':https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap"
+codeFont = "'JetBrains Mono':https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap"
+headingFontWeights = [400, 400, 400, 400, 400, 400]
+headingFontSizes = ["3.6rem", "2.1rem", "1.6rem", "1.3rem", "1.1rem", "1rem"]
+metricValueFontSize = "2.6rem"
+metricValueFontWeight = 400
+baseRadius = "0.4rem"
+buttonRadius = "full"
+showWidgetBorder = true
+showSidebarBorder = true
+
+[theme.light]
+primaryColor = "#c2410c"
+backgroundColor = "#f6f1e7"
+secondaryBackgroundColor = "#ece4d4"
+textColor = "#1d1915"
+borderColor = "#d9cdb8"
+dataframeBorderColor = "#e2d8c6"
+dataframeHeaderBackgroundColor = "#ece4d4"
+linkColor = "#c2410c"
+codeBackgroundColor = "#ece4d4"
+redColor = "#b42318"
+greenColor = "#3f7d4e"
+orangeColor = "#c2410c"
+grayColor = "#857a6b"
+
+[theme.light.sidebar]
+backgroundColor = "#efe8da"
+secondaryBackgroundColor = "#e5dccb"
+
+[theme.dark]
+primaryColor = "#ff7a3d"
+backgroundColor = "#15120f"
+secondaryBackgroundColor = "#221d18"
+textColor = "#eee6d7"
+borderColor = "#3a3129"
+dataframeBorderColor = "#2e2721"
+dataframeHeaderBackgroundColor = "#221d18"
+linkColor = "#ff9a66"
+codeBackgroundColor = "#221d18"
+redColor = "#ff6b5b"
+greenColor = "#7fc28f"
+orangeColor = "#ff7a3d"
+grayColor = "#9a8f80"
+
+[theme.dark.sidebar]
+backgroundColor = "#1b1713"
+secondaryBackgroundColor = "#26201a"

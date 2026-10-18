@@ -1,0 +1,1540 @@
+{
+ "mode": "verified",
+ "model": "openai/gpt-oss-120b",
+ "created": "2026-10-17T22:50:13",
+ "term": "# Test-only term built from dates stated in the three uploaded syllabi (not an official calendar).\nname: Fall 2026 (from syllabi)\nstart: 2026-08-31\nend: 2026-12-22\nbreaks:\n  - {name: Labor Day, start: 2026-09-07, end: 2026-09-07}\n  - {name: Fall break, start: 2026-10-21, end: 2026-10-23}\n  - {name: November recess, start: 2026-11-23, end: 2026-11-27}\ncourses: {}\n",
+ "files": [
+  {
+   "name": "CPSC 2010 syllabus.pdf",
+   "sha256": "493174f5f2ca27b14ab88b5eb16ddc0afc771b75214398be363398347f3c94d8"
+  },
+  {
+   "name": "MATH 1200 syllabus.pdf",
+   "sha256": "bfcca558089a04d4d9f81a2118a68fb84683882d46ff898cf98c46245b6d5945"
+  },
+  {
+   "name": "MATH 2250 syllabus.pdf",
+   "sha256": "a85c56fa2b6b335102d77098571ffdbf7ad177d5907e1eef71273dd07ce5bb38"
+  },
+  {
+   "name": "MATH 2410 syllabus.pdf",
+   "sha256": "9bfcf3c6c6a3a76d6ff892bf194e71b3efc25022375fd31306e0f70c30b4c11f"
+  },
+  {
+   "name": "TDPS 0001 syllabus.pdf",
+   "sha256": "0089871bf881c2143a055695d3e1e2986428d95bfbb4a909574a78a0cfa0d185"
+  }
+ ],
+ "events": [
+  {
+   "type": "start",
+   "mode": "verified",
+   "model": "openai/gpt-oss-120b",
+   "files": [
+    {
+     "name": "CPSC 2010 syllabus.pdf",
+     "sha256": "493174f5f2ca27b14ab88b5eb16ddc0afc771b75214398be363398347f3c94d8",
+     "pages": 4
+    },
+    {
+     "name": "MATH 1200 syllabus.pdf",
+     "sha256": "bfcca558089a04d4d9f81a2118a68fb84683882d46ff898cf98c46245b6d5945",
+     "pages": 8
+    },
+    {
+     "name": "MATH 2250 syllabus.pdf",
+     "sha256": "a85c56fa2b6b335102d77098571ffdbf7ad177d5907e1eef71273dd07ce5bb38",
+     "pages": 2
+    },
+    {
+     "name": "MATH 2410 syllabus.pdf",
+     "sha256": "9bfcf3c6c6a3a76d6ff892bf194e71b3efc25022375fd31306e0f70c30b4c11f",
+     "pages": 8
+    },
+    {
+     "name": "TDPS 0001 syllabus.pdf",
+     "sha256": "0089871bf881c2143a055695d3e1e2986428d95bfbb4a909574a78a0cfa0d185",
+     "pages": 7
+    }
+   ]
+  },
+  {
+   "type": "worker",
+   "worker": "S1",
+   "file": "CPSC 2010 syllabus.pdf",
+   "pages": 4
+  },
+  {
+   "type": "worker",
+   "worker": "S2",
+   "file": "MATH 1200 syllabus.pdf",
+   "pages": 8
+  },
+  {
+   "type": "worker",
+   "worker": "S3",
+   "file": "MATH 2250 syllabus.pdf",
+   "pages": 2
+  },
+  {
+   "type": "worker",
+   "worker": "S4",
+   "file": "MATH 2410 syllabus.pdf",
+   "pages": 8
+  },
+  {
+   "type": "worker",
+   "worker": "S5",
+   "file": "TDPS 0001 syllabus.pdf",
+   "pages": 7
+  },
+  {
+   "type": "waiting",
+   "worker": "S4",
+   "seconds": 10.9
+  },
+  {
+   "type": "waiting",
+   "worker": "S2",
+   "seconds": 43.3
+  },
+  {
+   "type": "waiting",
+   "worker": "S1",
+   "seconds": 39.3
+  },
+  {
+   "type": "waiting",
+   "worker": "S5",
+   "seconds": 18.3
+  },
+  {
+   "type": "extracted",
+   "worker": "S3",
+   "course": "MATH 2250",
+   "meeting_days": [
+    "Mon",
+    "Wed",
+    "Fri"
+   ],
+   "grading": [
+    {
+     "type": "problem_set",
+     "label": "Homework",
+     "weight_pct": null,
+     "count": null,
+     "dropped": 0
+    },
+    {
+     "type": "exam",
+     "label": "Midterm 1",
+     "weight_pct": null,
+     "count": 1,
+     "dropped": 0
+    },
+    {
+     "type": "exam",
+     "label": "Midterm 2",
+     "weight_pct": null,
+     "count": 1,
+     "dropped": 0
+    },
+    {
+     "type": "exam",
+     "label": "Final Exam",
+     "weight_pct": null,
+     "count": 1,
+     "dropped": 0
+    }
+   ],
+   "items": [
+    {
+     "type": "exam",
+     "title": "Midterm 1",
+     "date_expr": "October 5, 2026",
+     "weight_pct": null,
+     "weight_expr": "",
+     "quote": "Midterm 1 will be held on October 5, 2026 from 6 pm - 8 pm, and Midterm 2 will be held on November 9, 2026 from 6 pm - 8 pm; the venues will be announced later.",
+     "page": 1,
+     "id": "S3-1"
+    },
+    {
+     "type": "exam",
+     "title": "Midterm 2",
+     "date_expr": "November 9, 2026",
+     "weight_pct": null,
+     "weight_expr": "",
+     "quote": "Midterm 1 will be held on October 5, 2026 from 6 pm - 8 pm, and Midterm 2 will be held on November 9, 2026 from 6 pm - 8 pm; the venues will be announced later.",
+     "page": 1,
+     "id": "S3-2"
+    },
+    {
+     "type": "exam",
+     "title": "Final Exam",
+     "date_expr": "TBD",
+     "weight_pct": null,
+     "weight_expr": "",
+     "quote": "The date/time for the final is TBD.",
+     "page": 1,
+     "id": "S3-3"
+    },
+    {
+     "type": "problem_set",
+     "title": "Weekly Homework",
+     "date_expr": "Wednesdays at 11:59 PM",
+     "weight_pct": null,
+     "weight_expr": "",
+     "quote": "Homework: There will usually be weekly homework assignments, due on Wednesdays at 11:59 PM.",
+     "page": 1,
+     "id": "S3-4"
+    }
+   ]
+  },
+  {
+   "type": "check",
+   "worker": "S3",
+   "retry": false,
+   "results": [
+    {
+     "type": "exam",
+     "title": "Midterm 1",
+     "date_expr": "October 5, 2026",
+     "weight_pct": null,
+     "weight_expr": "",
+     "quote": "Midterm 1 will be held on October 5, 2026 from 6 pm - 8 pm, and Midterm 2 will be held on November 9, 2026 from 6 pm - 8 pm; the venues will be announced later.",
+     "page": 1,
+     "id": "S3-1",
+     "ok": true,
+     "reason": "quote found on the cited page"
+    },
+    {
+     "type": "exam",
+     "title": "Midterm 2",
+     "date_expr": "November 9, 2026",
+     "weight_pct": null,
+     "weight_expr": "",
+     "quote": "Midterm 1 will be held on October 5, 2026 from 6 pm - 8 pm, and Midterm 2 will be held on November 9, 2026 from 6 pm - 8 pm; the venues will be announced later.",
+     "page": 1,
+     "id": "S3-2",
+     "ok": true,
+     "reason": "quote found on the cited page"
+    },
+    {
+     "type": "exam",
+     "title": "Final Exam",
+     "date_expr": "TBD",
+     "weight_pct": null,
+     "weight_expr": "",
+     "quote": "The date/time for the final is TBD.",
+     "page": 1,
+     "id": "S3-3",
+     "ok": true,
+     "reason": "quote found on the cited page"
+    },
+    {
+     "type": "problem_set",
+     "title": "Weekly Homework",
+     "date_expr": "Wednesdays at 11:59 PM",
+     "weight_pct": null,
+     "weight_expr": "",
+     "quote": "Homework: There will usually be weekly homework assignments, due on Wednesdays at 11:59 PM.",
+     "page": 1,
+     "id": "S3-4",
+     "ok": true,
+     "reason": "quote found on the cited page"
+    }
+   ]
+  },
+  {
+   "type": "waiting",
+   "worker": "S3",
+   "seconds": 11.3
+  },
+  {
+   "type": "waiting",
+   "worker": "S4",
+   "seconds": 24.8
+  },
+  {
+   "type": "waiting",
+   "worker": "S3",
+   "seconds": 9.2
+  },
+  {
+   "type": "waiting",
+   "worker": "S3",
+   "seconds": 25.2
+  },
+  {
+   "type": "extracted",
+   "worker": "S5",
+   "course": "TDPS 0001",
+   "meeting_days": [
+    "Mon"
+   ],
+   "grading": [
+    {
+     "type": "other",
+     "label": "Active engagement and participation",
+     "weight_pct": 20,
+     "count": null,
+     "dropped": 0
+    },
+    {
+     "type": "paper",
+     "label": "Written Responses",
+     "weight_pct": 50,
+     "count": null,
+     "dropped": 0
+    },
+    {
+     "type": "paper",
+     "label": "Final Introduction to the journal entries",
+     "weight_pct": 30,
+     "count": null,
+     "dropped": 0
+    }
+   ],
+   "items": [
+    {
+     "type": "problem_set",
+     "title": "Homework for the Live Event",
+     "date_expr": "Oct. 12",
+     "weight_pct": null,
+     "weight_expr": "",
+     "quote": "Oct. 12: Homework for the Live Event",
+     "page": 5,
+     "id": "S5-1"
+    },
+    {
+     "type": "paper",
+     "title": "Dossiers",
+     "date_expr": "Thurs. Dec. 15",
+     "weight_pct": null,
+     "weight_expr": "",
+     "quote": "*Thurs. Dec. 15: Dossiers due to Assignments folder by 12pm",
+     "page": 6,
+     "id": "S5-2"
+    },
+    {
+     "type": "problem_set",
+     "title": "Week 3 Response",
+     "date_expr": "Sun Sep 13, 2026",
+     "weight_pct": null,
+     "weight_expr": "",
+     "quote": "Sun Sep 13, 2026 (https://yale.instructure.com/courses/118862/assignments/597057) due by 12pm",
+     "page": 6,
+     "id": "S5-3"
+    },
+    {
+     "type": "problem_set",
+     "title": "Week 4 Response",
+     "date_expr": "Sun Sep 20, 2026",
+     "weight_pct": null,
+     "weight_expr": "",
+     "quote": "Sun Sep 20, 2026 (https://yale.instructure.com/courses/118862/assignments/597175) due by 12pm",
+     "page": 6,
+     "id": "S5-4"
+    },
+    {
+     "type": "problem_set",
+     "title": "Week 5 Response",
+     "date_expr": "Sun Sep 27, 2026",
+     "weight_pct": null,
+     "weight_expr": "",
+     "quote": "Sun Sep 27, 2026 (https://yale.instructure.com/courses/118862/assignments/597198) due by 12pm",
+     "page": 6,
+     "id": "S5-5"
+    },
+    {
+     "type": "problem_set",
+     "title": "Week 6 Response",
+     "date_expr": "Sun Oct 4, 2026",
+     "weight_pct": null,
+     "weight_expr": "",
+     "quote": "Sun Oct 4, 2026 (https://yale.instructure.com/courses/118862/assignments/597199) due by 12pm",
+     "page": 6,
+     "id": "S5-6"
+    },
+    {
+     "type": "problem_set",
+     "title": "Week 9 Response",
+     "date_expr": "Sun Oct 25, 2026",
+     "weight_pct": null,
+     "weight_expr": "",
+     "quote": "Sun Oct 25, 2026 (https://yale.instructure.com/courses/118862/assignments/597206) due by 12pm",
+     "page": 6,
+     "id": "S5-7"
+    },
+    {
+     "type": "problem_set",
+     "title": "Week 10 Response",
+     "date_expr": "Sun Nov 1, 2026",
+     "weight_pct": null,
+     "weight_expr": "",
+     "quote": "Sun Nov 1, 2026 (https://yale.instructure.com/courses/118862/assignments/597210) due by 12pm",
+     "page": 6,
+     "id": "S5-8"
+    },
+    {
+     "type": "problem_set",
+     "title": "Week 11 Response",
+     "date_expr": "Sun Nov 8, 2026",
+     "weight_pct": null,
+     "weight_expr": "",
+     "quote": "Sun Nov 8, 2026 (https://yale.instructure.com/courses/118862/assignments/597212) due by 12pm",
+     "page": 7,
+     "id": "S5-9"
+    },
+    {
+     "type": "problem_set",
+     "title": "Week 12 Response",
+     "date_expr": "Sun Nov 15, 2026",
+     "weight_pct": null,
+     "weight_expr": "",
+     "quote": "Sun Nov 15, 2026 (https://yale.instructure.com/courses/118862/assignments/597213) due by 12pm",
+     "page": 7,
+     "id": "S5-10"
+    },
+    {
+     "type": "problem_set",
+     "title": "Week 13 Response",
+     "date_expr": "Sun Nov 29, 2026",
+     "weight_pct": null,
+     "weight_expr": "",
+     "quote": "Sun Nov 29, 2026 (https://yale.instructure.com/courses/118862/assignments/597216) due by 12pm",
+     "page": 7,
+     "id": "S5-11"
+    },
+    {
+     "type": "paper",
+     "title": "Final Introduction",
+     "date_expr": "Tue Dec 15, 2026",
+     "weight_pct": null,
+     "weight_expr": "",
+     "quote": "Tue Dec 15, 2026 (https://yale.instructure.com/courses/118862/assignments/597443) due by 12pm",
+     "page": 7,
+     "id": "S5-12"
+    }
+   ]
+  },
+  {
+   "type": "check",
+   "worker": "S5",
+   "retry": false,
+   "results": [
+    {
+     "type": "problem_set",
+     "title": "Homework for the Live Event",
+     "date_expr": "Oct. 12",
+     "weight_pct": null,
+     "weight_expr": "",
+     "quote": "Oct. 12: Homework for the Live Event",
+     "page": 5,
+     "id": "S5-1",
+     "ok": true,
+     "reason": "quote found on the cited page"
+    },
+    {
+     "type": "paper",
+     "title": "Dossiers",
+     "date_expr": "Thurs. Dec. 15",
+     "weight_pct": null,
+     "weight_expr": "",
+     "quote": "*Thurs. Dec. 15: Dossiers due to Assignments folder by 12pm",
+     "page": 6,
+     "id": "S5-2",
+     "ok": true,
+     "reason": "quote found on the cited page"
+    },
+    {
+     "type": "problem_set",
+     "title": "Week 3 Response",
+     "date_expr": "Sun Sep 13, 2026",
+     "weight_pct": null,
+     "weight_expr": "",
+     "quote": "Sun Sep 13, 2026 (https://yale.instructure.com/courses/118862/assignments/597057) due by 12pm",
+     "page": 6,
+     "id": "S5-3",
+     "ok": true,
+     "reason": "quote found on the cited page"
+    },
+    {
+     "type": "problem_set",
+     "title": "Week 4 Response",
+     "date_expr": "Sun Sep 20, 2026",
+     "weight_pct": null,
+     "weight_expr": "",
+     "quote": "Sun Sep 20, 2026 (https://yale.instructure.com/courses/118862/assignments/597175) due by 12pm",
+     "page": 6,
+     "id": "S5-4",
+     "ok": true,
+     "reason": "quote found on the cited page"
+    },
+    {
+     "type": "problem_set",
+     "title": "Week 5 Response",
+     "date_expr": "Sun Sep 27, 2026",
+     "weight_pct": null,
+     "weight_expr": "",
+     "quote": "Sun Sep 27, 2026 (https://yale.instructure.com/courses/118862/assignments/597198) due by 12pm",
+     "page": 6,
+     "id": "S5-5",
+     "ok": true,
+     "reason": "quote found on the cited page"
+    },
+    {
+     "type": "problem_set",
+     "title": "Week 6 Response",
+     "date_expr": "Sun Oct 4, 2026",
+     "weight_pct": null,
+     "weight_expr": "",
+     "quote": "Sun Oct 4, 2026 (https://yale.instructure.com/courses/118862/assignments/597199) due by 12pm",
+     "page": 6,
+     "id": "S5-6",
+     "ok": true,
+     "reason": "quote found on the cited page"
+    },
+    {
+     "type": "problem_set",
+     "title": "Week 9 Response",
+     "date_expr": "Sun Oct 25, 2026",
+     "weight_pct": null,
+     "weight_expr": "",
+     "quote": "Sun Oct 25, 2026 (https://yale.instructure.com/courses/118862/assignments/597206) due by 12pm",
+     "page": 6,
+     "id": "S5-7",
+     "ok": true,
+     "reason": "quote found on the cited page"
+    },
+    {
+     "type": "problem_set",
+     "title": "Week 10 Response",
+     "date_expr": "Sun Nov 1, 2026",
+     "weight_pct": null,
+     "weight_expr": "",
+     "quote": "Sun Nov 1, 2026 (https://yale.instructure.com/courses/118862/assignments/597210) due by 12pm",
+     "page": 6,
+     "id": "S5-8",
+     "ok": true,
+     "reason": "quote found on the cited page"
+    },
+    {
+     "type": "problem_set",
+     "title": "Week 11 Response",
+     "date_expr": "Sun Nov 8, 2026",
+     "weight_pct": null,
+     "weight_expr": "",
+     "quote": "Sun Nov 8, 2026 (https://yale.instructure.com/courses/118862/assignments/597212) due by 12pm",
+     "page": 7,
+     "id": "S5-9",
+     "ok": true,
+     "reason": "quote found on the cited page"
+    },
+    {
+     "type": "problem_set",
+     "title": "Week 12 Response",
+     "date_expr": "Sun Nov 15, 2026",
+     "weight_pct": null,
+     "weight_expr": "",
+     "quote": "Sun Nov 15, 2026 (https://yale.instructure.com/courses/118862/assignments/597213) due by 12pm",
+     "page": 7,
+     "id": "S5-10",
+     "ok": true,
+     "reason": "quote found on the cited page"
+    },
+    {
+     "type": "problem_set",
+     "title": "Week 13 Response",
+     "date_expr": "Sun Nov 29, 2026",
+     "weight_pct": null,
+     "weight_expr": "",
+     "quote": "Sun Nov 29, 2026 (https://yale.instructure.com/courses/118862/assignments/597216) due by 12pm",
+     "page": 7,
+     "id": "S5-11",
+     "ok": true,
+     "reason": "quote found on the cited page"
+    },
+    {
+     "type": "paper",
+     "title": "Final Introduction",
+     "date_expr": "Tue Dec 15, 2026",
+     "weight_pct": null,
+     "weight_expr": "",
+     "quote": "Tue Dec 15, 2026 (https://yale.instructure.com/courses/118862/assignments/597443) due by 12pm",
+     "page": 7,
+     "id": "S5-12",
+     "ok": true,
+     "reason": "quote found on the cited page"
+    }
+   ]
+  },
+  {
+   "type": "waiting",
+   "worker": "S5",
+   "seconds": 31.1
+  },
+  {
+   "type": "waiting",
+   "worker": "S4",
+   "seconds": 21.6
+  },
+  {
+   "type": "waiting",
+   "worker": "S1",
+   "seconds": 28.1
+  },
+  {
+   "type": "waiting",
+   "worker": "S2",
+   "seconds": 28.7
+  },
+  {
+   "type": "waiting",
+   "worker": "S3",
+   "seconds": 7.3
+  },
+  {
+   "type": "waiting",
+   "worker": "S4",
+   "seconds": 37.9
+  },
+  {
+   "type": "waiting",
+   "worker": "S5",
+   "seconds": 5.3
+  },
+  {
+   "type": "parsed",
+   "worker": "S3",
+   "dates": [
+    {
+     "id": "S3-1",
+     "kind": "absolute",
+     "month": 10,
+     "day": 5,
+     "week": null,
+     "weekday": null,
+     "n": null,
+     "offset_days": null,
+     "start": null,
+     "end": null,
+     "reason": null
+    },
+    {
+     "id": "S3-2",
+     "kind": "absolute",
+     "month": 11,
+     "day": 9,
+     "week": null,
+     "weekday": null,
+     "n": null,
+     "offset_days": null,
+     "start": null,
+     "end": null,
+     "reason": null
+    },
+    {
+     "id": "S3-3",
+     "kind": "unresolvable",
+     "month": null,
+     "day": null,
+     "week": null,
+     "weekday": null,
+     "n": null,
+     "offset_days": null,
+     "start": null,
+     "end": null,
+     "reason": "TBD"
+    },
+    {
+     "id": "S3-4",
+     "kind": "unresolvable",
+     "month": null,
+     "day": null,
+     "week": null,
+     "weekday": null,
+     "n": null,
+     "offset_days": null,
+     "start": null,
+     "end": null,
+     "reason": "repeating pattern"
+    }
+   ]
+  },
+  {
+   "type": "done",
+   "worker": "S3"
+  },
+  {
+   "type": "waiting",
+   "worker": "S5",
+   "seconds": 10.9
+  },
+  {
+   "type": "waiting",
+   "worker": "S1",
+   "seconds": 5.7
+  },
+  {
+   "type": "waiting",
+   "worker": "S2",
+   "seconds": 15.9
+  },
+  {
+   "type": "waiting",
+   "worker": "S1",
+   "seconds": 10.2
+  },
+  {
+   "type": "parsed",
+   "worker": "S5",
+   "dates": [
+    {
+     "id": "S5-1",
+     "kind": "absolute",
+     "month": 10,
+     "day": 12,
+     "week": null,
+     "weekday": null,
+     "n": null,
+     "offset_days": null,
+     "start": null,
+     "end": null,
+     "reason": null
+    },
+    {
+     "id": "S5-2",
+     "kind": "absolute",
+     "month": 12,
+     "day": 15,
+     "week": null,
+     "weekday": "Thu",
+     "n": null,
+     "offset_days": null,
+     "start": null,
+     "end": null,
+     "reason": null
+    },
+    {
+     "id": "S5-3",
+     "kind": "absolute",
+     "month": 9,
+     "day": 13,
+     "week": null,
+     "weekday": "Sun",
+     "n": null,
+     "offset_days": null,
+     "start": null,
+     "end": null,
+     "reason": null
+    },
+    {
+     "id": "S5-4",
+     "kind": "absolute",
+     "month": 9,
+     "day": 20,
+     "week": null,
+     "weekday": "Sun",
+     "n": null,
+     "offset_days": null,
+     "start": null,
+     "end": null,
+     "reason": null
+    },
+    {
+     "id": "S5-5",
+     "kind": "absolute",
+     "month": 9,
+     "day": 27,
+     "week": null,
+     "weekday": "Sun",
+     "n": null,
+     "offset_days": null,
+     "start": null,
+     "end": null,
+     "reason": null
+    },
+    {
+     "id": "S5-6",
+     "kind": "absolute",
+     "month": 10,
+     "day": 4,
+     "week": null,
+     "weekday": "Sun",
+     "n": null,
+     "offset_days": null,
+     "start": null,
+     "end": null,
+     "reason": null
+    },
+    {
+     "id": "S5-7",
+     "kind": "absolute",
+     "month": 10,
+     "day": 25,
+     "week": null,
+     "weekday": "Sun",
+     "n": null,
+     "offset_days": null,
+     "start": null,
+     "end": null,
+     "reason": null
+    },
+    {
+     "id": "S5-8",
+     "kind": "absolute",
+     "month": 11,
+     "day": 1,
+     "week": null,
+     "weekday": "Sun",
+     "n": null,
+     "offset_days": null,
+     "start": null,
+     "end": null,
+     "reason": null
+    },
+    {
+     "id": "S5-9",
+     "kind": "absolute",
+     "month": 11,
+     "day": 8,
+     "week": null,
+     "weekday": "Sun",
+     "n": null,
+     "offset_days": null,
+     "start": null,
+     "end": null,
+     "reason": null
+    },
+    {
+     "id": "S5-10",
+     "kind": "absolute",
+     "month": 11,
+     "day": 15,
+     "week": null,
+     "weekday": "Sun",
+     "n": null,
+     "offset_days": null,
+     "start": null,
+     "end": null,
+     "reason": null
+    },
+    {
+     "id": "S5-11",
+     "kind": "absolute",
+     "month": 11,
+     "day": 29,
+     "week": null,
+     "weekday": "Sun",
+     "n": null,
+     "offset_days": null,
+     "start": null,
+     "end": null,
+     "reason": null
+    },
+    {
+     "id": "S5-12",
+     "kind": "absolute",
+     "month": 12,
+     "day": 15,
+     "week": null,
+     "weekday": "Tue",
+     "n": null,
+     "offset_days": null,
+     "start": null,
+     "end": null,
+     "reason": null
+    }
+   ]
+  },
+  {
+   "type": "done",
+   "worker": "S5"
+  },
+  {
+   "type": "waiting",
+   "worker": "S1",
+   "seconds": 22.2
+  },
+  {
+   "type": "waiting",
+   "worker": "S2",
+   "seconds": 7.3
+  },
+  {
+   "type": "waiting",
+   "worker": "S4",
+   "seconds": 1.2
+  },
+  {
+   "type": "waiting",
+   "worker": "S4",
+   "seconds": 26.3
+  },
+  {
+   "type": "waiting",
+   "worker": "S2",
+   "seconds": 24.2
+  },
+  {
+   "type": "waiting",
+   "worker": "S1",
+   "seconds": 29.8
+  },
+  {
+   "type": "waiting",
+   "worker": "S4",
+   "seconds": 18.3
+  },
+  {
+   "type": "waiting",
+   "worker": "S2",
+   "seconds": 26.6
+  },
+  {
+   "type": "waiting",
+   "worker": "S1",
+   "seconds": 36.2
+  },
+  {
+   "type": "waiting",
+   "worker": "S4",
+   "seconds": 25.1
+  },
+  {
+   "type": "extracted",
+   "worker": "S2",
+   "course": "MATH 1200",
+   "meeting_days": [],
+   "grading": [
+    {
+     "type": "problem_set",
+     "label": "Homework",
+     "weight_pct": 10,
+     "count": null,
+     "dropped": 0
+    },
+    {
+     "type": "exam",
+     "label": "Final Exam",
+     "weight_pct": null,
+     "count": null,
+     "dropped": 0
+    },
+    {
+     "type": "exam",
+     "label": "Midterm Score",
+     "weight_pct": null,
+     "count": null,
+     "dropped": 0
+    },
+    {
+     "type": "quiz",
+     "label": "Quizzes/Class Participation",
+     "weight_pct": 5,
+     "count": null,
+     "dropped": 0
+    }
+   ],
+   "items": [
+    {
+     "type": "problem_set",
+     "title": "Homework",
+     "date_expr": "Thursdaysat11:59pm",
+     "weight_pct": 10,
+     "weight_expr": "10%",
+     "quote": "HomeworkwillbedueonThursdaysat11:59pm,exceptonexamweekswhentherewillbeashorter assignment due on Monday",
+     "page": 3,
+     "id": "S2-1"
+    },
+    {
+     "type": "exam",
+     "title": "Midterm Exam 1",
+     "date_expr": "Thursday, October1,",
+     "weight_pct": null,
+     "weight_expr": "",
+     "quote": "MidtermExam1isscheduledforThursday, October1, andMidtermExam2forThursday, November 12. Each midterm exam will run from 7-9pm, location TBD.",
+     "page": 4,
+     "id": "S2-2"
+    },
+    {
+     "type": "exam",
+     "title": "Midterm Exam 2",
+     "date_expr": "Thursday, November 12,",
+     "weight_pct": null,
+     "weight_expr": "",
+     "quote": "MidtermExam1isscheduledforThursday, October1, andMidtermExam2forThursday, November 12. Each midterm exam will run from 7-9pm, location TBD.",
+     "page": 4,
+     "id": "S2-3"
+    },
+    {
+     "type": "exam",
+     "title": "Final Exam",
+     "date_expr": "Monday, December 21,",
+     "weight_pct": null,
+     "weight_expr": "",
+     "quote": "The final exam is scheduled for Monday, December 21, from 9am-12:30pm.",
+     "page": 4,
+     "id": "S2-4"
+    }
+   ]
+  },
+  {
+   "type": "check",
+   "worker": "S2",
+   "retry": false,
+   "results": [
+    {
+     "type": "problem_set",
+     "title": "Homework",
+     "date_expr": "Thursdaysat11:59pm",
+     "weight_pct": 10,
+     "weight_expr": "10%",
+     "quote": "HomeworkwillbedueonThursdaysat11:59pm,exceptonexamweekswhentherewillbeashorter assignment due on Monday",
+     "page": 3,
+     "id": "S2-1",
+     "ok": true,
+     "reason": "quote found on the cited page"
+    },
+    {
+     "type": "exam",
+     "title": "Midterm Exam 1",
+     "date_expr": "Thursday, October1,",
+     "weight_pct": null,
+     "weight_expr": "",
+     "quote": "MidtermExam1isscheduledforThursday, October1, andMidtermExam2forThursday, November 12. Each midterm exam will run from 7-9pm, location TBD.",
+     "page": 4,
+     "id": "S2-2",
+     "ok": true,
+     "reason": "quote found on the cited page"
+    },
+    {
+     "type": "exam",
+     "title": "Midterm Exam 2",
+     "date_expr": "Thursday, November 12,",
+     "weight_pct": null,
+     "weight_expr": "",
+     "quote": "MidtermExam1isscheduledforThursday, October1, andMidtermExam2forThursday, November 12. Each midterm exam will run from 7-9pm, location TBD.",
+     "page": 4,
+     "id": "S2-3",
+     "ok": true,
+     "reason": "quote found on the cited page"
+    },
+    {
+     "type": "exam",
+     "title": "Final Exam",
+     "date_expr": "Monday, December 21,",
+     "weight_pct": null,
+     "weight_expr": "",
+     "quote": "The final exam is scheduled for Monday, December 21, from 9am-12:30pm.",
+     "page": 4,
+     "id": "S2-4",
+     "ok": true,
+     "reason": "quote found on the cited page"
+    }
+   ]
+  },
+  {
+   "type": "waiting",
+   "worker": "S2",
+   "seconds": 14.9
+  },
+  {
+   "type": "waiting",
+   "worker": "S4",
+   "seconds": 3.9
+  },
+  {
+   "type": "waiting",
+   "worker": "S4",
+   "seconds": 20.4
+  },
+  {
+   "type": "waiting",
+   "worker": "S1",
+   "seconds": 8.7
+  },
+  {
+   "type": "parsed",
+   "worker": "S2",
+   "dates": [
+    {
+     "id": "S2-1",
+     "kind": "unresolvable",
+     "month": null,
+     "day": null,
+     "week": null,
+     "weekday": null,
+     "n": null,
+     "offset_days": null,
+     "start": null,
+     "end": null,
+     "reason": "repeating pattern (weekly Thursdays)"
+    },
+    {
+     "id": "S2-2",
+     "kind": "absolute",
+     "month": 10,
+     "day": 1,
+     "week": null,
+     "weekday": "Thu",
+     "n": null,
+     "offset_days": null,
+     "start": null,
+     "end": null,
+     "reason": null
+    },
+    {
+     "id": "S2-3",
+     "kind": "absolute",
+     "month": 11,
+     "day": 12,
+     "week": null,
+     "weekday": "Thu",
+     "n": null,
+     "offset_days": null,
+     "start": null,
+     "end": null,
+     "reason": null
+    },
+    {
+     "id": "S2-4",
+     "kind": "absolute",
+     "month": 12,
+     "day": 21,
+     "week": null,
+     "weekday": "Mon",
+     "n": null,
+     "offset_days": null,
+     "start": null,
+     "end": null,
+     "reason": null
+    }
+   ]
+  },
+  {
+   "type": "done",
+   "worker": "S2"
+  },
+  {
+   "type": "waiting",
+   "worker": "S1",
+   "seconds": 14.2
+  },
+  {
+   "type": "waiting",
+   "worker": "S4",
+   "seconds": 3.2
+  },
+  {
+   "type": "waiting",
+   "worker": "S1",
+   "seconds": 28.4
+  },
+  {
+   "type": "waiting",
+   "worker": "S4",
+   "seconds": 26.3
+  },
+  {
+   "type": "waiting",
+   "worker": "S4",
+   "seconds": 31.9
+  },
+  {
+   "type": "extracted",
+   "worker": "S1",
+   "course": "CPSC 2010",
+   "meeting_days": [
+    "Mon",
+    "Wed",
+    "Fri"
+   ],
+   "grading": [
+    {
+     "type": "exam",
+     "label": "Exams",
+     "weight_pct": 67,
+     "count": 3,
+     "dropped": 0
+    },
+    {
+     "type": "other",
+     "label": "Class participation and homework",
+     "weight_pct": 33,
+     "count": null,
+     "dropped": 0
+    }
+   ],
+   "items": [
+    {
+     "title": "Midterm Exam",
+     "type": "exam",
+     "date_expr": "Tuesday Oct 13, 7pm",
+     "weight_pct": null,
+     "weight_expr": "",
+     "quote": "Tuesday Oct 13, 7pm Midterm Exam - Davies.",
+     "page": 3,
+     "id": "S1-1"
+    },
+    {
+     "title": "Midterm Exam",
+     "type": "exam",
+     "date_expr": "Tuesday Nov 17, 7pm",
+     "weight_pct": null,
+     "weight_expr": "",
+     "quote": "Tuesday Nov 17, 7pm Midterm exam - Davies.",
+     "page": 4,
+     "id": "S1-2"
+    },
+    {
+     "title": "Final Exam",
+     "type": "exam",
+     "date_expr": "Dec 17, 7pm",
+     "weight_pct": null,
+     "weight_expr": "",
+     "quote": "Dec 17, 7pm Final Exam",
+     "page": 4,
+     "id": "S1-3"
+    }
+   ]
+  },
+  {
+   "type": "check",
+   "worker": "S1",
+   "retry": false,
+   "results": [
+    {
+     "title": "Midterm Exam",
+     "type": "exam",
+     "date_expr": "Tuesday Oct 13, 7pm",
+     "weight_pct": null,
+     "weight_expr": "",
+     "quote": "Tuesday Oct 13, 7pm Midterm Exam - Davies.",
+     "page": 3,
+     "id": "S1-1",
+     "ok": true,
+     "reason": "quote found on the cited page"
+    },
+    {
+     "title": "Midterm Exam",
+     "type": "exam",
+     "date_expr": "Tuesday Nov 17, 7pm",
+     "weight_pct": null,
+     "weight_expr": "",
+     "quote": "Tuesday Nov 17, 7pm Midterm exam - Davies.",
+     "page": 4,
+     "id": "S1-2",
+     "ok": true,
+     "reason": "quote found on the cited page"
+    },
+    {
+     "title": "Final Exam",
+     "type": "exam",
+     "date_expr": "Dec 17, 7pm",
+     "weight_pct": null,
+     "weight_expr": "",
+     "quote": "Dec 17, 7pm Final Exam",
+     "page": 4,
+     "id": "S1-3",
+     "ok": true,
+     "reason": "quote found on the cited page"
+    }
+   ]
+  },
+  {
+   "type": "waiting",
+   "worker": "S1",
+   "seconds": 1.8
+  },
+  {
+   "type": "parsed",
+   "worker": "S1",
+   "dates": [
+    {
+     "id": "S1-1",
+     "kind": "absolute",
+     "month": 10,
+     "day": 13,
+     "week": null,
+     "weekday": "Tue",
+     "n": null,
+     "offset_days": null,
+     "start": null,
+     "end": null,
+     "reason": null
+    },
+    {
+     "id": "S1-2",
+     "kind": "absolute",
+     "month": 11,
+     "day": 17,
+     "week": null,
+     "weekday": "Tue",
+     "n": null,
+     "offset_days": null,
+     "start": null,
+     "end": null,
+     "reason": null
+    },
+    {
+     "id": "S1-3",
+     "kind": "absolute",
+     "month": 12,
+     "day": 17,
+     "week": null,
+     "weekday": null,
+     "n": null,
+     "offset_days": null,
+     "start": null,
+     "end": null,
+     "reason": null
+    }
+   ]
+  },
+  {
+   "type": "done",
+   "worker": "S1"
+  },
+  {
+   "type": "extracted",
+   "worker": "S4",
+   "course": "MATH 2410",
+   "meeting_days": [
+    "Mon",
+    "Wed"
+   ],
+   "grading": [
+    {
+     "type": "problem_set",
+     "label": "Problem sets",
+     "weight_pct": 10,
+     "count": null,
+     "dropped": 0
+    },
+    {
+     "type": "other",
+     "label": "Oral check-ins",
+     "weight_pct": 10,
+     "count": 3,
+     "dropped": 0
+    },
+    {
+     "type": "exam",
+     "label": "Midterm Exam",
+     "weight_pct": null,
+     "count": 1,
+     "dropped": 0
+    },
+    {
+     "type": "exam",
+     "label": "Final Exam",
+     "weight_pct": null,
+     "count": 1,
+     "dropped": 0
+    }
+   ],
+   "items": [
+    {
+     "type": "exam",
+     "title": "Midterm Exam",
+     "date_expr": "Oct. 19",
+     "weight_pct": null,
+     "weight_expr": "",
+     "quote": "(M) Oct. 19 Midterm Exam (in-class)",
+     "page": 2,
+     "id": "S4-1"
+    },
+    {
+     "type": "exam",
+     "title": "Final Exam",
+     "date_expr": "December 22",
+     "weight_pct": null,
+     "weight_expr": "",
+     "quote": "Final: December 22 (see https://catalog.yale.edu/ycps/final-examination-schedules/",
+     "page": 5,
+     "id": "S4-2"
+    },
+    {
+     "type": "other",
+     "title": "Oral check-in",
+     "date_expr": "weeks of Sept. 28",
+     "weight_pct": null,
+     "weight_expr": "",
+     "quote": "Tentatively, these will be scheduled for the weeks of Sept. 28, Oct. 12, and Nov. 30.",
+     "page": 6,
+     "id": "S4-3"
+    },
+    {
+     "type": "other",
+     "title": "Oral check-in",
+     "date_expr": "weeks of Oct. 12",
+     "weight_pct": null,
+     "weight_expr": "",
+     "quote": "Tentatively, these will be scheduled for the weeks of Sept. 28, Oct. 12, and Nov. 30.",
+     "page": 6,
+     "id": "S4-4"
+    },
+    {
+     "type": "other",
+     "title": "Oral check-in",
+     "date_expr": "weeks of Nov. 30",
+     "weight_pct": null,
+     "weight_expr": "",
+     "quote": "Tentatively, these will be scheduled for the weeks of Sept. 28, Oct. 12, and Nov. 30.",
+     "page": 6,
+     "id": "S4-5"
+    }
+   ]
+  },
+  {
+   "type": "check",
+   "worker": "S4",
+   "retry": false,
+   "results": [
+    {
+     "type": "exam",
+     "title": "Midterm Exam",
+     "date_expr": "Oct. 19",
+     "weight_pct": null,
+     "weight_expr": "",
+     "quote": "(M) Oct. 19 Midterm Exam (in-class)",
+     "page": 2,
+     "id": "S4-1",
+     "ok": true,
+     "reason": "quote found on the cited page"
+    },
+    {
+     "type": "exam",
+     "title": "Final Exam",
+     "date_expr": "December 22",
+     "weight_pct": null,
+     "weight_expr": "",
+     "quote": "Final: December 22 (see https://catalog.yale.edu/ycps/final-examination-schedules/",
+     "page": 5,
+     "id": "S4-2",
+     "ok": true,
+     "reason": "quote found on the cited page"
+    },
+    {
+     "type": "other",
+     "title": "Oral check-in",
+     "date_expr": "weeks of Sept. 28",
+     "weight_pct": null,
+     "weight_expr": "",
+     "quote": "Tentatively, these will be scheduled for the weeks of Sept. 28, Oct. 12, and Nov. 30.",
+     "page": 6,
+     "id": "S4-3",
+     "ok": true,
+     "reason": "quote found on the cited page"
+    },
+    {
+     "type": "other",
+     "title": "Oral check-in",
+     "date_expr": "weeks of Oct. 12",
+     "weight_pct": null,
+     "weight_expr": "",
+     "quote": "Tentatively, these will be scheduled for the weeks of Sept. 28, Oct. 12, and Nov. 30.",
+     "page": 6,
+     "id": "S4-4",
+     "ok": false,
+     "reason": "date \"weeks of Oct. 12\" is not inside the quote"
+    },
+    {
+     "type": "other",
+     "title": "Oral check-in",
+     "date_expr": "weeks of Nov. 30",
+     "weight_pct": null,
+     "weight_expr": "",
+     "quote": "Tentatively, these will be scheduled for the weeks of Sept. 28, Oct. 12, and Nov. 30.",
+     "page": 6,
+     "id": "S4-5",
+     "ok": false,
+     "reason": "date \"weeks of Nov. 30\" is not inside the quote"
+    }
+   ]
+  },
+  {
+   "type": "check",
+   "worker": "S4",
+   "retry": true,
+   "results": []
+  },
+  {
+   "type": "dropped",
+   "worker": "S4",
+   "ids": [
+    "S4-4",
+    "S4-5"
+   ]
+  },
+  {
+   "type": "waiting",
+   "worker": "S4",
+   "seconds": 19.4
+  },
+  {
+   "type": "waiting",
+   "worker": "S4",
+   "seconds": 12.0
+  },
+  {
+   "type": "parsed",
+   "worker": "S4",
+   "dates": [
+    {
+     "id": "S4-1",
+     "kind": "absolute",
+     "month": 10,
+     "day": 19,
+     "week": null,
+     "weekday": null,
+     "n": null,
+     "offset_days": null,
+     "start": null,
+     "end": null,
+     "reason": null
+    },
+    {
+     "id": "S4-2",
+     "kind": "absolute",
+     "month": 12,
+     "day": 22,
+     "week": null,
+     "weekday": null,
+     "n": null,
+     "offset_days": null,
+     "start": null,
+     "end": null,
+     "reason": null
+    },
+    {
+     "id": "S4-3",
+     "kind": "unresolvable",
+     "month": null,
+     "day": null,
+     "week": null,
+     "weekday": null,
+     "n": null,
+     "offset_days": null,
+     "start": null,
+     "end": null,
+     "reason": "Ambiguous week reference without specific day"
+    }
+   ]
+  },
+  {
+   "type": "done",
+   "worker": "S4"
+  },
+  {
+   "type": "stats",
+   "mode": "verified",
+   "seconds": 295.9,
+   "model_calls": 15,
+   "input_tokens": 29888,
+   "output_tokens": 18685
+  }
+ ]
+}

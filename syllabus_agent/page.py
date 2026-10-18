@@ -27,8 +27,65 @@ MODES = {"Verified pipeline": "verified", "Single-prompt baseline": "baseline"}
 TYPE_ICONS = {"exam": "📝", "quiz": "✏️", "problem_set": "📐", "paper": "📄", "project": "🛠️",
               "presentation": "🎤", "reading": "📚", "other": "📌"}
 
-st.title("📅 Syllabus → Semester")
-st.caption("y/cs · Parallel extractor workers, a citation check on every quote, dates computed by code")
+ACCENT = {"light": "#c2410c", "dark": "#ff7a3d"}
+STEPS = [("Extract", "one worker per syllabus, in parallel, quoting every deadline"),
+         ("Verify", "plain Python finds each quote on its cited page"),
+         ("Resolve", "code computes the date from the term calendar; the model never does")]
+
+
+def theme_mode():
+    try:
+        return st.context.theme.type or "light"
+    except Exception:
+        return "light"
+
+
+def style():
+    accent = ACCENT[theme_mode()]
+    st.html(f"""<style>
+    .sa-kicker {{ font-family: 'JetBrains Mono', monospace; font-size: .7rem; letter-spacing: .2em;
+                 text-transform: uppercase; opacity: .6; }}
+    .sa-title {{ font-family: 'Instrument Serif', serif; font-weight: 400; font-size: clamp(2.6rem, 6vw, 4.4rem);
+                line-height: .95; margin: .35rem 0 .6rem; letter-spacing: -.01em; }}
+    .sa-title em {{ color: {accent}; }}
+    .sa-dek {{ font-size: 1.08rem; max-width: 46rem; opacity: .8; margin: 0 0 1.4rem; }}
+    .sa-steps {{ display: grid; grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr)); gap: 0;
+                list-style: none; padding: 0 !important; margin: 0 0 .5rem !important; border-top: 1px solid currentColor;
+                border-color: color-mix(in srgb, currentColor 25%, transparent); }}
+    .sa-steps li {{ padding: .7rem 1.2rem .2rem 0; margin: 0 !important; }}
+    .sa-steps b {{ font-family: 'JetBrains Mono', monospace; font-size: .72rem; font-weight: 500; color: {accent}; }}
+    .sa-steps span {{ font-family: 'Instrument Serif', serif; font-size: 1.45rem; margin-left: .45rem; }}
+    .sa-steps small {{ display: block; font-size: .84rem; opacity: .65; line-height: 1.35; margin-top: .1rem; }}
+    .sa-section {{ display: flex; align-items: baseline; gap: .8rem; flex-wrap: wrap; margin: 1.6rem 0 .3rem;
+                  padding-top: .9rem; border-top: 1px solid color-mix(in srgb, currentColor 18%, transparent); }}
+    .sa-section .n {{ font-family: 'JetBrains Mono', monospace; font-size: .75rem; color: {accent}; }}
+    .sa-section h3 {{ font-family: 'Instrument Serif', serif; font-weight: 400; font-size: 1.9rem; margin: 0; padding: 0; }}
+    .sa-section p {{ margin: 0; opacity: .65; font-size: .92rem; }}
+    [data-testid="stMetricLabel"] p {{ font-family: 'JetBrains Mono', monospace; font-size: .68rem;
+                                      letter-spacing: .14em; text-transform: uppercase; opacity: .7; }}
+    [data-testid="stMetricValue"] {{ font-family: 'Instrument Serif', serif; }}
+    [data-testid="stMarkdownContainer"] blockquote {{ border-left: 3px solid {accent}; padding: .1rem 0 .1rem 1rem;
+        margin: .4rem 0; font-family: 'Instrument Serif', serif; font-size: 1.3rem; line-height: 1.3; }}
+    [data-testid="stSidebar"] h4 {{ font-family: 'JetBrains Mono', monospace; font-size: .7rem; font-weight: 500;
+        letter-spacing: .18em; text-transform: uppercase; opacity: .65; padding: .6rem 0 0; }}
+    </style>""")
+
+
+def masthead():
+    term = st.session_state.term
+    steps = "".join(f"<li><b>0{n}</b><span>{name}</span><small>{what}</small></li>"
+                    for n, (name, what) in enumerate(STEPS, 1))
+    named = "" if "PLACEHOLDER" in term["name"] else f" · {term['name']}"
+    st.html(f"""<div class="sa-kicker">y/cs · Syllabus Agent{named}</div>
+    <div class="sa-title">Syllabus <em>→</em> Semester</div>
+    <p class="sa-dek">Every graded item in your syllabi, each with the sentence it came from and a date
+    worked out by code. Anything that can't be pinned down goes to review instead of onto your calendar.</p>
+    <ol class="sa-steps">{steps}</ol>""")
+
+
+def section(number, title, note=""):
+    st.html(f'<div class="sa-section"><span class="n">{number}</span><h3>{title}</h3>'
+            + (f"<p>{note}</p>" if note else "") + "</div>")
 
 
 # Term config lives in session state. Widgets are keyed by a version number so that loading
@@ -41,6 +98,7 @@ def set_term(term):
 
 if "term" not in st.session_state:
     set_term(load_term((HERE / "term.yaml").read_text()))
+style()
 
 
 def records(table):
@@ -154,9 +212,10 @@ def trace(events, term):
     result = build(events, term)
     workers = list(result["workers"].values())
     if workers:
-        st.markdown("##### 1 · One worker per syllabus, running in parallel")
-        for row in range(0, len(workers), 4):
-            for column, w in zip(st.columns(4), workers[row:row + 4]):
+        section("01", "Workers", "One per syllabus, running in parallel. Every quote is checked against its page.")
+        per_row = len(workers) if len(workers) <= 5 else 4  # five syllabi fit one row; more wrap in fours
+        for row in range(0, len(workers), per_row):
+            for column, w in zip(st.columns(per_row), workers[row:row + per_row]):
                 with column, st.container(border=True):
                     worker_panel(w, result, events)
     return result
@@ -170,7 +229,7 @@ def when(item):
 def weight_text(item):
     if not item.get("weight"):
         return "–"
-    return f"{'~' if item['weight_inferred'] else ''}{item['weight']:g}%"
+    return f"{'~' if item['weight_inferred'] else ''}{item['weight']:.3g}%"
 
 
 def source_card(item):
@@ -201,24 +260,16 @@ def table(items, columns, key):
         st.caption("Select a row to see its source quote.")
 
 
-def theme_mode():
-    try:
-        return st.context.theme.type or "light"
-    except Exception:
-        return "light"
-
-
 def outcome(result, stats):
-    st.markdown("##### 2 · The semester, from verified items only")
+    section("02", "The semester", "Built from verified items only.")
     repaired = sum(r["ok"] for w in result["workers"].values() for r in w["results"].values() if r.get("retried"))
-    columns = st.columns(7)
+    columns = st.columns(4)
     columns[0].metric("On calendar", len(result["calendar"]))
     columns[1].metric("Needs review", len(result["review"]))
-    columns[2].metric("Fixed on retry", repaired)
-    columns[3].metric("Rejected", len(result["rejected"]))
-    columns[4].metric("Duplicates merged", len(result["duplicates"]))
-    columns[5].metric("Model calls", stats["model_calls"])
-    columns[6].metric("Elapsed", f"{stats['seconds']} s")
+    columns[2].metric("Rejected", len(result["rejected"]))
+    columns[3].metric("Crunch weeks", len(result["crunch"]))
+    st.caption(f"`{stats['model_calls']} model calls` · `{stats['seconds']:.0f} s` · `{repaired} fixed on retry` · "
+               f"`{len(result['duplicates'])} duplicates merged`")
     if result["calendar"]:
         st.download_button(f"Download .ics · {len(result['calendar'])} events", calendar_file(result["calendar"]),
                            "semester.ics", "text/calendar", type="primary", icon=":material/calendar_month:")
@@ -273,7 +324,7 @@ def reference(files, term):
 
 
 def baseline_view(events, term, files, final):
-    st.markdown("##### 1 · Baseline: one prompt with every syllabus. No citation check, no date code")
+    section("01", "Baseline", "One prompt with every syllabus. No citation check, no date code.")
     raw = next((e["events"] for e in events if e["type"] == "baseline"), None)
     if raw is None:
         st.caption("⏳ Waiting for one big model call…")
@@ -335,7 +386,7 @@ def comparison(term):
         ("Model calls", stats["verified"]["model_calls"], stats["baseline"]["model_calls"]),
         ("Seconds", stats["verified"]["seconds"], stats["baseline"]["seconds"]),
     ]
-    st.markdown("##### Same syllabi, both modes")
+    section("03", "Same syllabi, both modes")
     st.table({"": [r[0] for r in rows], "Verified pipeline": [str(r[1]) for r in rows],
               "Single-prompt baseline": [str(r[2]) for r in rows]})
     st.caption(f"Scored against {label}. One run each; the baseline's mistakes vary from run to run.")
@@ -402,6 +453,27 @@ def remember(record):
         st.session_state.setdefault("compare", {}).setdefault(key, {})[record["mode"]] = record
 
 
+def recording_label(path):
+    """20261017-225013-verified-CPSC2010-MATH1200 → Oct 17, 22:50 · verified · CPSC2010, MATH1200"""
+    stamp, clock, mode, *courses = path.stem.split("-")
+    when = datetime.strptime(stamp + clock, "%Y%m%d%H%M%S")
+    return f"{when:%b} {when.day}, {when:%H:%M} · {mode} · {', '.join(courses)}"
+
+
+def welcome(saved):
+    with st.container(border=True):
+        left, right = st.columns([3, 2], vertical_alignment="center")
+        with left:
+            st.markdown("#### Watch a real run")
+            st.markdown("A recorded run over real syllabi, replayed step by step: no API key or network needed."
+                        if saved else "No recordings yet. Every completed live run is saved here.")
+            if saved:
+                st.caption(recording_label(saved[0]))
+        right.button("Replay the demo", type="primary", icon=":material/play_arrow:", width="stretch",
+                     disabled=not saved, on_click=start_replay, args=(saved[0] if saved else None,))
+    st.caption("Or upload your own PDFs in the sidebar, set the term calendar, and press **Run**.")
+
+
 def uploaded_syllabi(files, use_demo):
     sources = [(p.name, p.read_bytes()) for p in sorted(DEMO.glob("*.pdf"))] if use_demo else \
               [(f.name, f.getvalue()) for f in files or []]
@@ -418,25 +490,31 @@ def uploaded_syllabi(files, use_demo):
     return syllabi
 
 
+saved = sorted(RUNS.glob("*.json"), reverse=True) if RUNS.exists() else []
+
 with st.sidebar:
+    st.markdown("#### Syllabi")
     files = st.file_uploader("Syllabus PDFs (1–8)", type="pdf", accept_multiple_files=True)
     use_demo = st.toggle("Use the 5 demo syllabi instead", help="Synthetic syllabi from tests/fixtures/syllabi")
     with st.expander("Term calendar", expanded="PLACEHOLDER" in st.session_state.term["name"]):
         st.button("Load demo term", on_click=load_demo_term, width="stretch")
         term_editor()
+    st.markdown("#### Run")
     mode_label = st.radio("Mode", list(MODES))
     start = st.button("Run", type="primary", width="stretch")
     st.caption(f"Model: {config.MODEL} via {config.BASE_URL.split('/')[2]}")
-    st.divider()
-    saved = sorted(RUNS.glob("*.json"), reverse=True) if RUNS.exists() else []
-    st.markdown("**Recorded runs**")
-    chosen = st.selectbox("Recording", saved, format_func=lambda p: p.stem, label_visibility="collapsed")
+    st.markdown("#### Recorded runs")
+    chosen = st.selectbox("Recording", saved, format_func=recording_label, label_visibility="collapsed")
     st.button("Replay recording", disabled=not saved, width="stretch",
               on_click=start_replay, args=(chosen,))
     st.caption("Every live run is saved, so a real run can be replayed with no network.")
 
 term = st.session_state.term
-if "PLACEHOLDER" in term["name"]:
+masthead()
+idle = not start and "replay" not in st.session_state and "last" not in st.session_state
+if idle:
+    welcome(saved)
+if "PLACEHOLDER" in term["name"] and "last" not in st.session_state:
     st.warning("The term calendar is still a placeholder. Fill it in from the sidebar, or click "
                "**Load demo term** to use the fictional term that matches the demo syllabi.")
 
@@ -461,7 +539,9 @@ if start:
     st.rerun()
 elif "replay" in st.session_state:
     record = st.session_state.pop("replay")
-    st.caption(f"Replaying a recorded {record['mode']} run from {record['created']} · {record['model']}")
+    created = datetime.fromisoformat(record["created"])
+    st.caption(f"Replaying a recorded {record['mode']} run from {created:%b} {created.day}, {created:%H:%M} · "
+               f"{record['model']}")
     area = st.empty()
     speed = float(os.getenv("SYLLABUS_REPLAY_SPEED", "1"))  # 0 replays instantly (tests)
     pace = {"waiting": 0.05, "worker": 0.1, "extracted": 0.5, "check": 0.7, "parsed": 0.5, "baseline": 1.5}
