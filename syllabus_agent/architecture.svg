@@ -1,0 +1,139 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" role="img">
+  <title>Syllabus Agent architecture</title>
+  <desc>Syllabus PDFs go to parallel extractor workers, one per syllabus. Plain Python checks every quote against its cited page with one repair call. A model labels each date as written, and code computes the actual date from the term calendar. Unresolvable dates go to review; verified items become the calendar, crunch heatmap and .ics.</desc>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@700&amp;family=DM+Sans:wght@400;500&amp;family=DM+Mono:wght@400;500&amp;display=swap');
+    .h { font: 700 64px Inter, Helvetica, Arial, sans-serif; fill: #F4F1EC; }
+    .kick { font: 500 22px 'DM Mono', Menlo, monospace; fill: #E8B4A0; letter-spacing: 2px; }
+    .t { font: 700 27px Inter, Helvetica, Arial, sans-serif; fill: #F4F1EC; }
+    .b { font: 400 19px 'DM Sans', Helvetica, Arial, sans-serif; fill: #B9B2AA; }
+    .m { font: 400 16px 'DM Mono', Menlo, monospace; fill: #B9B2AA; }
+    .lab { font: 500 16px 'DM Mono', Menlo, monospace; fill: #E8B4A0; letter-spacing: 1.5px; }
+    .note { font: 400 16px 'DM Mono', Menlo, monospace; fill: #8C857D; }
+    .fail { font: 500 16px 'DM Mono', Menlo, monospace; fill: #E39A86; letter-spacing: 1px; }
+    .model { fill: #241813; stroke: #E8B4A0; stroke-width: 2; }
+    .code { fill: #121212; stroke: #6B655F; stroke-width: 2; }
+    .arrow { fill: none; stroke: #8C857D; stroke-width: 2.5; marker-end: url(#head); }
+  </style>
+  <defs>
+    <marker id="head" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#8C857D"/>
+    </marker>
+    <marker id="headFail" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#E39A86"/>
+    </marker>
+  </defs>
+
+  <rect width="1920" height="1080" fill="#000"/>
+
+  <text class="h" x="80" y="118">What I built: Syllabus Agent</text>
+  <text class="kick" x="80" y="166">SYLLABUS PDFS → A VERIFIED SEMESTER · EXTRACT → CHECK → LABEL → COMPUTE</text>
+  <line x1="80" y1="200" x2="1840" y2="200" stroke="#E8B4A0" stroke-opacity="0.6" stroke-width="1.5"/>
+
+  <!-- arrows go first so boxes sit on top -->
+  <path class="arrow" d="M280 560 C316 560 316 380 350 380"/>
+  <path class="arrow" d="M280 560 H350"/>
+  <path class="arrow" d="M280 560 C316 560 316 740 350 740"/>
+  <path class="arrow" d="M674 380 C710 380 710 560 746 560"/>
+  <path class="arrow" d="M674 560 H746"/>
+  <path class="arrow" d="M674 740 C710 740 710 560 746 560"/>
+  <path class="arrow" d="M988 560 H1040"/>
+  <path class="arrow" d="M1282 560 H1334"/>
+  <path class="arrow" d="M1566 560 H1618"/>
+  <path class="arrow" d="M868 635 V778"/>
+  <path class="arrow" d="M1451 635 V778"/>
+  <path class="arrow" d="M1730 635 V778"/>
+  <path d="M960 485 V258 H514 V286" fill="none" stroke="#E39A86" stroke-width="2.5" stroke-dasharray="9 7" marker-end="url(#headFail)"/>
+  <text class="fail" x="530" y="246">✗ FAILED CITATION → ONE REPAIR CALL, THEN DROP</text>
+
+  <!-- 1 input -->
+  <text class="lab" x="80" y="465">1 · INPUT</text>
+  <rect class="code" x="80" y="485" width="200" height="150" rx="14"/>
+  <text class="t" x="102" y="530">Syllabi</text>
+  <text class="b" x="102" y="566">1–8 PDFs +</text>
+  <text class="b" x="102" y="592">term calendar</text>
+  <text class="m" x="102" y="620">text per page</text>
+
+  <!-- 2 workers -->
+  <rect x="334" y="288" width="360" height="560" rx="18" fill="none" stroke="#E8B4A0" stroke-opacity="0.45" stroke-width="1.5" stroke-dasharray="6 6"/>
+  <g>
+    <rect class="model" x="352" y="310" width="322" height="140" rx="14"/>
+    <text class="t" x="374" y="352">Worker · CPSC 2010</text>
+    <text class="m" x="374" y="390">type · title · date as written</text>
+    <text class="m" x="374" y="414">verbatim quote · page</text>
+    <text class="b" x="374" y="436">4 pages · 1 extraction call</text>
+  </g>
+  <g>
+    <rect class="model" x="352" y="490" width="322" height="140" rx="14"/>
+    <text class="t" x="374" y="532">Worker · MATH 1200</text>
+    <text class="m" x="374" y="570">type · title · date as written</text>
+    <text class="m" x="374" y="594">verbatim quote · page</text>
+    <text class="b" x="374" y="616">8 pages · read in 3 batches</text>
+  </g>
+  <g>
+    <rect class="model" x="352" y="670" width="322" height="140" rx="14"/>
+    <text class="t" x="374" y="712">Worker · TDPS 0001</text>
+    <text class="m" x="374" y="750">type · title · date as written</text>
+    <text class="m" x="374" y="774">verbatim quote · page</text>
+    <text class="b" x="374" y="796">7 pages · read in 2 batches</text>
+  </g>
+  <text class="lab" x="334" y="884">2 · WORKERS IN PARALLEL</text>
+  <text class="note" x="334" y="912">one per syllabus, each in its own context</text>
+  <text class="note" x="334" y="938">long PDFs split into page batches to fit the token cap</text>
+
+  <!-- 3 citation check -->
+  <text class="lab" x="748" y="465">3 · EVALUATOR</text>
+  <rect class="code" x="748" y="485" width="240" height="150" rx="14"/>
+  <text class="t" x="770" y="530">Citation check</text>
+  <text class="b" x="770" y="566">quote on the page?</text>
+  <text class="b" x="770" y="592">date in the quote?</text>
+  <text class="m" x="770" y="620">spacing normalized</text>
+  <text class="note" x="882" y="712">still fails</text>
+  <rect class="code" x="748" y="780" width="240" height="100" rx="14"/>
+  <text class="t" x="770" y="822">Rejected</text>
+  <text class="b" x="770" y="856">shown with the reason</text>
+
+  <!-- 4 date labels -->
+  <text class="lab" x="1042" y="465">4 · DATE LABELS</text>
+  <rect class="model" x="1042" y="485" width="240" height="150" rx="14"/>
+  <text class="t" x="1064" y="530">Date labeler</text>
+  <text class="b" x="1064" y="566">"Week 7 Thu", "Oct 14",</text>
+  <text class="b" x="1064" y="592">"Lecture 12 + 2", TBA</text>
+  <text class="m" x="1064" y="620">never computes a date</text>
+
+  <!-- 5 date math -->
+  <text class="lab" x="1336" y="465">5 · DATE MATH</text>
+  <rect class="code" x="1336" y="485" width="230" height="150" rx="14"/>
+  <text class="t" x="1358" y="530">term.py</text>
+  <text class="b" x="1358" y="566">weeks, breaks,</text>
+  <text class="b" x="1358" y="592">class meetings</text>
+  <text class="m" x="1358" y="620">+ weekday check</text>
+  <text class="note" x="1465" y="712">can't pin down</text>
+  <rect class="code" x="1336" y="780" width="230" height="100" rx="14"/>
+  <text class="t" x="1358" y="822">Needs review</text>
+  <text class="b" x="1358" y="856">TBA, repeats, conflicts</text>
+
+  <!-- 6 output -->
+  <text class="lab" x="1620" y="465">6 · OUTPUT</text>
+  <rect class="code" x="1620" y="485" width="220" height="150" rx="14"/>
+  <text class="t" x="1642" y="530">Calendar</text>
+  <text class="b" x="1642" y="566">dedupe, weights,</text>
+  <text class="b" x="1642" y="592">crunch weeks</text>
+  <text class="m" x="1642" y="620">verified only</text>
+  <text class="note" x="1742" y="712">export</text>
+  <rect class="code" x="1620" y="780" width="220" height="100" rx="14"/>
+  <text class="t" x="1642" y="822">Semester</text>
+  <text class="b" x="1642" y="856">.ics + heatmap</text>
+
+  <!-- legend -->
+  <rect class="model" x="80" y="980" width="34" height="24" rx="6"/>
+  <text class="b" x="126" y="999">model call</text>
+  <rect class="code" x="260" y="980" width="34" height="24" rx="6"/>
+  <text class="b" x="306" y="999">plain Python</text>
+  <line x1="450" y1="992" x2="500" y2="992" stroke="#E39A86" stroke-width="2.5" stroke-dasharray="9 7"/>
+  <text class="b" x="514" y="999">repair path</text>
+  <text class="note" x="1840" y="999" text-anchor="end">Baseline mode: one prompt, every syllabus, no check, the model writes the dates</text>
+
+  <text class="note" x="80" y="1050">y/cs · Catalyst Workshop 3</text>
+  <text class="note" x="1840" y="1050" text-anchor="end">github.com/yalexie1/syllabus-agent</text>
+</svg>

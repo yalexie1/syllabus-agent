@@ -4,6 +4,8 @@ Upload course syllabi (PDFs). It finds every deadline, exam and graded item, pro
 
 Plain Python and Streamlit, with model calls through the OpenAI SDK's Responses API. There's no agent framework.
 
+![Syllabus Agent architecture](syllabus_agent/architecture.png)
+
 ## Run it
 
 You need Python 3.10 or newer.
@@ -71,6 +73,7 @@ syllabus_agent/
   compare.py            scores a run against the answer key
   page.py               live trace, results, replay, comparison
   term.yaml             placeholder term: fill in from your school's calendar
+  architecture.svg/.png the diagram above (render the PNG from the SVG with headless Chrome)
   runs/                 the recorded demo run (every completed live run is saved here)
 tests/
   test_syllabus_agent.py
