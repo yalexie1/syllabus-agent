@@ -26,9 +26,9 @@ The pipeline is an **event stream**. `agents.Run(syllabi, term, emit=...)` runs 
 
 - `load.build(events, term)` → calendar / needs-review / rejected / duplicates / weekly totals / crunch weeks. It calls `term.resolve` for dates and `infer_weights` for weights.
 - `page.py` renders the live trace from the same events. It also saves completed runs as JSON in `syllabus_agent/runs/` and replays them by re-emitting the events (`SYLLABUS_REPLAY_SPEED=0` makes replay instant; tests use this).
-- `compare.py` scores a calendar against `tests/fixtures/syllabi/answer_key.json`, matched by PDF sha256. For non-demo PDFs it scores against the verified run instead.
+- `compare.py` scores a calendar against `tests/fixtures/syllabi/answer_key.json` or `evals/real-answer-key.json`, matched by PDF sha256. `evaluate.py` scores the recorded runs in `evals/` for the README and the page's Eval section. For non-demo PDFs it scores against the verified run instead.
 
-Changing an event's shape therefore affects `load.py`, `page.py`, `compare.py`, the saved recordings (`runs/` and `tests/fixtures/demo_run.json`), and the tests.
+Changing an event's shape therefore affects `load.py`, `page.py`, `compare.py`, the saved recordings (`runs/` and `evals/`), and the tests.
 
 Key division of labor:
 - **The model never computes dates.** It labels each `date_expr` as a spec (absolute, week_weekday, nth_meeting, range, unresolvable); `term.py` does all date arithmetic from the term calendar (weeks numbered from term start and not renumbered by breaks, class meetings skip breaks, year rollover). Anything unresolvable raises `term.Unresolved` and goes to Needs review, never onto the calendar or `.ics`.
@@ -44,7 +44,7 @@ Key division of labor:
 
 ## Tests
 
-`tests/test_syllabus_agent.py` runs the real fixture PDFs through a scripted fake model client, and uses Streamlit `AppTest` for the page (missing key, replay, comparison). Fixtures are synthetic: five PDFs, a fictional `demo_term.yaml`, and a hand-checked `answer_key.json` keyed by PDF sha256. Regenerating the PDFs changes their hashes, so the answer key and `tests/fixtures/demo_run.json` (a recorded run over them, used by the comparison test) must stay consistent with them. `syllabus_agent/runs/` holds only the demo recording the app offers (a real run over five real syllabi; the PDFs themselves are gitignored); the replay test uses whatever recording is newest there.
+`tests/test_syllabus_agent.py` runs the real fixture PDFs through a scripted fake model client, and uses Streamlit `AppTest` for the page (missing key, replay, comparison). Fixtures are synthetic: five PDFs, a fictional `demo_term.yaml`, and a hand-checked `answer_key.json` keyed by PDF sha256. Regenerating the PDFs changes their hashes, so the answer key and the recorded runs over them in `evals/` (`synthetic-*.json`; the comparison test uses `synthetic-verified.json`) must stay consistent with them. `syllabus_agent/runs/` holds only the demo recording the app offers (a real run over five real syllabi; the PDFs themselves are gitignored); the replay test uses whatever recording is newest there.
 
 ## Project rules (from the original spec)
 

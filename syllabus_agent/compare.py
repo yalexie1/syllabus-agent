@@ -9,16 +9,20 @@ from pathlib import Path
 
 from .term import course_key
 
-KEY_FILE = Path(__file__).resolve().parents[1] / "tests" / "fixtures" / "syllabi" / "answer_key.json"
+ROOT = Path(__file__).resolve().parents[1]
+# The synthetic demo syllabi's key, and a hand-checked key for the five real syllabi in the demo recording.
+KEY_FILES = [ROOT / "tests" / "fixtures" / "syllabi" / "answer_key.json", ROOT / "evals" / "real-answer-key.json"]
 WORDS = [(r"\bproblem sets?\b", "ps"), (r"\bpset\b", "ps"), (r"\bhomework\b", "hw"),
-         (r"\bmidterm exam\b", "midterm"), (r"\bfinal exam(ination)?\b", "final"), (r"\bexam\b", "")]
+         (r"\bmidterm exam\b", "midterm"), (r"\bfinal exam(ination)?\b", "final"), (r"\bexam\b", ""),
+         (r"\biii\b", "3"), (r"\bii\b", "2"), (r"\bi\b", "1")]  # "Midterm Exam II" is "Midterm 2"
 
 
 def answer_key(files):
-    """The answer-key items if every uploaded file is one of the demo syllabi, else None."""
-    if not KEY_FILE.exists() or not files:
+    """The answer-key items if every uploaded file has a hand-checked key, else None."""
+    if not files:
         return None
-    key = {entry["sha256"]: entry for entry in json.loads(KEY_FILE.read_text()).values()}
+    key = {entry["sha256"]: entry for path in KEY_FILES if path.exists()
+           for entry in json.loads(path.read_text()).values() if isinstance(entry, dict)}
     if not all(f["sha256"] in key for f in files):
         return None
     return [{"course": key[f["sha256"]]["course"], **item,

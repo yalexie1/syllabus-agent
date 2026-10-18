@@ -481,10 +481,21 @@ class BaselineAndCompareTests(unittest.TestCase):
         self.assertEqual(len(answer_key([chem])), 9)
         self.assertIsNone(answer_key([chem, {"sha256": "0" * 64}]))
 
+    def test_evaluation_tables_come_from_the_recorded_runs(self):
+        from syllabus_agent.evaluate import real_table, summary, synthetic_table
+        results = summary()
+        self.assertEqual(results["synthetic"]["verified"][0]["wrong_date"], 0)
+        self.assertEqual(len(results["synthetic"]["baseline"]), 4)
+        self.assertEqual(results["real"]["verified"]["dated"], 20)  # the hand-checked key for the five real syllabi
+        for table in (synthetic_table(results), real_table(results)):
+            self.assertEqual(len({len(column) for column in table.values()}), 1)
+
     def test_title_matching(self):
         self.assertGreaterEqual(similar("PS1", "Problem Set 1"), 0.5)
         self.assertGreaterEqual(similar("Final Exam", "Final exam"), 0.5)
         self.assertEqual(similar("Problem Set 1", "Problem Set 2"), 0.0)
+        self.assertGreaterEqual(similar("Midterm Exam II", "Midterm 2"), 0.5)
+        self.assertEqual(similar("Midterm Exam I", "Midterm 2"), 0.0)
 
     def test_score(self):
         reference = [
@@ -511,7 +522,7 @@ class ChartTests(unittest.TestCase):
             self.assertNotIn('"scale": null', json.dumps(spec))  # Vega-Lite fails to render a null scale
 
 
-FIXTURE_RUN = ROOT / "tests" / "fixtures" / "demo_run.json"  # a verified run over the five fixture PDFs
+FIXTURE_RUN = ROOT / "evals" / "synthetic-verified.json"  # a verified run over the five fixture PDFs
 DEMO = sorted((ROOT / "syllabus_agent" / "runs").glob("*.json"))[-1]  # the recording the app offers
 
 

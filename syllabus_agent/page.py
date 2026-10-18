@@ -14,6 +14,7 @@ from syllabus_agent import config
 from syllabus_agent.agents import Run
 from syllabus_agent.charts import heatmap
 from syllabus_agent.compare import answer_key, baseline_calendar, from_pipeline, score
+from syllabus_agent.evaluate import real_table, summary, synthetic_table
 from syllabus_agent.export import calendar_file
 from syllabus_agent.load import build, collect
 from syllabus_agent.pdfs import NoText, read_pdf
@@ -78,8 +79,9 @@ def masthead():
     named = "" if "PLACEHOLDER" in term["name"] else f" · {term['name']}"
     st.html(f"""<div class="sa-kicker">y/cs · Syllabus Agent{named}</div>
     <div class="sa-title">Syllabus <em>→</em> Semester</div>
-    <p class="sa-dek">Every graded item in your syllabi, each with the sentence it came from and a date
-    worked out by code. Anything that can't be pinned down goes to review instead of onto your calendar.</p>
+    <p class="sa-dek">For a student with five syllabi and no idea which week will bury them. Every graded
+    item, with the sentence it came from and a date worked out by code. Anything that can't be pinned down
+    goes to review instead of onto your calendar.</p>
     <ol class="sa-steps">{steps}</ol>""")
 
 
@@ -392,6 +394,44 @@ def comparison(term):
     st.caption(f"Scored against {label}. One run each; the baseline's mistakes vary from run to run.")
 
 
+LIMITATIONS = [
+    "**Recall depends on the model.** The check proves every calendar item is real (its quote is on its page); "
+    "it can't prove nothing was missed. A rerun can drop a minor item, e.g. MATH 2250's weekly homework once.",
+    "**A real quote can still be mislabeled.** TDPS's \"Oct. 12: Homework for the Live Event\" is a seminar "
+    "title, not an assignment, but the quote is genuine, so it reached the calendar: the one extra item above.",
+    "**Conservative by design.** A paraphrased date (\"weeks of Oct. 12\") is rejected, not fixed, and "
+    "repeating items (\"every Wednesday\") go to Needs review rather than becoming weekly events.",
+    "**Free-tier limits.** 8,000 tokens a minute: five syllabi take about 5 minutes, long PDFs are read in page "
+    "batches, and the baseline can't take all five real syllabi in one prompt.",
+    "**A small eval.** One verified run per set, ten syllabi, answer keys written by the builder. On real syllabi "
+    "with absolute dates the baseline does about as well; the gap is on relative dates and on provenance.",
+    "**Inputs.** No OCR (scanned PDFs are skipped), the term calendar is entered by hand, and weights marked ~ "
+    "are inferred when a syllabus doesn't give one.",
+]
+
+
+@st.cache_data
+def eval_tables():
+    results = summary()
+    return synthetic_table(results), real_table(results)
+
+
+def evaluation():
+    synthetic, real = eval_tables()
+    section("Eval", "Verified pipeline vs. one prompt", "Recorded runs scored against hand-checked answer keys.")
+    left, right = st.columns(2, gap="large")
+    with left:
+        st.markdown("**Synthetic syllabi** · relative dates like “Week 7 Thu” and “the day after Lecture 12”")
+        st.table(synthetic)
+    with right:
+        st.markdown("**Real syllabi** · mostly absolute dates like “Tuesday Oct 13”")
+        st.table(real)
+    st.caption("Reproduce with `python -m syllabus_agent.evaluate` (no API calls). The baseline only fits Groq's "
+               "free tier for two of the real syllabi at once, so it is compared on those two.")
+    section("Limits", "What it gets wrong, and why")
+    st.markdown("\n".join(f"- {line}" for line in LIMITATIONS))
+
+
 def render(events, term, final=True):
     for e in events:
         if e["type"] == "error" and e.get("worker") is None:
@@ -460,17 +500,25 @@ def recording_label(path):
     return f"{when:%b} {when.day}, {when:%H:%M} · {mode} · {', '.join(courses)}"
 
 
+def demo_recording(saved):
+    """The recording with the most syllabi, newest first on ties: a live run on stage saves a new,
+    smaller recording, and the landing button should still replay the full demo."""
+    sizes = {path: len(json.loads(path.read_text())["files"]) for path in saved}
+    return max(saved, key=lambda path: sizes[path]) if saved else None
+
+
 def welcome(saved):
+    demo = demo_recording(saved)
     with st.container(border=True):
         left, right = st.columns([3, 2], vertical_alignment="center")
         with left:
             st.markdown("#### Watch a real run")
             st.markdown("A recorded run over real syllabi, replayed step by step: no API key or network needed."
                         if saved else "No recordings yet. Every completed live run is saved here.")
-            if saved:
-                st.caption(recording_label(saved[0]))
+            if demo:
+                st.caption(recording_label(demo))
         right.button("Replay the demo", type="primary", icon=":material/play_arrow:", width="stretch",
-                     disabled=not saved, on_click=start_replay, args=(saved[0] if saved else None,))
+                     disabled=not demo, on_click=start_replay, args=(demo,))
     st.caption("Or upload your own PDFs in the sidebar, set the term calendar, and press **Run**.")
 
 
@@ -557,3 +605,4 @@ for note in st.session_state.get("notes", []):
 if "last" in st.session_state:
     render(st.session_state.last["events"], term)
     comparison(term)
+evaluation()

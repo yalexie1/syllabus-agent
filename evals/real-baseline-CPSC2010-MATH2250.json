@@ -1,0 +1,101 @@
+{
+ "mode": "baseline",
+ "model": "openai/gpt-oss-120b",
+ "created": "2026-10-17T23:26:47",
+ "term": "# Test-only term built from dates stated in the three uploaded syllabi (not an official calendar).\nname: Fall 2026 (from syllabi)\nstart: 2026-08-31\nend: 2026-12-22\nbreaks:\n  - {name: Labor Day, start: 2026-09-07, end: 2026-09-07}\n  - {name: Fall break, start: 2026-10-21, end: 2026-10-23}\n  - {name: November recess, start: 2026-11-23, end: 2026-11-27}\ncourses: {}\n",
+ "files": [
+  {
+   "name": "CPSC 2010 syllabus.pdf",
+   "sha256": "493174f5f2ca27b14ab88b5eb16ddc0afc771b75214398be363398347f3c94d8",
+   "pages": 4
+  },
+  {
+   "name": "MATH 2250 syllabus.pdf",
+   "sha256": "a85c56fa2b6b335102d77098571ffdbf7ad177d5907e1eef71273dd07ce5bb38",
+   "pages": 2
+  }
+ ],
+ "events": [
+  {
+   "type": "start",
+   "mode": "baseline",
+   "model": "openai/gpt-oss-120b",
+   "files": [
+    {
+     "name": "CPSC 2010 syllabus.pdf",
+     "sha256": "493174f5f2ca27b14ab88b5eb16ddc0afc771b75214398be363398347f3c94d8",
+     "pages": 4
+    },
+    {
+     "name": "MATH 2250 syllabus.pdf",
+     "sha256": "a85c56fa2b6b335102d77098571ffdbf7ad177d5907e1eef71273dd07ce5bb38",
+     "pages": 2
+    }
+   ]
+  },
+  {
+   "type": "baseline",
+   "events": [
+    {
+     "course": "CPSC 2010",
+     "type": "exam",
+     "title": "Midterm Exam I",
+     "date": "2026-10-13",
+     "end_date": "",
+     "weight_pct": null,
+     "source": "Tuesday Oct 13, 7pm Midterm Exam - Davies.",
+     "source_found": true
+    },
+    {
+     "course": "CPSC 2010",
+     "type": "exam",
+     "title": "Midterm Exam II",
+     "date": "2026-11-17",
+     "end_date": "",
+     "weight_pct": null,
+     "source": "Tuesday Nov 17, 7pm Midterm exam - Davies.",
+     "source_found": true
+    },
+    {
+     "course": "CPSC 2010",
+     "type": "exam",
+     "title": "Final Exam",
+     "date": "2026-12-17",
+     "end_date": "",
+     "weight_pct": null,
+     "source": "Dec 17, 7pm Final Exam",
+     "source_found": true
+    },
+    {
+     "course": "MATH 2250",
+     "type": "exam",
+     "title": "Midterm Exam I",
+     "date": "2026-10-05",
+     "end_date": "",
+     "weight_pct": 20,
+     "source": "Midterm 1 will be held on October 5, 2026 from 6 pm - 8 pm",
+     "source_found": true
+    },
+    {
+     "course": "MATH 2250",
+     "type": "exam",
+     "title": "Midterm Exam II",
+     "date": "2026-11-09",
+     "end_date": "",
+     "weight_pct": 20,
+     "source": "Midterm 2 will be held on November 9, 2026 from 6 pm - 8 pm",
+     "source_found": true
+    }
+   ],
+   "reasoning": "low"
+  },
+  {
+   "type": "stats",
+   "mode": "baseline",
+   "seconds": 2.6,
+   "model_calls": 1,
+   "input_tokens": 3498,
+   "output_tokens": 565
+  }
+ ]
+}

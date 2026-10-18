@@ -1,0 +1,201 @@
+{
+ "_note": "Hand-checked against the five real Fall 2026 syllabi (the PDFs are not in the repo). date null = graded but not datable from the syllabus (TBD, weekly, 'weeks of'). TDPS 'Oct. 12: Homework for the Live Event' is a seminar session title, not a graded item.",
+ "CPSC 2010 syllabus.pdf": {
+  "sha256": "493174f5f2ca27b14ab88b5eb16ddc0afc771b75214398be363398347f3c94d8",
+  "course": "CPSC 2010",
+  "items": [
+   {
+    "type": "exam",
+    "title": "Midterm Exam I",
+    "date": "2026-10-13",
+    "end_date": null
+   },
+   {
+    "type": "exam",
+    "title": "Midterm Exam II",
+    "date": "2026-11-17",
+    "end_date": null
+   },
+   {
+    "type": "exam",
+    "title": "Final Exam",
+    "date": "2026-12-17",
+    "end_date": null
+   }
+  ]
+ },
+ "MATH 1200 syllabus.pdf": {
+  "sha256": "bfcca558089a04d4d9f81a2118a68fb84683882d46ff898cf98c46245b6d5945",
+  "course": "MATH 1200",
+  "items": [
+   {
+    "type": "exam",
+    "title": "Midterm Exam 1",
+    "date": "2026-10-01",
+    "end_date": null
+   },
+   {
+    "type": "exam",
+    "title": "Midterm Exam 2",
+    "date": "2026-11-12",
+    "end_date": null
+   },
+   {
+    "type": "exam",
+    "title": "Final Exam",
+    "date": "2026-12-21",
+    "end_date": null
+   },
+   {
+    "type": "problem_set",
+    "title": "Homework",
+    "date": null,
+    "end_date": null
+   },
+   {
+    "type": "quiz",
+    "title": "Pre-class reading quizzes",
+    "date": null,
+    "end_date": null
+   }
+  ]
+ },
+ "MATH 2250 syllabus.pdf": {
+  "sha256": "a85c56fa2b6b335102d77098571ffdbf7ad177d5907e1eef71273dd07ce5bb38",
+  "course": "MATH 2250",
+  "items": [
+   {
+    "type": "exam",
+    "title": "Midterm 1",
+    "date": "2026-10-05",
+    "end_date": null
+   },
+   {
+    "type": "exam",
+    "title": "Midterm 2",
+    "date": "2026-11-09",
+    "end_date": null
+   },
+   {
+    "type": "exam",
+    "title": "Final",
+    "date": null,
+    "end_date": null
+   },
+   {
+    "type": "problem_set",
+    "title": "Homework",
+    "date": null,
+    "end_date": null
+   }
+  ]
+ },
+ "MATH 2410 syllabus.pdf": {
+  "sha256": "9bfcf3c6c6a3a76d6ff892bf194e71b3efc25022375fd31306e0f70c30b4c11f",
+  "course": "MATH 2410",
+  "items": [
+   {
+    "type": "exam",
+    "title": "Midterm",
+    "date": "2026-10-19",
+    "end_date": null
+   },
+   {
+    "type": "exam",
+    "title": "Final",
+    "date": "2026-12-22",
+    "end_date": null
+   },
+   {
+    "type": "problem_set",
+    "title": "Problem sets",
+    "date": null,
+    "end_date": null
+   },
+   {
+    "type": "other",
+    "title": "Oral check-in 1",
+    "date": null,
+    "end_date": null
+   },
+   {
+    "type": "other",
+    "title": "Oral check-in 2",
+    "date": null,
+    "end_date": null
+   },
+   {
+    "type": "other",
+    "title": "Oral check-in 3",
+    "date": null,
+    "end_date": null
+   }
+  ]
+ },
+ "TDPS 0001 syllabus.pdf": {
+  "sha256": "0089871bf881c2143a055695d3e1e2986428d95bfbb4a909574a78a0cfa0d185",
+  "course": "TDPS 0001",
+  "items": [
+   {
+    "type": "paper",
+    "title": "Week 3 Response",
+    "date": "2026-09-13",
+    "end_date": null
+   },
+   {
+    "type": "paper",
+    "title": "Week 4 Response",
+    "date": "2026-09-20",
+    "end_date": null
+   },
+   {
+    "type": "paper",
+    "title": "Week 5 Response",
+    "date": "2026-09-27",
+    "end_date": null
+   },
+   {
+    "type": "paper",
+    "title": "Week 6 Response",
+    "date": "2026-10-04",
+    "end_date": null
+   },
+   {
+    "type": "paper",
+    "title": "Week 9 Response",
+    "date": "2026-10-25",
+    "end_date": null
+   },
+   {
+    "type": "paper",
+    "title": "Week 10 Response",
+    "date": "2026-11-01",
+    "end_date": null
+   },
+   {
+    "type": "paper",
+    "title": "Week 11 Response",
+    "date": "2026-11-08",
+    "end_date": null
+   },
+   {
+    "type": "paper",
+    "title": "Week 12 Response",
+    "date": "2026-11-15",
+    "end_date": null
+   },
+   {
+    "type": "paper",
+    "title": "Week 13 Response",
+    "date": "2026-11-29",
+    "end_date": null
+   },
+   {
+    "type": "paper",
+    "title": "Final Introduction (dossier)",
+    "date": "2026-12-15",
+    "end_date": null
+   }
+  ]
+ }
+}

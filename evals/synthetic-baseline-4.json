@@ -1,0 +1,436 @@
+{
+ "mode": "baseline",
+ "model": "openai/gpt-oss-120b",
+ "created": "2026-10-17T23:27:51",
+ "term": "# Fictional demo term for the synthetic syllabi in this folder. Not a real university calendar.\nname: Example University \u00b7 Fall 2026 (fictional demo term)\nstart: 2026-09-14\nend: 2027-01-08\nbreaks:\n  - {name: Fall break, start: 2026-10-19, end: 2026-10-23}\n  - {name: Thanksgiving recess, start: 2026-11-25, end: 2026-11-27}\n  - {name: Winter recess, start: 2026-12-19, end: 2027-01-03}\ncourses: {}\n",
+ "files": [
+  {
+   "name": "chem210_organic_chemistry.pdf",
+   "sha256": "a49095ba24806856a7059a83c41df7bfe1e520c5115a4997c11ec64a4cd69b62",
+   "pages": 2
+  },
+  {
+   "name": "cpsc223_data_structures.pdf",
+   "sha256": "1f221f2740cf4cbc68e3d42f6b3b8225c1d8269bd03b894c7fac5984e432ded6",
+   "pages": 2
+  },
+  {
+   "name": "econ115_microeconomics.pdf",
+   "sha256": "8537ec3e02665b9c7afe1648833a6ef33c46aed92f8ffff2aab724484078f17e",
+   "pages": 1
+  },
+  {
+   "name": "hist145_modern_europe.pdf",
+   "sha256": "851d3b1759ebbe990d51d4172296b70be37d483ac68e18bb6ca87a76cc549e27",
+   "pages": 2
+  },
+  {
+   "name": "math225_linear_algebra.pdf",
+   "sha256": "076828e8aeccda3fa7935b6c47c31255af6504b119dc8b08f30f4b09ae5774f5",
+   "pages": 1
+  }
+ ],
+ "events": [
+  {
+   "type": "start",
+   "mode": "baseline",
+   "model": "openai/gpt-oss-120b",
+   "files": [
+    {
+     "name": "chem210_organic_chemistry.pdf",
+     "sha256": "a49095ba24806856a7059a83c41df7bfe1e520c5115a4997c11ec64a4cd69b62",
+     "pages": 2
+    },
+    {
+     "name": "cpsc223_data_structures.pdf",
+     "sha256": "1f221f2740cf4cbc68e3d42f6b3b8225c1d8269bd03b894c7fac5984e432ded6",
+     "pages": 2
+    },
+    {
+     "name": "econ115_microeconomics.pdf",
+     "sha256": "8537ec3e02665b9c7afe1648833a6ef33c46aed92f8ffff2aab724484078f17e",
+     "pages": 1
+    },
+    {
+     "name": "hist145_modern_europe.pdf",
+     "sha256": "851d3b1759ebbe990d51d4172296b70be37d483ac68e18bb6ca87a76cc549e27",
+     "pages": 2
+    },
+    {
+     "name": "math225_linear_algebra.pdf",
+     "sha256": "076828e8aeccda3fa7935b6c47c31255af6504b119dc8b08f30f4b09ae5774f5",
+     "pages": 1
+    }
+   ]
+  },
+  {
+   "type": "waiting",
+   "worker": null,
+   "seconds": 15.3
+  },
+  {
+   "type": "baseline",
+   "events": [
+    {
+     "course": "CHEM 210",
+     "type": "problem_set",
+     "title": "Problem Set 1",
+     "date": "2026-09-27",
+     "end_date": "",
+     "weight_pct": 5,
+     "source": "Problem Set 1 due\nWeek 2 Fri Problem Set 1 due",
+     "source_found": false
+    },
+    {
+     "course": "CHEM 210",
+     "type": "problem_set",
+     "title": "Problem Set 2",
+     "date": "2026-10-12",
+     "end_date": "",
+     "weight_pct": 5,
+     "source": "Problem Set 2 due\nWeek 4 Fri Problem Set 2 due",
+     "source_found": false
+    },
+    {
+     "course": "CHEM 210",
+     "type": "problem_set",
+     "title": "Problem Set 3",
+     "date": "2026-10-19",
+     "end_date": "",
+     "weight_pct": 5,
+     "source": "Problem Set 3 due\nWeek 5 Fri Problem Set 3 due",
+     "source_found": false
+    },
+    {
+     "course": "CHEM 210",
+     "type": "exam",
+     "title": "Midterm 1",
+     "date": "2026-11-03",
+     "end_date": "",
+     "weight_pct": 20,
+     "source": "Midterm 1 (evening) \u2013 Week 7 Thursday at 7\u202fpm",
+     "source_found": false
+    },
+    {
+     "course": "CHEM 210",
+     "type": "problem_set",
+     "title": "Problem Set 4",
+     "date": "2026-11-06",
+     "end_date": "",
+     "weight_pct": 5,
+     "source": "Problem Set 4 due\nWeek 8 Fri Problem Set 4 due",
+     "source_found": false
+    },
+    {
+     "course": "CHEM 210",
+     "type": "problem_set",
+     "title": "Problem Set 5",
+     "date": "2026-11-20",
+     "end_date": "",
+     "weight_pct": 5,
+     "source": "Problem Set 5 due\nWeek 10 Fri Problem Set 5 due",
+     "source_found": false
+    },
+    {
+     "course": "CHEM 210",
+     "type": "exam",
+     "title": "Midterm 2",
+     "date": "2026-12-07",
+     "end_date": "",
+     "weight_pct": 20,
+     "source": "Midterm 2 (in class) \u2013 Week 12 Wednesday",
+     "source_found": false
+    },
+    {
+     "course": "CHEM 210",
+     "type": "problem_set",
+     "title": "Problem Set 6",
+     "date": "2026-12-11",
+     "end_date": "",
+     "weight_pct": 5,
+     "source": "Problem Set 6 due\nWeek 13 Fri Problem Set 6 due",
+     "source_found": false
+    },
+    {
+     "course": "CHEM 210",
+     "type": "exam",
+     "title": "Final Exam",
+     "date": "2027-01-06",
+     "end_date": "",
+     "weight_pct": 30,
+     "source": "Final exam \u2013 Jan 6 at 9:00\u202fam",
+     "source_found": false
+    },
+    {
+     "course": "CPSC 223",
+     "type": "problem_set",
+     "title": "Problem Set 1",
+     "date": "2026-09-24",
+     "end_date": "",
+     "weight_pct": 8,
+     "source": "Problem Set 1 is due at the start of Lecture 4.",
+     "source_found": true
+    },
+    {
+     "course": "CPSC 223",
+     "type": "problem_set",
+     "title": "Problem Set 2",
+     "date": "2026-10-10",
+     "end_date": "",
+     "weight_pct": 8,
+     "source": "Problem Set 2 is due two days after Lecture 8, at 11:59\u202fpm.",
+     "source_found": true
+    },
+    {
+     "course": "CPSC 223",
+     "type": "problem_set",
+     "title": "Problem Set 3",
+     "date": "2026-10-23",
+     "end_date": "",
+     "weight_pct": 8,
+     "source": "Problem Set 3 is due the day after Lecture 12.",
+     "source_found": true
+    },
+    {
+     "course": "CPSC 223",
+     "type": "problem_set",
+     "title": "Problem Set 4",
+     "date": "2026-11-24",
+     "end_date": "",
+     "weight_pct": 8,
+     "source": "Problem Set 4 is due at Lecture 21.",
+     "source_found": true
+    },
+    {
+     "course": "CPSC 223",
+     "type": "problem_set",
+     "title": "Problem Set 5",
+     "date": "2026-12-05",
+     "end_date": "",
+     "weight_pct": 8,
+     "source": "Problem Set 5 is due two days after Lecture 23, at 11:59\u202fpm.",
+     "source_found": true
+    },
+    {
+     "course": "CPSC 223",
+     "type": "exam",
+     "title": "Take\u2011home Midterm",
+     "date": "2026-11-03",
+     "end_date": "2026-11-05",
+     "weight_pct": 25,
+     "source": "Take\u2011home midterm released and due within the window Nov\u202f3\u20115.",
+     "source_found": false
+    },
+    {
+     "course": "CPSC 223",
+     "type": "exam",
+     "title": "Final Exam",
+     "date": "2027-01-07",
+     "end_date": "",
+     "weight_pct": 35,
+     "source": "Final exam is on Thursday, January\u202f7, 2\u20115\u202fpm.",
+     "source_found": true
+    },
+    {
+     "course": "ECON 115",
+     "type": "problem_set",
+     "title": "Problem Set 1",
+     "date": "2026-09-25",
+     "end_date": "",
+     "weight_pct": 2.5,
+     "source": "PS1 Sep\u202f25",
+     "source_found": true
+    },
+    {
+     "course": "ECON 115",
+     "type": "problem_set",
+     "title": "Problem Set 2",
+     "date": "2026-10-09",
+     "end_date": "",
+     "weight_pct": 2.5,
+     "source": "PS2 Oct\u202f9",
+     "source_found": true
+    },
+    {
+     "course": "ECON 115",
+     "type": "problem_set",
+     "title": "Problem Set 3",
+     "date": "2026-10-16",
+     "end_date": "",
+     "weight_pct": 2.5,
+     "source": "PS3 Oct\u202f16",
+     "source_found": true
+    },
+    {
+     "course": "ECON 115",
+     "type": "problem_set",
+     "title": "Problem Set 4",
+     "date": "2026-10-30",
+     "end_date": "",
+     "weight_pct": 2.5,
+     "source": "PS4 Oct\u202f30",
+     "source_found": true
+    },
+    {
+     "course": "ECON 115",
+     "type": "problem_set",
+     "title": "Problem Set 5",
+     "date": "2026-11-13",
+     "end_date": "",
+     "weight_pct": 2.5,
+     "source": "PS5 Nov\u202f13",
+     "source_found": true
+    },
+    {
+     "course": "ECON 115",
+     "type": "problem_set",
+     "title": "Problem Set 6",
+     "date": "2026-11-20",
+     "end_date": "",
+     "weight_pct": 2.5,
+     "source": "PS6 Nov\u202f20",
+     "source_found": true
+    },
+    {
+     "course": "ECON 115",
+     "type": "problem_set",
+     "title": "Problem Set 7",
+     "date": "2026-12-04",
+     "end_date": "",
+     "weight_pct": 2.5,
+     "source": "PS7 Dec\u202f4",
+     "source_found": true
+    },
+    {
+     "course": "ECON 115",
+     "type": "problem_set",
+     "title": "Problem Set 8",
+     "date": "2026-12-11",
+     "end_date": "",
+     "weight_pct": 2.5,
+     "source": "PS8 Dec\u202f11",
+     "source_found": true
+    },
+    {
+     "course": "ECON 115",
+     "type": "exam",
+     "title": "Midterm",
+     "date": "2026-10-28",
+     "end_date": "",
+     "weight_pct": 25,
+     "source": "Midterm 25% Wednesday, October\u202f28",
+     "source_found": true
+    },
+    {
+     "course": "ECON 115",
+     "type": "exam",
+     "title": "Final Exam",
+     "date": "2027-01-04",
+     "end_date": "",
+     "weight_pct": 35,
+     "source": "Final exam 35% Monday, January\u202f4",
+     "source_found": true
+    },
+    {
+     "course": "HIST 145",
+     "type": "reading",
+     "title": "Response Paper 1",
+     "date": "2026-09-30",
+     "end_date": "",
+     "weight_pct": 5,
+     "source": "Response paper 1 \u2013 Sept\u202f30",
+     "source_found": false
+    },
+    {
+     "course": "HIST 145",
+     "type": "reading",
+     "title": "Response Paper 2",
+     "date": "2026-10-14",
+     "end_date": "",
+     "weight_pct": 5,
+     "source": "Response paper 2 \u2013 Oct\u202f14",
+     "source_found": false
+    },
+    {
+     "course": "HIST 145",
+     "type": "paper",
+     "title": "Paper 1",
+     "date": "2026-10-30",
+     "end_date": "",
+     "weight_pct": 5,
+     "source": "Paper 1 (2,000 words) \u2013 Oct\u202f30",
+     "source_found": false
+    },
+    {
+     "course": "HIST 145",
+     "type": "reading",
+     "title": "Response Paper 3",
+     "date": "2026-11-11",
+     "end_date": "",
+     "weight_pct": 5,
+     "source": "Response paper 3 \u2013 Nov\u202f11",
+     "source_found": false
+    },
+    {
+     "course": "HIST 145",
+     "type": "reading",
+     "title": "Response Paper 4",
+     "date": "2026-12-09",
+     "end_date": "",
+     "weight_pct": 5,
+     "source": "Response paper 4 \u2013 Wednesday, Dec\u202f9",
+     "source_found": false
+    },
+    {
+     "course": "HIST 145",
+     "type": "paper",
+     "title": "Final Paper",
+     "date": "2026-12-16",
+     "end_date": "",
+     "weight_pct": 30,
+     "source": "Final paper due Dec\u202f16 by noon",
+     "source_found": false
+    },
+    {
+     "course": "MATH 225",
+     "type": "exam",
+     "title": "Midterm 1",
+     "date": "2026-11-01",
+     "end_date": "",
+     "weight_pct": 20,
+     "source": "Midterm 1 \u2013 Week\u202f7 Tuesday",
+     "source_found": false
+    },
+    {
+     "course": "MATH 225",
+     "type": "exam",
+     "title": "Midterm 2",
+     "date": "2026-12-06",
+     "end_date": "",
+     "weight_pct": 20,
+     "source": "Midterm 2 \u2013 Week\u202f12 Tuesday",
+     "source_found": false
+    },
+    {
+     "course": "MATH 225",
+     "type": "exam",
+     "title": "Final Exam",
+     "date": "2027-01-05",
+     "end_date": "",
+     "weight_pct": 40,
+     "source": "Final exam \u2013 Jan\u202f5, 9\u202fam\u2011noon",
+     "source_found": false
+    }
+   ],
+   "reasoning": "low"
+  },
+  {
+   "type": "stats",
+   "mode": "baseline",
+   "seconds": 25.6,
+   "model_calls": 1,
+   "input_tokens": 1707,
+   "output_tokens": 3914
+  }
+ ]
+}

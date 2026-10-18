@@ -2,6 +2,8 @@
 
 Upload course syllabi (PDFs). It finds every deadline, exam and graded item, proves each one against the PDF text, works out dates like "Week 7 Thursday" or "two days after Lecture 8", shows which weeks are crunch weeks, and exports an `.ics` file.
 
+**Who it's for:** a student taking four or five courses. Each syllabus is a PDF with its own format, and the dates hide in prose and tables ("Week 7 Thu", "the day after Lecture 12", "TBA"). Copying them into a calendar by hand takes an hour and is easy to get wrong, and the week where three midterms land at once usually shows up too late. Asking a chatbot is faster but it invents dates with confidence, which is worse than no date. This tool only puts a date on your calendar when it can show you the sentence it came from.
+
 Plain Python and Streamlit, with model calls through the OpenAI SDK's Responses API. There's no agent framework.
 
 ![Syllabus Agent architecture](syllabus_agent/architecture.png)
@@ -48,15 +50,52 @@ The model is `openai/gpt-oss-120b` on Groq. To switch providers, change `BASE_UR
 
 The app ships with one recording: a real verified run over five real Fall 2026 syllabi (CPSC 2010, MATH 1200, MATH 2250, MATH 2410, TDPS 0001). Replaying it needs no API key or network. Before going on stage, open the app and check that **Replay the demo** plays.
 
-1. **Replay (10 s).** Click **Replay the demo** on the landing page. The term calendar the run used loads with it.
-2. **Workers and a rejected citation (25 s).** Five workers run side by side, one per syllabus. Point at MATH 2410's red ❌: the model wrote "weeks of Oct. 12", but the syllabus says "the weeks of Sept. 28, Oct. 12, and Nov. 30". That date isn't in the text, so the check rejects it, the worker gets one retry, and the item is dropped. Nothing reaches the calendar without a quote that's really on its page.
-3. **Needs review (10 s).** Open the *Needs review* tab. TDPS 0001 says "Thurs. Dec. 15", but Dec 15, 2026 is a Tuesday: the syllabus contradicts itself, so a person decides. TBD finals and "every Wednesday" homework land here too, not on the calendar.
-4. **Crunch weeks (15 s).** Scroll to the heatmap. Week 11 (Nov 9–15) lights up: two midterms in different math courses plus a response paper, 44% of a course grade. The cards underneath list what's due.
-5. **Source quote (10 s).** Click the MATH 1200 *Midterm Exam 1* row. That PDF's text lost its spaces ("MidtermExam1isscheduledforThursday, October1"), and the quote still checks out on page 4; the date is computed by code as **Thu Oct 1**.
-6. **Import the .ics (15 s).** Click **Download .ics**, then in Google Calendar go to Settings → Import & export → Import. Each event's description carries its quote and page.
-7. **Baseline (optional, live, about 4 minutes).** Toggle *Use the 5 demo syllabi*, click **Load demo term**, and run both modes. The single prompt has no checks; on these synthetic syllabi it typically misplaces "Week N" and "Lecture N" dates (a midterm during fall break) and cites text that isn't in the PDFs. The comparison table scores both against a hand-checked answer key. The baseline can't run on the five real syllabi on Groq's free tier: one prompt with all of them is over the per-minute token limit.
+1. **The problem (10 s).** Five syllabi, five formats, dates like "Week 7 Thu" buried in prose and tables. Asking a chatbot invents dates with confidence.
+2. **Replay (10 s).** Click **Replay the demo** on the landing page. It's a real run over five real syllabi, played back, and it loads the term calendar that run used.
+3. **Workers and a rejected citation (20 s).** Five workers run side by side. Point at MATH 2410's red ❌: the model wrote "weeks of Oct. 12", but the syllabus says "the weeks of Sept. 28, Oct. 12, and Nov. 30". The date isn't in the text, so the check rejects it after one retry. Nothing reaches the calendar without a quote that's really on its page.
+4. **Live run (20 s).** With the replayed term still loaded, upload `MATH 2250 syllabus.pdf` (two pages) and press **Run**: one worker, about 10 seconds, the same result as the recording.
+5. **Evidence (10 s).** Click the MATH 1200 *Midterm Exam 1* row: the quote, page 4, and the date computed by code (**Thu Oct 1**). Open *Needs review*: "Thurs. Dec. 15" is a Tuesday, so a person decides. Download the `.ics`; every event carries its quote and page.
+6. **Crunch weeks (5 s).** Week 11 (Nov 9–15): two midterms plus a response paper.
+7. **Eval and limitations (15 s).** Scroll to the bottom. On relative dates the single prompt gets 5–11 of 39 wrong across four runs; the pipeline 39 of 39. On real syllabi with written-out dates they tie, and the pipeline's edge is provenance. Then name one limitation: the TDPS seminar title that became a calendar item.
+
+To run the baseline live instead: toggle *Use the 5 demo syllabi*, click **Load demo term**, and run both modes (about 4 minutes); the comparison table appears under the results.
 
 **Read the results carefully:** the check proves a quote is on the page, not that the model labeled it correctly. The answer key exists only for the demo syllabi. For your own PDFs, the baseline is scored against the verified pipeline, which shows disagreement, not ground truth.
+
+## Evaluation
+
+Recorded runs in `evals/`, scored against hand-checked answer keys with `python -m syllabus_agent.evaluate` (no API calls). The app shows the same tables at the bottom of the page.
+
+**Synthetic syllabi** (five generated syllabi full of relative dates, `tests/fixtures/syllabi/`):
+
+|  | Verified pipeline (1 run) | Single-prompt baseline (4 runs) |
+|---|---|---|
+| Correct dates | 39 of 39 | 24, 30, 26, 25 of 39 |
+| Wrong dates | 0 | 11, 5, 9, 10 |
+| Reference items missed | 0 | 4 |
+| Cited text not in the PDFs | 0 | 4, 4, 35, 19 |
+| Sent to review instead of guessing | 2 | 0 |
+
+**Real syllabi** (five real Fall 2026 syllabi, mostly absolute dates; the key is `evals/real-answer-key.json`):
+
+|  | Verified · all 5 syllabi | Verified · CPSC 2010 + MATH 2250 | Baseline · CPSC 2010 + MATH 2250 |
+|---|---|---|---|
+| Correct dates | 20 of 20 | 5 of 5 | 5 of 5 |
+| Wrong dates | 0 | 0 | 0 |
+| Reference items missed | 0 | 0 | 0 |
+| Extra items (not graded) | 1 | 0 | 0 |
+| Sent to review | 5 | 2 | 0 |
+
+What this shows: when dates are written relative to the term ("Week 7 Thu", "Lecture 12 + 1 day"), a single prompt gets 5 to 11 of 39 wrong and cites text that isn't in the PDFs; the pipeline got all 39. When dates are written out ("Tuesday Oct 13"), the baseline does about as well on dates, and the pipeline's advantage is that every item carries a verified quote and page, and undatable items (TBD, weekly, a self-contradicting weekday) go to review instead of being guessed. The baseline is compared on two real syllabi only because one prompt with all five is over Groq's free-tier per-minute limit.
+
+## Limitations
+
+- **Recall depends on the model.** The citation check proves every calendar item is real; it can't prove nothing was missed. A rerun can drop a minor item (MATH 2250's weekly homework once).
+- **A real quote can still be mislabeled.** TDPS's "Oct. 12: Homework for the Live Event" is a seminar title, not an assignment, but the quote is genuine, so it reached the calendar: the one extra item above.
+- **Conservative by design.** A paraphrased date ("weeks of Oct. 12") is rejected rather than fixed, and repeating items ("every Wednesday") go to Needs review rather than becoming weekly events.
+- **Free-tier limits.** 8,000 tokens a minute: five syllabi take about 5 minutes, long PDFs are read in page batches, and the baseline can't take all five real syllabi in one prompt.
+- **A small eval.** One verified run per set, ten syllabi, answer keys written by the builder.
+- **Inputs.** No OCR (scanned PDFs are skipped), the term calendar is entered by hand, and weights marked ~ are inferred when a syllabus doesn't state one.
 
 ## Project layout
 
@@ -71,13 +110,15 @@ syllabus_agent/
   load.py               resolve, dedupe, infer weights, crunch weeks
   charts.py, export.py  heatmap and .ics
   compare.py            scores a run against the answer key
+  evaluate.py           the evaluation tables, from recorded runs (no API calls)
   page.py               live trace, results, replay, comparison
   term.yaml             placeholder term: fill in from your school's calendar
   architecture.svg/.png the diagram above (render the PNG from the SVG with headless Chrome)
   runs/                 the recorded demo run (every completed live run is saved here)
+evals/                  recorded verified and baseline runs + the real syllabi's answer key
 tests/
   test_syllabus_agent.py
-  fixtures/             synthetic syllabi, demo term, answer key (make_syllabi.py), a recorded run for tests
+  fixtures/             synthetic syllabi, demo term and answer key (make_syllabi.py)
 ```
 
 ## Tests
