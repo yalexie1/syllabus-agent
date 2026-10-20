@@ -1,5 +1,5 @@
 openai>=2.0,<3
-streamlit>=1.50,<2
+streamlit>=1.66,<2
 python-dotenv>=1.1,<2
 pdfplumber>=0.11,<1
 pypdf>=5,<8

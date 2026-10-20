@@ -23,7 +23,6 @@ from syllabus_agent.term import as_date, day_name, fmt, load_term, term_yaml
 HERE = Path(__file__).parent
 RUNS = HERE / "runs"
 DEMO = HERE.parent / "tests" / "fixtures" / "syllabi"
-SHOW_FAILURES = 2
 MODES = {"Verified pipeline": "verified", "Single-prompt baseline": "baseline"}
 
 ACCENT = {"light": "#c2410c", "dark": "#ff7a3d"}
@@ -39,6 +38,9 @@ def theme_mode():
 def style():
     accent = ACCENT[theme_mode()]
     st.html(f"""<style>
+    [data-testid="stMainBlockContainer"] {{ padding-top: 2.5rem; }}
+    [data-testid="stSidebarHeader"] {{ height: 1rem; min-height: 0; padding: 0; }}
+    [data-testid="stSidebarUserContent"] {{ padding-top: 0; }}
     [data-testid="stMarkdownContainer"] blockquote {{ border-left: 3px solid {accent}; padding: .1rem 0 .1rem 1rem;
         margin: .4rem 0; font-size: 1.1rem; }}
     </style>""")
@@ -126,10 +128,6 @@ def learn_meeting_days(events):
 
 # Rendering. The same functions draw a live run and a replayed recording.
 
-def rejection(r):
-    st.markdown(f"**{r['title']}** · p.{r['page']}  \n:red[{r['reason']}]  \n:gray[quoted: “{r['quote']}”]")
-
-
 def worker_panel(w, result, events):
     title = w["course"] or w["file"]
     state = ":green[done]" if w["done"] and not w["errors"] else (":red[error]" if w["errors"] else ":gray[running]")
@@ -142,29 +140,22 @@ def worker_panel(w, result, events):
         elif e["type"] == "check" and not e["retry"]:
             passed = [r for r in e["results"] if r["ok"]]
             failed = [r for r in e["results"] if not r["ok"]]
-            st.markdown(f"**{len(passed)}** quotes verified" + (f", :red[{len(failed)} failed]" if failed else ""))
-            for r in failed[:SHOW_FAILURES]:
-                rejection(r)
-            if len(failed) > SHOW_FAILURES:
-                with st.expander(f"{len(failed) - SHOW_FAILURES} more failed the check"):
-                    for r in failed[SHOW_FAILURES:]:
-                        rejection(r)
-        elif e["type"] == "check":
-            fixed = [r["title"] for r in e["results"] if r["ok"]]
-            if fixed:
-                st.markdown(f"Retry: **{len(fixed)}** fixed ({', '.join(fixed)})")
-            for r in e["results"]:
-                if not r["ok"]:
-                    st.markdown(f"Retry: **{r['title']}** still fails, rejected  \n:red[{r['reason']}]")
+            st.markdown(f":green[**{len(passed)}** quotes verified]"
+                        + (f"  \n:red[**{len(failed)}** failed the check], retrying" if failed else ""))
+        elif e["type"] == "check" and e["results"]:
+            fixed = sum(r["ok"] for r in e["results"])
+            still = len(e["results"]) - fixed
+            st.markdown("Retry: " + " · ".join(([f":green[**{fixed}** fixed]"] if fixed else [])
+                                               + ([f":red[**{still}** rejected]"] if still else [])))
         elif e["type"] == "dropped":
-            titles = [w["results"][i]["title"] for i in e["ids"] if i in w["results"]]
-            st.markdown("Withdrawn by the worker, rejected: " + ", ".join(f"**{t}**" for t in titles))
+            st.markdown(f":red[**{len(e['ids'])}** withdrawn by the worker]")
         elif e["type"] == "parsed":
             mine_cal = [i for i in result["calendar"] if i["worker"] == w["id"]]
             mine_rev = [i for i in result["review"] if i["worker"] == w["id"]]
             mine_dup = [i for i in result["duplicates"] if i["worker"] == w["id"]]
-            st.markdown(f"**{len(mine_cal)}** dated · **{len(mine_rev)}** need review"
-                        + (f" · {len(mine_dup)} duplicate merged" if mine_dup else ""))
+            st.markdown(f":green[**{len(mine_cal)}** dated]"
+                        + (f" · :yellow[**{len(mine_rev)}** need{'s' if len(mine_rev) == 1 else ''} review]" if mine_rev else "")
+                        + (f" · :gray[{len(mine_dup)} duplicate merged]" if mine_dup else ""))
         elif e["type"] == "lowered":
             st.caption("Answer was cut off by the free-tier token limit; retried at low reasoning")
         elif e["type"] == "error":
@@ -177,7 +168,8 @@ def trace(events, term):
     result = build(events, term)
     workers = list(result["workers"].values())
     if workers:
-        section("Workers", "One per syllabus, running in parallel. Every quote is checked against its page.")
+        section("Workers", "One per syllabus, running in parallel. Every quote is checked against its page; "
+                "the items that fail are listed under Rejected below.")
         per_row = len(workers) if len(workers) <= 5 else 4  # five syllabi fit one row; more wrap in fours
         for row in range(0, len(workers), per_row):
             for column, w in zip(st.columns(per_row), workers[row:row + per_row]):
@@ -255,7 +247,7 @@ def outcome(result, stats):
         st.download_button(f"Download {count} verified events for Google Calendar (.ics)",
                            calendar_file(result["calendar"]), "syllagent.ics", "text/calendar", type="primary",
                            icon=":material/download:")
-        st.caption(f"The file holds only the {count} verified, dated items in the Calendar tab below. "
+        st.caption(f"The file holds only the {count} verified, dated items in the Verified tab below. "
                    f"The {len(result['review'])} items in Needs review and {len(result['rejected'])} rejected items "
                    "are not in it. Each event is all-day, with its source quote and page in the description. "
                    "In Google Calendar: Settings → Import & export → Import. Apple Calendar and Outlook also open .ics files.")
@@ -272,8 +264,8 @@ def outcome(result, stats):
                     f"{i['course']} {i['title']} · {i['date']:%a} · {weight_text(i)}"
                     for i in w["items"]))
 
-    tabs = st.tabs([f"Calendar ({len(result['calendar'])})", f"Needs review ({len(result['review'])})",
-                    f"Rejected ({len(result['rejected'])})", f"Duplicates ({len(result['duplicates'])})"])
+    tabs = st.tabs([f":green[Verified ({len(result['calendar'])})]", f":yellow[Needs review ({len(result['review'])})]",
+                    f":red[Rejected ({len(result['rejected'])})]", f":gray[Duplicates ({len(result['duplicates'])})]"])
     with tabs[0]:
         table(result["calendar"], {
             "Date": when, "Week": lambda i: i["week"], "Course": lambda i: i["course"],
