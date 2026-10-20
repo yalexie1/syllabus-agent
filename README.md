@@ -44,7 +44,7 @@ The model is `openai/gpt-oss-120b` on Groq. To switch providers, change `BASE_UR
 | 3 · Dates | Model parses, code computes | The model only labels each date: absolute, week + weekday, nth class meeting, a range, or unresolvable. `term.py` does the arithmetic from the term calendar: weeks start at the term start, class meetings skip breaks, and dates without a year get the right one across New Year. Anything it can't pin down goes to **Needs review** instead of the calendar. |
 | 4 · Load | | Weights come from the syllabus or are inferred from the grading breakdown ("30%, 6 sets, lowest dropped" → 6% each). Weekly totals feed the heatmap. The 3 heaviest weeks, and any week with 2+ exams, are crunch weeks. |
 
-**Term calendar:** `syllabus_agent/term.yaml` holds placeholder dates. Fill it in from your school's official calendar, or edit it in the sidebar. **Load demo term** loads the fictional term that matches the demo syllabi.
+**Term calendar:** `syllabus_agent/term.yaml` holds placeholder dates. Fill it in from your school's official calendar, or edit it under **Term dates** in the sidebar. A run on your own PDFs asks for it; replays and the demo syllabi load their own term.
 
 **Groq free tier:** it allows 8,000 tokens per minute. A live run on all five demo syllabi takes about 2 minutes, mostly waiting, and the trace shows each wait. The baseline only fits at low reasoning effort, and the page says so. After upgrading to a paid tier, set `TOKENS_PER_MINUTE = None` in `config.py`.
 
@@ -54,7 +54,7 @@ The app ships with one recording: a real verified run over five real Fall 2026 s
 
 1. **The problem (10 s).** Five syllabi, five formats, dates like "Week 7 Thu" buried in prose and tables. Asking a chatbot invents dates with confidence.
 2. **Replay (10 s).** Click **Replay the demo** on the landing page. It's a real run over five real syllabi, played back, and it loads the term calendar that run used.
-3. **Workers and a rejected citation (20 s).** Five workers run side by side. Point at MATH 2410's red ❌: the model wrote "weeks of Oct. 12", but the syllabus says "the weeks of Sept. 28, Oct. 12, and Nov. 30". The date isn't in the text, so the check rejects it after one retry. Nothing reaches the calendar without a quote that's really on its page.
+3. **Workers and a rejected citation (20 s).** Five workers run side by side. Point at MATH 2410's rejected item (in red): the model wrote "weeks of Oct. 12", but the syllabus says "the weeks of Sept. 28, Oct. 12, and Nov. 30". The date isn't in the text, so the check rejects it after one retry. Nothing reaches the calendar without a quote that's really on its page.
 4. **Live run (20 s).** With the replayed term still loaded, upload `MATH 2250 syllabus.pdf` (two pages) and press **Run**: one worker, about 10 seconds, the same result as the recording.
 5. **Evidence (10 s).** Click the MATH 1200 *Midterm Exam 1* row: the quote, page 4, and the date computed by code (**Thu Oct 1**). Open *Needs review*: "Thurs. Dec. 15" is a Tuesday, so a person decides. Download the `.ics`; every event carries its quote and page.
 6. **Crunch weeks (5 s).** Week 11 (Nov 9–15): two midterms plus a response paper.

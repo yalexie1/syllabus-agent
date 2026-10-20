@@ -1,4 +1,4 @@
-"""Workshop 3 page. Open it from app.py."""
+"""The Syllagent page. Open it from app.py."""
 
 import json
 import os
@@ -25,13 +25,8 @@ RUNS = HERE / "runs"
 DEMO = HERE.parent / "tests" / "fixtures" / "syllabi"
 SHOW_FAILURES = 2
 MODES = {"Verified pipeline": "verified", "Single-prompt baseline": "baseline"}
-TYPE_ICONS = {"exam": "📝", "quiz": "✏️", "problem_set": "📐", "paper": "📄", "project": "🛠️",
-              "presentation": "🎤", "reading": "📚", "other": "📌"}
 
 ACCENT = {"light": "#c2410c", "dark": "#ff7a3d"}
-STEPS = [("Extract", "one worker per syllabus, in parallel, quoting every deadline"),
-         ("Verify", "plain Python finds each quote on its cited page"),
-         ("Resolve", "code computes the date from the term calendar; the model never does")]
 
 
 def theme_mode():
@@ -44,50 +39,20 @@ def theme_mode():
 def style():
     accent = ACCENT[theme_mode()]
     st.html(f"""<style>
-    .sa-kicker {{ font-family: 'JetBrains Mono', monospace; font-size: .7rem; letter-spacing: .2em;
-                 text-transform: uppercase; opacity: .6; }}
-    .sa-title {{ font-family: 'Instrument Serif', serif; font-weight: 400; font-size: clamp(2.6rem, 6vw, 4.4rem);
-                line-height: .95; margin: .35rem 0 .6rem; letter-spacing: -.01em; }}
-    .sa-title em {{ color: {accent}; }}
-    .sa-dek {{ font-size: 1.08rem; max-width: 46rem; opacity: .8; margin: 0 0 1.4rem; }}
-    .sa-steps {{ display: grid; grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr)); gap: 0;
-                list-style: none; padding: 0 !important; margin: 0 0 .5rem !important; border-top: 1px solid currentColor;
-                border-color: color-mix(in srgb, currentColor 25%, transparent); }}
-    .sa-steps li {{ padding: .7rem 1.2rem .2rem 0; margin: 0 !important; }}
-    .sa-steps b {{ font-family: 'JetBrains Mono', monospace; font-size: .72rem; font-weight: 500; color: {accent}; }}
-    .sa-steps span {{ font-family: 'Instrument Serif', serif; font-size: 1.45rem; margin-left: .45rem; }}
-    .sa-steps small {{ display: block; font-size: .84rem; opacity: .65; line-height: 1.35; margin-top: .1rem; }}
-    .sa-section {{ display: flex; align-items: baseline; gap: .8rem; flex-wrap: wrap; margin: 1.6rem 0 .3rem;
-                  padding-top: .9rem; border-top: 1px solid color-mix(in srgb, currentColor 18%, transparent); }}
-    .sa-section .n {{ font-family: 'JetBrains Mono', monospace; font-size: .75rem; color: {accent}; }}
-    .sa-section h3 {{ font-family: 'Instrument Serif', serif; font-weight: 400; font-size: 1.9rem; margin: 0; padding: 0; }}
-    .sa-section p {{ margin: 0; opacity: .65; font-size: .92rem; }}
-    [data-testid="stMetricLabel"] p {{ font-family: 'JetBrains Mono', monospace; font-size: .68rem;
-                                      letter-spacing: .14em; text-transform: uppercase; opacity: .7; }}
-    [data-testid="stMetricValue"] {{ font-family: 'Instrument Serif', serif; }}
     [data-testid="stMarkdownContainer"] blockquote {{ border-left: 3px solid {accent}; padding: .1rem 0 .1rem 1rem;
-        margin: .4rem 0; font-family: 'Instrument Serif', serif; font-size: 1.3rem; line-height: 1.3; }}
-    [data-testid="stSidebar"] h4 {{ font-family: 'JetBrains Mono', monospace; font-size: .7rem; font-weight: 500;
-        letter-spacing: .18em; text-transform: uppercase; opacity: .65; padding: .6rem 0 0; }}
+        margin: .4rem 0; font-size: 1.1rem; }}
     </style>""")
 
 
 def masthead():
-    term = st.session_state.term
-    steps = "".join(f"<li><b>0{n}</b><span>{name}</span><small>{what}</small></li>"
-                    for n, (name, what) in enumerate(STEPS, 1))
-    named = "" if "PLACEHOLDER" in term["name"] else f" · {term['name']}"
-    st.html(f"""<div class="sa-kicker">y/cs · Syllagent{named}</div>
-    <div class="sa-title">Syllabus <em>→</em> Semester</div>
-    <p class="sa-dek">For a student with five syllabi and no idea which week will bury them. Every graded
-    item, with the sentence it came from and a date worked out by code. Anything that can't be pinned down
-    goes to review instead of onto your calendar.</p>
-    <ol class="sa-steps">{steps}</ol>""")
+    st.title("Syllagent")
+    st.image(str(HERE / "architecture.png"), width="stretch")
 
 
-def section(number, title, note=""):
-    st.html(f'<div class="sa-section"><span class="n">{number}</span><h3>{title}</h3>'
-            + (f"<p>{note}</p>" if note else "") + "</div>")
+def section(title, note=""):
+    st.subheader(title, divider="gray")
+    if note:
+        st.caption(note)
 
 
 # Term config lives in session state. Widgets are keyed by a version number so that loading
@@ -137,8 +102,6 @@ def term_editor():
         st.session_state.term = load_term(term_yaml(edited))  # same validation as the YAML file
     except Exception as error:
         st.error(f"Term config problem: {error}")
-    st.download_button("Download term.yaml", term_yaml(st.session_state.term), "term.yaml",
-                       width="stretch")
 
 
 def load_demo_term():
@@ -164,57 +127,57 @@ def learn_meeting_days(events):
 # Rendering. The same functions draw a live run and a replayed recording.
 
 def rejection(r):
-    st.markdown(f"❌ **{r['title']}** · p.{r['page']}  \n:red[{r['reason']}]  \n:gray[quoted: “{r['quote']}”]")
+    st.markdown(f"**{r['title']}** · p.{r['page']}  \n:red[{r['reason']}]  \n:gray[quoted: “{r['quote']}”]")
 
 
 def worker_panel(w, result, events):
     title = w["course"] or w["file"]
-    state = "✅" if w["done"] and not w["errors"] else ("⚠️" if w["errors"] else "⏳")
-    st.markdown(f"**{state} {title}**")
+    state = ":green[done]" if w["done"] and not w["errors"] else (":red[error]" if w["errors"] else ":gray[running]")
+    st.markdown(f"**{title}** · {state}")
     st.caption(f"{w['file']} · worker {w['id']}")
     mine = [e for e in events if e.get("worker") == w["id"]]
     for e in mine:
         if e["type"] == "extracted":
-            st.markdown(f"🔎 Found **{len(e['items'])}** items")
+            st.markdown(f"Found **{len(e['items'])}** items")
         elif e["type"] == "check" and not e["retry"]:
             passed = [r for r in e["results"] if r["ok"]]
             failed = [r for r in e["results"] if not r["ok"]]
-            st.markdown(f"✅ **{len(passed)}** quotes verified")
+            st.markdown(f"**{len(passed)}** quotes verified" + (f", :red[{len(failed)} failed]" if failed else ""))
             for r in failed[:SHOW_FAILURES]:
                 rejection(r)
             if len(failed) > SHOW_FAILURES:
-                with st.expander(f"❌ {len(failed) - SHOW_FAILURES} more failed the check"):
+                with st.expander(f"{len(failed) - SHOW_FAILURES} more failed the check"):
                     for r in failed[SHOW_FAILURES:]:
                         rejection(r)
         elif e["type"] == "check":
             fixed = [r["title"] for r in e["results"] if r["ok"]]
             if fixed:
-                st.markdown(f"↻ ✅ **{len(fixed)}** fixed on retry: " + ", ".join(fixed))
+                st.markdown(f"Retry: **{len(fixed)}** fixed ({', '.join(fixed)})")
             for r in e["results"]:
                 if not r["ok"]:
-                    st.markdown(f"↻ ❌ **{r['title']}** still fails → rejected  \n:red[{r['reason']}]")
+                    st.markdown(f"Retry: **{r['title']}** still fails, rejected  \n:red[{r['reason']}]")
         elif e["type"] == "dropped":
             titles = [w["results"][i]["title"] for i in e["ids"] if i in w["results"]]
-            st.markdown("🗑️ Withdrawn by the worker → rejected: " + ", ".join(f"**{t}**" for t in titles))
+            st.markdown("Withdrawn by the worker, rejected: " + ", ".join(f"**{t}**" for t in titles))
         elif e["type"] == "parsed":
             mine_cal = [i for i in result["calendar"] if i["worker"] == w["id"]]
             mine_rev = [i for i in result["review"] if i["worker"] == w["id"]]
             mine_dup = [i for i in result["duplicates"] if i["worker"] == w["id"]]
-            st.markdown(f"📅 **{len(mine_cal)}** dated · **{len(mine_rev)}** need review"
+            st.markdown(f"**{len(mine_cal)}** dated · **{len(mine_rev)}** need review"
                         + (f" · {len(mine_dup)} duplicate merged" if mine_dup else ""))
         elif e["type"] == "lowered":
-            st.caption("↓ Answer was cut off by the free-tier token limit; retried at low reasoning")
+            st.caption("Answer was cut off by the free-tier token limit; retried at low reasoning")
         elif e["type"] == "error":
             st.error(e["message"][:300])
     if mine and mine[-1]["type"] == "waiting":
-        st.caption(f"⏳ Rate limited by Groq, retrying in {mine[-1]['seconds']:.0f} s…")
+        st.caption(f"Rate limited by Groq, retrying in {mine[-1]['seconds']:.0f} s…")
 
 
 def trace(events, term):
     result = build(events, term)
     workers = list(result["workers"].values())
     if workers:
-        section("01", "Workers", "One per syllabus, running in parallel. Every quote is checked against its page.")
+        section("Workers", "One per syllabus, running in parallel. Every quote is checked against its page.")
         per_row = len(workers) if len(workers) <= 5 else 4  # five syllabi fit one row; more wrap in fours
         for row in range(0, len(workers), per_row):
             for column, w in zip(st.columns(per_row), workers[row:row + per_row]):
@@ -236,7 +199,7 @@ def weight_text(item):
 
 def source_card(item):
     with st.container(border=True):
-        st.markdown(f"{TYPE_ICONS[item['type']]} **[{item['course']}] {item['title']}**")
+        st.markdown(f"**{item['course']} · {item['title']}** :gray[({item['type'].replace('_', ' ')})]")
         st.markdown(f"> “{item['quote']}”")
         st.caption(f"{item['file']} · page {item['page']}")
         lines = [f"Written as “{item['date_expr']}”"]
@@ -251,19 +214,34 @@ def source_card(item):
             st.markdown(f":red[{item['reason']}]")
 
 
+def open_row(key):
+    rows = st.session_state[f"{key}{st.session_state.get(key + '_v', 0)}"]["selection"]["rows"]
+    if rows:
+        st.session_state[key + "_open"] = rows[0]
+
+
+def close_row(key):
+    st.session_state.pop(key + "_open", None)
+    st.session_state[key + "_v"] = st.session_state.get(key + "_v", 0) + 1  # a fresh table, nothing selected
+
+
 def table(items, columns, key):
+    """A table whose rows open their source card; the card has a button back to the full table."""
+    opened = st.session_state.get(key + "_open")
+    if opened is not None and opened < len(items):
+        st.button(f"Back to all {len(items)}", key=key + "_back", icon=":material/arrow_back:",
+                  on_click=close_row, args=(key,))
+        source_card(items[opened])
+        return
     rows = [{name: get(i) for name, get in columns.items()} for i in items]
-    picked = st.dataframe(rows, hide_index=True, width="stretch", on_select="rerun",
-                          selection_mode="single-row", key=key)
-    chosen = picked.selection.rows if picked else []
-    if chosen:
-        source_card(items[chosen[0]])
-    elif items:
+    st.dataframe(rows, hide_index=True, width="stretch", on_select=lambda: open_row(key),
+                 selection_mode="single-row", key=f"{key}{st.session_state.get(key + '_v', 0)}")
+    if items:
         st.caption("Select a row to see its source quote.")
 
 
 def outcome(result, stats):
-    section("02", "The semester", "Built from verified items only.")
+    section("Results", "Built from verified items only.")
     repaired = sum(r["ok"] for w in result["workers"].values() for r in w["results"].values() if r.get("retried"))
     columns = st.columns(4)
     columns[0].metric("On calendar", len(result["calendar"]))
@@ -273,10 +251,14 @@ def outcome(result, stats):
     st.caption(f"`{stats['model_calls']} model calls` · `{stats['seconds']:.0f} s` · `{repaired} fixed on retry` · "
                f"`{len(result['duplicates'])} duplicates merged`")
     if result["calendar"]:
-        st.download_button(f"Download .ics · {len(result['calendar'])} events", calendar_file(result["calendar"]),
-                           "semester.ics", "text/calendar", type="primary", icon=":material/calendar_month:")
-        st.caption("All-day events, each with its source quote and page. Needs-review items are left out. "
-                   "Google Calendar: Settings → Import & export → Import.")
+        count = len(result["calendar"])
+        st.download_button(f"Download {count} verified events for Google Calendar (.ics)",
+                           calendar_file(result["calendar"]), "syllagent.ics", "text/calendar", type="primary",
+                           icon=":material/download:")
+        st.caption(f"The file holds only the {count} verified, dated items in the Calendar tab below. "
+                   f"The {len(result['review'])} items in Needs review and {len(result['rejected'])} rejected items "
+                   "are not in it. Each event is all-day, with its source quote and page in the description. "
+                   "In Google Calendar: Settings → Import & export → Import. Apple Calendar and Outlook also open .ics files.")
 
     st.altair_chart(heatmap(result, st.session_state.term, theme_mode()), width="stretch", theme=None)
     if result["crunch"]:
@@ -285,9 +267,9 @@ def outcome(result, stats):
             with column, st.container(border=True):
                 sunday = w["monday"] + timedelta(days=6)
                 st.markdown(f"**Week {w['week']}** · {w['monday']:%b} {w['monday'].day} – {sunday:%b} {sunday.day}")
-                st.markdown(f"🔥 {w['summary']}")
+                st.markdown(w["summary"])
                 st.caption(w["why"] + "  \n" + "  \n".join(
-                    f"{TYPE_ICONS[i['type']]} {i['course']} {i['title']} · {i['date']:%a} · {weight_text(i)}"
+                    f"{i['course']} {i['title']} · {i['date']:%a} · {weight_text(i)}"
                     for i in w["items"]))
 
     tabs = st.tabs([f"Calendar ({len(result['calendar'])})", f"Needs review ({len(result['review'])})",
@@ -295,7 +277,7 @@ def outcome(result, stats):
     with tabs[0]:
         table(result["calendar"], {
             "Date": when, "Week": lambda i: i["week"], "Course": lambda i: i["course"],
-            "Type": lambda i: f"{TYPE_ICONS[i['type']]} {i['type'].replace('_', ' ')}",
+            "Type": lambda i: i["type"].replace("_", " "),
             "Title": lambda i: i["title"], "Weight": weight_text, "Source": lambda i: f"p.{i['page']}"}, "cal")
     with tabs[1]:
         st.caption("The quote checked out, but the date can't be pinned down. Not added to the calendar.")
@@ -310,8 +292,8 @@ def outcome(result, stats):
                                      "Date": when, "Merged into": lambda i: i["reason"]}, "dup")
 
 
-VERDICTS = {"correct": "✅ correct", "wrong date": "❌ wrong date", "dated, but undatable": "⚠️ date invented",
-            "not in reference": "❓ not in reference"}
+VERDICTS = {"correct": "correct", "wrong date": "wrong date", "dated, but undatable": "date invented",
+            "not in reference": "not in reference"}
 
 
 def reference(files, term):
@@ -326,10 +308,10 @@ def reference(files, term):
 
 
 def baseline_view(events, term, files, final):
-    section("01", "Baseline", "One prompt with every syllabus. No citation check, no date code.")
+    section("Baseline", "One prompt with every syllabus. No citation check, no date code.")
     raw = next((e["events"] for e in events if e["type"] == "baseline"), None)
     if raw is None:
-        st.caption("⏳ Waiting for one big model call…")
+        st.caption("Waiting for one big model call…")
         return
     calendar = baseline_calendar(events)
     effort = next((e.get("reasoning") for e in events if e["type"] == "baseline"), None)
@@ -349,7 +331,7 @@ def baseline_view(events, term, files, final):
         st.caption("Run the verified pipeline on the same PDFs to score these dates.")
     rows = [{"Date": when(i), "Course": i["course"], "Title": i["title"],
              "Weight": f"{i['weight_pct']:g}%" if i.get("weight_pct") else "–",
-             "Source in PDF": "✅" if i["source_found"] else "❌ not found",
+             "Source in PDF": "found" if i["source_found"] else "not found",
              "Check": VERDICTS.get(v, "")} for i, v in zip(calendar, verdicts)]
     st.dataframe(rows, hide_index=True, width="stretch", height=min(38 + 35 * len(rows), 600))
     if final and calendar:
@@ -388,7 +370,7 @@ def comparison(term):
         ("Model calls", stats["verified"]["model_calls"], stats["baseline"]["model_calls"]),
         ("Seconds", stats["verified"]["seconds"], stats["baseline"]["seconds"]),
     ]
-    section("03", "Same syllabi, both modes")
+    section("Same syllabi, both modes")
     st.table({"": [r[0] for r in rows], "Verified pipeline": [str(r[1]) for r in rows],
               "Single-prompt baseline": [str(r[2]) for r in rows]})
     st.caption(f"Scored against {label}. One run each; the baseline's mistakes vary from run to run.")
@@ -418,7 +400,7 @@ def eval_tables():
 
 def evaluation():
     synthetic, real = eval_tables()
-    section("Eval", "Verified pipeline vs. one prompt", "Recorded runs scored against hand-checked answer keys.")
+    section("Evaluation: verified pipeline vs. one prompt", "Recorded runs scored against hand-checked answer keys.")
     left, right = st.columns(2, gap="large")
     with left:
         st.markdown("**Synthetic syllabi** · relative dates like “Week 7 Thu” and “the day after Lecture 12”")
@@ -428,7 +410,7 @@ def evaluation():
         st.table(real)
     st.caption("Reproduce with `python -m syllabus_agent.evaluate` (no API calls). The baseline only fits Groq's "
                "free tier for two of the real syllabi at once, so it is compared on those two.")
-    section("Limits", "What it gets wrong, and why")
+    section("Limitations")
     st.markdown("\n".join(f"- {line}" for line in LIMITATIONS))
 
 
@@ -519,7 +501,7 @@ def welcome(saved):
                 st.caption(recording_label(demo))
         right.button("Replay the demo", type="primary", icon=":material/play_arrow:", width="stretch",
                      disabled=not demo, on_click=start_replay, args=(demo,))
-    st.caption("Or upload your own PDFs in the sidebar, set the term calendar, and press **Run**.")
+    st.caption("Or upload your own PDFs in the sidebar, set the term dates, and press **Run**.")
 
 
 def uploaded_syllabi(files, use_demo):
@@ -544,7 +526,9 @@ with st.sidebar:
     st.markdown("#### Syllabi")
     files = st.file_uploader("Syllabus PDFs (1–8)", type="pdf", accept_multiple_files=True)
     use_demo = st.toggle("Use the 5 demo syllabi instead", help="Synthetic syllabi from tests/fixtures/syllabi")
-    with st.expander("Term calendar", expanded="PLACEHOLDER" in st.session_state.term["name"]):
+    with st.expander("Term dates"):
+        st.caption("Needed to turn dates like “Week 7 Thu” into real ones. Replays and the demo syllabi set "
+                   "this for you.")
         st.button("Load demo term", on_click=load_demo_term, width="stretch")
         term_editor()
     st.markdown("#### Run")
@@ -562,14 +546,17 @@ masthead()
 idle = not start and "replay" not in st.session_state and "last" not in st.session_state
 if idle:
     welcome(saved)
-if "PLACEHOLDER" in term["name"] and "last" not in st.session_state:
-    st.warning("The term calendar is still a placeholder. Fill it in from the sidebar, or click "
-               "**Load demo term** to use the fictional term that matches the demo syllabi.")
 
 if start:
     if not config.api_key():
         st.error(f"Add {config.API_KEY_ENV} to .env.")
         st.stop()
+    if "PLACEHOLDER" in term["name"]:
+        if not use_demo:
+            st.error("Set the term's start, end and breaks under **Term dates** in the sidebar first.")
+            st.stop()
+        load_demo_term()  # the demo syllabi are written for the demo term
+        term = st.session_state.term
     st.session_state.notes = []
     syllabi = uploaded_syllabi(files, use_demo)
     if not syllabi:

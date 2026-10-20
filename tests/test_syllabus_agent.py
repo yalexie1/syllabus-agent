@@ -535,9 +535,16 @@ class PageTests(unittest.TestCase):
         with patch.dict(os.environ, {"GROQ_API_KEY": "", "GROK_API_KEY": ""}):
             app = self.app().run()
             self.assertFalse(app.exception)
-            self.assertTrue(any("placeholder" in w.value for w in app.warning))
+            self.assertFalse(app.warning)  # the placeholder term only matters once someone presses Run
             next(b for b in app.button if b.label == "Run").click().run()
             self.assertTrue(any("GROQ_API_KEY" in e.value for e in app.error))
+
+    def test_run_with_placeholder_term_asks_for_term_dates(self):
+        with patch.dict(os.environ, {"GROQ_API_KEY": "gsk_test"}):
+            app = self.app().run()
+            next(b for b in app.button if b.label == "Run").click().run()
+        self.assertFalse(app.exception)
+        self.assertTrue(any("Term dates" in e.value for e in app.error))
 
     def test_replay_runs_offline_and_restores_the_recorded_term(self):
         with patch.dict(os.environ, {"SYLLABUS_REPLAY_SPEED": "0"}):

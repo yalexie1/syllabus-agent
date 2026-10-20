@@ -27,7 +27,7 @@
   <rect width="1920" height="1080" fill="#000"/>
 
   <text class="h" x="80" y="118">What I built: Syllagent</text>
-  <text class="kick" x="80" y="166">SYLLABUS PDFS → A VERIFIED SEMESTER · EXTRACT → CHECK → LABEL → COMPUTE</text>
+  <text class="kick" x="80" y="166">EXTRACT → CHECK → LABEL → COMPUTE</text>
   <line x1="80" y1="200" x2="1840" y2="200" stroke="#E8B4A0" stroke-opacity="0.6" stroke-width="1.5"/>
 
   <!-- arrows go first so boxes sit on top -->
