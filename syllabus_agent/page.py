@@ -77,7 +77,7 @@ def masthead():
     steps = "".join(f"<li><b>0{n}</b><span>{name}</span><small>{what}</small></li>"
                     for n, (name, what) in enumerate(STEPS, 1))
     named = "" if "PLACEHOLDER" in term["name"] else f" · {term['name']}"
-    st.html(f"""<div class="sa-kicker">y/cs · Syllabus Agent{named}</div>
+    st.html(f"""<div class="sa-kicker">y/cs · Syllagent{named}</div>
     <div class="sa-title">Syllabus <em>→</em> Semester</div>
     <p class="sa-dek">For a student with five syllabi and no idea which week will bury them. Every graded
     item, with the sentence it came from and a date worked out by code. Anything that can't be pinned down

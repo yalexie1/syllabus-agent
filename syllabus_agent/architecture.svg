@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" role="img">
-  <title>Syllabus Agent architecture</title>
+  <title>Syllagent architecture</title>
   <desc>Syllabus PDFs go to parallel extractor workers, one per syllabus. Plain Python checks every quote against its cited page with one repair call. A model labels each date as written, and code computes the actual date from the term calendar. Unresolvable dates go to review; verified items become the calendar, crunch heatmap and .ics.</desc>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@700&amp;family=DM+Sans:wght@400;500&amp;family=DM+Mono:wght@400;500&amp;display=swap');
@@ -26,7 +26,7 @@
 
   <rect width="1920" height="1080" fill="#000"/>
 
-  <text class="h" x="80" y="118">What I built: Syllabus Agent</text>
+  <text class="h" x="80" y="118">What I built: Syllagent</text>
   <text class="kick" x="80" y="166">SYLLABUS PDFS → A VERIFIED SEMESTER · EXTRACT → CHECK → LABEL → COMPUTE</text>
   <line x1="80" y1="200" x2="1840" y2="200" stroke="#E8B4A0" stroke-opacity="0.6" stroke-width="1.5"/>
 
@@ -135,5 +135,5 @@
   <text class="note" x="1840" y="999" text-anchor="end">Baseline mode: one prompt, every syllabus, no check, the model writes the dates</text>
 
   <text class="note" x="80" y="1050">y/cs · Catalyst Workshop 3</text>
-  <text class="note" x="1840" y="1050" text-anchor="end">github.com/yalexie1/syllabus-agent</text>
+  <text class="note" x="1840" y="1050" text-anchor="end">github.com/yalexie1/syllagent</text>
 </svg>

@@ -22,7 +22,7 @@ def description(item):
 def calendar_file(items, name="Semester deadlines"):
     """All-day events. DTEND is exclusive in iCalendar, so a one-day event ends the next day."""
     cal = Calendar()
-    cal.add("prodid", "-//y/cs Catalyst//Syllabus Agent//EN")
+    cal.add("prodid", "-//y/cs Catalyst//Syllagent//EN")
     cal.add("version", "2.0")
     cal.add("x-wr-calname", name)
     stamp = datetime.now(timezone.utc)

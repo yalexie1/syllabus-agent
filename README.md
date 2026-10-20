@@ -1,4 +1,6 @@
-# Syllabus Agent
+# Syllagent
+
+**Live demo:** https://syllagent.streamlit.app
 
 Upload course syllabi (PDFs). It finds every deadline, exam and graded item, proves each one against the PDF text, works out dates like "Week 7 Thursday" or "two days after Lecture 8", shows which weeks are crunch weeks, and exports an `.ics` file.
 
@@ -6,7 +8,7 @@ Upload course syllabi (PDFs). It finds every deadline, exam and graded item, pro
 
 Plain Python and Streamlit, with model calls through the OpenAI SDK's Responses API. There's no agent framework.
 
-![Syllabus Agent architecture](syllabus_agent/architecture.png)
+![Syllagent architecture](syllabus_agent/architecture.png)
 
 ## Run it
 

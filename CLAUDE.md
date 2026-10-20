@@ -18,7 +18,7 @@ The theme (fonts, light/dark colors) is in `.streamlit/config.toml`; page-level 
 
 ## What this is
 
-A local Streamlit demo ("Syllabus Agent"): upload syllabus PDFs → extract every graded item with a verbatim quote → verify quotes in plain Python → resolve dates → crunch-week heatmap + `.ics` export. A "single-prompt baseline" mode exists only to be compared against the verified pipeline. Demo value comes first; if a design decision would change what the demo shows, ask the user rather than guessing.
+A local Streamlit demo ("Syllagent"): upload syllabus PDFs → extract every graded item with a verbatim quote → verify quotes in plain Python → resolve dates → crunch-week heatmap + `.ics` export. A "single-prompt baseline" mode exists only to be compared against the verified pipeline. Demo value comes first; if a design decision would change what the demo shows, ask the user rather than guessing.
 
 ## Architecture
 
